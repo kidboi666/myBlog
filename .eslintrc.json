@@ -31,6 +31,7 @@
     "react/jsx-props-no-spreading": "off", // spread 사용시 error
     "jsx-a11y/click-events-have-key-events": "off", //onClick 이벤트에 key event 포함 안하면 error off
     "import/prefer-default-export": "off",
+    "react/display-name": 0,
     "react/function-component-definition": [
       2,
       {

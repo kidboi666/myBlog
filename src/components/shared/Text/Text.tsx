@@ -1,0 +1,33 @@
+import cn from "@/src/lib/cn"
+import { cva } from "class-variance-authority"
+import { ElementType, PropsWithChildren } from "react"
+
+interface Props {
+  as?: ElementType
+  variant?: "body" | "description" | "caption"
+  className?: string
+}
+
+const textVariants = cva("text-slate-800", {
+  variants: {
+    variant: {
+      body: "text-base",
+      description: "text-sm",
+      caption: "text-xs",
+    },
+  },
+})
+
+export const Text = ({
+  as: Component = "p",
+  variant = "body",
+  children,
+  className,
+  ...props
+}: PropsWithChildren<Props>) => {
+  return (
+    <Component className={cn(textVariants({ variant }), className)} {...props}>
+      {children}
+    </Component>
+  )
+}

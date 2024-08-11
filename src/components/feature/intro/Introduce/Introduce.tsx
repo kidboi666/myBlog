@@ -1,4 +1,5 @@
-import { Title } from "../../shared/Title"
+import { Title } from "@/src/components/shared/Title"
+import { TypingEffect } from "../TypingEffect"
 
 export const Introduce = () => {
   return (
@@ -7,7 +8,7 @@ export const Introduce = () => {
         환영합니다.
       </Title>
       <Title as="h2" className="text-5xl">
-        새로운 저의 블로그를 소개합니다.
+        <TypingEffect>새로운 저의 블로그를 소개합니다.</TypingEffect>
       </Title>
     </div>
   )

@@ -6,7 +6,7 @@ import { Button } from "../../shared/Button"
 
 export const Header = () => {
   return (
-    <Container as="header" className="fixed top-0 h-20 justify-between rounded-t-none">
+    <Container as="header" className="fixed top-0 z-50 h-20 justify-between rounded-t-none">
       <Title className="text-base text-slate-500">ORIGINAL .</Title>
       <nav>
         <List className="flex gap-4">

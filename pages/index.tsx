@@ -1,7 +1,7 @@
 import { Card } from "@/src/components/shared/Card"
 import CardImage from "@/src/assets/card_image.png"
 import CardImage2 from "@/src/assets/card_image2.jpg"
-import CardImage3 from "@/src/assets/card_image3.jpg"
+import CardImage4 from "@/src/assets/card_image4.jpg"
 import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Header } from "@/src/components/layout/Header"
 import { Footer } from "@/src/components/layout/Footer"
@@ -37,10 +37,12 @@ const Home = () => {
         </Card>
 
         <Card className="justify-self-center bg-blue-50">
-          <Card.Image src={CardImage3} alt="임시" className="h-40" />
+          <Card.Image src={CardImage4} alt="임시" className="h-40" />
           <Card.Content className="flex flex-col gap-2">
             <Title>항상 기록합니다.</Title>
-            <Text>항생제를 바릅니다.</Text>
+            <Text>
+              뛰어난 기억력보다 조잡한 기록이 결국 더 쓸모가 있다는걸 알기에 항상 기록합니다.
+            </Text>
           </Card.Content>
         </Card>
       </Container>

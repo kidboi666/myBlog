@@ -1,6 +1,6 @@
 import { useTypingEffect } from "@/src/hooks/useTypingEffect"
 import { Title } from "@/src/components/shared/Title"
-import { Underbar } from "../Undebar"
+import { Underbar } from "./Underbar"
 
 export const Introduce = () => {
   const text1 = useTypingEffect("새로운 저의 블로그를 소개합니다.")

@@ -13,9 +13,19 @@ const config: Config = {
           from: { backgroundPosition: "0% 50%" },
           to: { backgroundPosition: "100%" },
         },
+        slideDown: {
+          from: { opacity: "0", transform: "translateY(-100%)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        slideUp: {
+          from: { opacity: "1", transform: "translateY(0)" },
+          to: { opacity: "0", transform: "translateY(-100%)" },
+        },
       },
       animation: {
         moveGradient: "moveGradient 10s linear infinite",
+        slideDown: "slideDown 0.2s ease-in-out forwards",
+        slideUp: "slideUp 0.2s ease-in-out forwards",
       },
     },
   },

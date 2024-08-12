@@ -13,8 +13,8 @@ const useAnimation: TAnimation = (condition) => {
   const [isComplete, setComplete] = useState(false)
 
   useEffect(() => {
-    if (condition) {
-      setComplete(condition)
+    if (condition && !isComplete) {
+      setComplete(true)
     }
   }, [condition])
 

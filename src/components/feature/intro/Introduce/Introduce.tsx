@@ -10,7 +10,7 @@ export const Introduce = () => {
       <Title as="h3" variant="sub">
         환영합니다.
       </Title>
-      <Title as="h2" className="text-5xl">
+      <Title as="h2" className="text-3xl md:text-4xl xl:text-5xl">
         <Underbar>{text1}</Underbar>
       </Title>
     </div>

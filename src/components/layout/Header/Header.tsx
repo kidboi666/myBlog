@@ -10,7 +10,7 @@ export const Header = () => {
   const [isOpenMenu, setOpenMenu] = useState(false)
 
   return (
-    <Container as="header" className="fixed top-0 z-50 h-20 grid-cols-2 rounded-t-none">
+    <Container as="header" className="fixed top-0 z-50 h-fit grid-cols-2 rounded-t-none py-6">
       <Title className="text-base text-slate-500">ORIGINAL .</Title>
       <nav className="justify-self-end">
         <List className="flex items-center gap-4">

@@ -1,32 +1,42 @@
 import cn from "@/src/lib/cn"
 import Image, { StaticImageData } from "next/image"
-import { ComponentProps, PropsWithChildren } from "react"
+import { ComponentProps, ElementType, PropsWithChildren } from "react"
 
 interface Props extends ComponentProps<"div"> {
+  as?: ElementType
   className?: string
 }
 
-export const Card = ({ className, children, ...props }: PropsWithChildren<Props>) => {
+export const Card = ({
+  as: Component = "div",
+  className,
+  children,
+  ...props
+}: PropsWithChildren<Props>) => {
   return (
-    <div
-      className={cn("flex size-fit flex-col gap-4 rounded-2xl bg-blue-200 p-4", className)}
+    <Component
+      className={cn(
+        "transition-slow flex h-full w-full flex-col gap-4 rounded-2xl bg-blue-200 p-4 hover:-translate-y-2 hover:shadow-lg",
+        className,
+      )}
       {...props}
     >
       {children}
-    </div>
+    </Component>
   )
 }
 
 interface ImageProps {
   src: StaticImageData
   alt: string
+  innerClassName?: string
   className?: string
 }
 
-Card.Image = ({ src, alt, className }: ImageProps) => {
+Card.Image = ({ src, alt, className, innerClassName }: ImageProps) => {
   return (
-    <div className={cn("relative w-full", className)}>
-      <Image src={src} alt={alt} fill className="rounded-2xl object-cover" />
+    <div className={cn("relative", className)}>
+      <Image src={src} alt={alt} fill className={cn("rounded-2xl object-cover", innerClassName)} />
     </div>
   )
 }

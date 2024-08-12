@@ -32,6 +32,15 @@ const config: Config = {
             "linear-gradient(to right, #06b6d4 0%, #3b82f6 25%, #3b82f6 50%, #06b6d4 75%, #3b82f6 100%)",
           backgroundSize: "400%",
         },
+        ".transition-slow": {
+          transition: "all 0.3s linear",
+        },
+        ".transition-normal": {
+          transition: "all 0.15s linear",
+        },
+        ".transition-fast": {
+          transition: "all 0.1s linear",
+        },
         ".no-scrollbar::-webkit-scrollbar": {
           display: "none",
         },

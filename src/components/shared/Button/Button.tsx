@@ -10,7 +10,7 @@ const buttonVariants = cva("rounded-full font-semibold text-white", {
   variants: {
     variant: {
       primary: "bg-slate-800 px-6 py-1 hover:bg-slate-300 hover:text-slate-800",
-      secondary: "text-slate-800 hover:underline",
+      secondary: "text-slate-500 hover:underline",
       teritory: "",
       icon: "text-slate-500 hover:text-slate-600",
     },

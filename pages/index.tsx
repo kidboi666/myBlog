@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-      <Container as="article" className="mb-28 grid-cols-2 gap-4 p-14">
+      <Container as="article" className="mb-28 grid-cols-2 gap-4 p-14 xl:grid-cols-4">
         <Card className="w-80 justify-self-center bg-blue-50">
           <Card.Image src={CardImage} alt="임시" className="h-40" />
           <Card.Content className="flex flex-col gap-2">

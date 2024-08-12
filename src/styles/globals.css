@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: "Pretendard";
+  font-family: ui-monospace, SFMono-Regular, "Pretendard", Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   line-height: normal;
 }

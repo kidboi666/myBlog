@@ -14,7 +14,7 @@ export const Container = ({
   return (
     <Component
       className={cn(
-        "flex h-full w-full items-center justify-center rounded-3xl bg-white px-4 shadow-lg",
+        "grid h-full w-full items-center justify-center rounded-3xl bg-white px-4 shadow-lg",
         className,
       )}
     >

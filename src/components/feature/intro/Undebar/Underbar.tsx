@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
+import { PropsWithChildren, useEffect, useState } from "react"
 
-export const Underbar = () => {
-  const [underbar, setUnderbar] = useState("")
+export const Underbar = ({ children }: PropsWithChildren) => {
+  const [underbar, setUnderbar] = useState("_")
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -12,5 +12,9 @@ export const Underbar = () => {
       clearInterval(intervalId)
     }
   })
-  return underbar
+  return (
+    <>
+      {children} <span className="absolute">{underbar}</span>
+    </>
+  )
 }

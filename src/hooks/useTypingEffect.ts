@@ -1,14 +1,10 @@
 import { useEffect, useState } from "react"
 
-interface Props {
-  children: string
-}
-
-export const TypingEffect = ({ children }: Props) => {
+export const useTypingEffect = (value: string) => {
   const [text, setText] = useState("")
 
   useEffect(() => {
-    const splitText = children.split("")
+    const splitText = value.split("")
     const timeoutArr: NodeJS.Timeout[] = []
 
     splitText.forEach((txt, idx) => {
@@ -21,7 +17,7 @@ export const TypingEffect = ({ children }: Props) => {
     return () => {
       timeoutArr.forEach((id) => clearTimeout(id))
     }
-  }, [])
+  }, [value])
 
   return text
 }

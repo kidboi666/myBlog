@@ -15,7 +15,7 @@ export const SectionMenu = ({ menuList, isAnimation, onAnimationEnd, className }
     <Container
       onAnimationEnd={onAnimationEnd}
       className={cn(
-        "fixed left-0 top-14 z-30 h-fit rounded-t-none pb-2 pt-16",
+        "fixed right-0 top-16 size-fit rounded-t-none px-10 pb-2 xl:px-20",
         isAnimation ? "animate-slideDown" : "animate-slideUp",
         className,
       )}
@@ -23,7 +23,7 @@ export const SectionMenu = ({ menuList, isAnimation, onAnimationEnd, className }
       <List className="flex gap-4">
         {menuList?.map((menu) => (
           <List.Row key={menu.id}>
-            <Button variant="secondary" className="w-full text-sm">
+            <Button variant="secondary" className="text-sm">
               {menu.name}
             </Button>
           </List.Row>

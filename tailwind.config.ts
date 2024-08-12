@@ -14,12 +14,12 @@ const config: Config = {
           to: { backgroundPosition: "100%" },
         },
         slideDown: {
-          from: { opacity: "0", transform: "translateY(-100%)" },
+          from: { opacity: "0", transform: "translateY(-50px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         slideUp: {
           from: { opacity: "1", transform: "translateY(0)" },
-          to: { opacity: "0", transform: "translateY(-100%)" },
+          to: { opacity: "0", transform: "translateY(-50px)" },
         },
       },
       animation: {

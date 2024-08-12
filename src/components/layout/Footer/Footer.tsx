@@ -5,7 +5,7 @@ import { Container } from "../Container"
 
 export const Footer = () => {
   return (
-    <Container as="footer" className="gap-4 rounded-b-none">
+    <Container as="footer" className="flex-col gap-4 rounded-b-none">
       <Text>새로운 기능이 계속해서 추가됩니다.</Text>
       <Button variant="icon" className="justify-self-center text-slate-500">
         <Link href="https://github.com/kidboi666" target="_blank">

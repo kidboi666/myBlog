@@ -6,7 +6,7 @@ interface Props extends ComponentProps<"button"> {
   variant?: "primary" | "secondary" | "teritory" | "icon"
 }
 
-const buttonVariants = cva("group flex items-center gap-2 rounded-full font-semibold text-white", {
+const buttonVariants = cva("group flex items-center rounded-full font-semibold text-white", {
   variants: {
     variant: {
       primary: "bg-slate-800 px-6 py-1 hover:bg-slate-300 hover:text-slate-800",

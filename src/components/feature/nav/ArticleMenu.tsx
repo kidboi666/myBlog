@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { RefObject, useEffect, useState } from "react"
 import cn from "@/src/lib/cn"
 import useAnimation from "@/src/hooks/useAnimation"
 import { Container } from "../../layout/Container"
@@ -7,8 +7,8 @@ import { Button } from "../../shared/Button"
 import { SectionMenu } from "./SectionMenu"
 
 const blogMenuMock = [
-  { name: "리액트", id: 1 },
-  { name: "자바스크립트", id: 2 },
+  { name: "🖐🏽 리액트", id: 1 },
+  { name: "🦾 자바스크립트", id: 2 },
   { name: "타입스크립트", id: 3 },
 ]
 
@@ -19,29 +19,58 @@ const portfolioMenuMock = [
 ]
 
 interface Props {
+  targetRef: RefObject<HTMLElement>
+  isOpenMenu: boolean
   isAnimation: boolean
   onAnimationEnd: () => void
 }
 
-export const ArticleMenu = ({ isAnimation, onAnimationEnd }: Props) => {
+export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd }: Props) => {
   const [isOpenBlog, setOpenBlog] = useState(false)
   const [isOpenPortfolio, setOpenPortfolio] = useState(false)
   const [renderBlog, isAnimationBlog, handleAnimationEndBlog] = useAnimation(isOpenBlog)
   const [renderPortfolio, isAnimationPortfolio, handleAnimationEndPortfolio] =
     useAnimation(isOpenPortfolio)
 
+  useEffect(() => {
+    if (!isOpenMenu) {
+      setOpenBlog(false)
+      setOpenPortfolio(false)
+    }
+  }, [isOpenMenu])
+
+  const handleOpenMenu = (value: "blog" | "portfolio") => {
+    switch (value) {
+      case "blog":
+        {
+          setOpenPortfolio(false)
+          setOpenBlog((prev) => !prev)
+        }
+        break
+      case "portfolio":
+        {
+          setOpenBlog(false)
+          setOpenPortfolio((prev) => !prev)
+        }
+        break
+      default:
+        break
+    }
+  }
+
   return (
     <>
       <Container
+        ref={targetRef}
         onAnimationEnd={onAnimationEnd}
         className={cn(
-          "fixed left-0 top-8 z-40 h-fit grid-cols-3 rounded-t-none pb-2 pt-12",
+          "fixed right-0 top-8 z-30 size-fit rounded-t-none bg-slate-100 pb-2 pt-12",
           isAnimation ? "animate-slideDown" : "animate-slideUp",
         )}
       >
-        <List className="flex w-fit items-start gap-40 self-center">
-          <List.Row className="flex-1 flex-col">
-            <Button variant="secondary" onClick={() => setOpenBlog((prev) => !prev)}>
+        <List className="flex gap-40">
+          <List.Row className="relative">
+            <Button variant="secondary" className="gap-2" onClick={() => handleOpenMenu("blog")}>
               <svg
                 width={12}
                 height={12}
@@ -56,8 +85,12 @@ export const ArticleMenu = ({ isAnimation, onAnimationEnd }: Props) => {
               Blog
             </Button>
           </List.Row>
-          <List.Row>
-            <Button variant="secondary" onClick={() => setOpenPortfolio((prev) => !prev)}>
+          <List.Row className="relative">
+            <Button
+              variant="secondary"
+              className="gap-2"
+              onClick={() => handleOpenMenu("portfolio")}
+            >
               <svg
                 width={12}
                 height={12}
@@ -73,7 +106,12 @@ export const ArticleMenu = ({ isAnimation, onAnimationEnd }: Props) => {
             </Button>
           </List.Row>
           <List.Row>
-            <Button variant="secondary" onClick={() => console.log("asdf")}>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                return null
+              }}
+            >
               Guest
             </Button>
           </List.Row>

@@ -9,6 +9,7 @@ import { Title } from "@/src/components/shared/Title"
 import { Text } from "@/src/components/shared/Text"
 import { Container } from "@/src/components/layout/Container"
 import { Introduce } from "@/src/components/feature/intro/Introduce"
+import { List } from "@/src/components/layout/List"
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
       <Introduce />
       <Container
         as="article"
-        className="mb-28 grid-cols-1 items-start gap-4 p-14 md:grid-cols-2 xl:grid-cols-4"
+        className="relative mb-28 grid-cols-1 items-start gap-4 p-14 md:grid-cols-2 xl:grid-cols-4"
       >
         <Card className="justify-self-center bg-blue-50">
           <Card.Image src={CardImage} alt="임시" className="h-40" />

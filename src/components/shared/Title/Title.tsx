@@ -6,6 +6,7 @@ interface Props {
   as?: ElementType
   className?: string
   variant?: "title" | "sub"
+  lang?: string
 }
 
 const titleVariants = cva("text-slate-800", {
@@ -22,6 +23,11 @@ export const Title = ({
   children,
   className,
   variant = "title",
+  ...props
 }: PropsWithChildren<Props>) => {
-  return <Component className={cn(titleVariants({ variant }), className)}>{children}</Component>
+  return (
+    <Component className={cn(titleVariants({ variant }), className)} {...props}>
+      {children}
+    </Component>
+  )
 }

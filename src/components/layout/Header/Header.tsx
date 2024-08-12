@@ -6,19 +6,27 @@ import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { Title } from "../../shared/Title/Title"
 import { Button } from "../../shared/Button"
 import { TextInput } from "../../shared/TextInput"
+import useClickOutside from "@/src/hooks/useClickOutside"
+import { SearchBar } from "../../feature/nav/SearchBar"
 
 export const Header = () => {
   const [isOpenSearch, setOpenSearch] = useState(false)
   const [isOpenMenu, setOpenMenu] = useState(false)
-  const [shouldRender, isAnimation, handleAnimationEnd] = useAnimation(isOpenMenu)
+  const menuRef = useClickOutside(setOpenMenu)
+  const searchRef = useClickOutside(setOpenSearch)
+  const [shouldRenderMenu, isAnimationMenu, handleAnimationEndMenu] = useAnimation(isOpenMenu)
+  const [shouldRenderSearch, isAnimationSearch, handleAnimationEndSearch] =
+    useAnimation(isOpenSearch)
 
   return (
     <>
-      <Container as="header" className="aboslute top-20 h-fit grid-cols-2 rounded-t-none py-6">
-        <Title className="text-base text-slate-500">ORIGINAL .</Title>
+      <Container as="header" className="fixed top-0 z-50 h-fit justify-between rounded-t-none py-6">
+        <Title lang="en" className="text-base text-slate-500">
+          ORIGINAL .
+        </Title>
         <nav className="justify-self-end">
           <List className="flex items-center gap-4">
-            <List.Row className="">
+            <List.Row>
               <Button
                 variant="icon"
                 onClick={() => setOpenSearch((prev) => !prev)}
@@ -61,14 +69,20 @@ export const Header = () => {
           </List>
         </nav>
       </Container>
-      {isOpenSearch && (
-        <TextInput
-          name="search"
-          className="w-80 rounded-3xl border border-slate-100 bg-slate-100 px-4 py-2 outline-none focus:border-slate-300"
+      {shouldRenderSearch && (
+        <SearchBar
+          targetRef={searchRef}
+          isAnimation={isAnimationSearch}
+          onAnimationEnd={handleAnimationEndSearch}
         />
       )}
-      {shouldRender && (
-        <ArticleMenu isAnimation={isAnimation} onAnimationEnd={handleAnimationEnd} />
+      {shouldRenderMenu && (
+        <ArticleMenu
+          targetRef={menuRef}
+          isOpenMenu={isOpenMenu}
+          isAnimation={isAnimationMenu}
+          onAnimationEnd={handleAnimationEndMenu}
+        />
       )}
     </>
   )

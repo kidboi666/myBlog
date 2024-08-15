@@ -7,6 +7,7 @@ import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { Title } from "../../shared/Title/Title"
 import { Button } from "../../shared/Button"
 import { SearchBar } from "../../feature/nav/SearchBar"
+import Link from "next/link"
 
 export const Header = () => {
   const [isOpenSearch, setOpenSearch] = useState(false)
@@ -67,6 +68,11 @@ export const Header = () => {
                   />
                 </svg>
               </Button>
+            </List.Row>
+            <List.Row>
+              <Link href="/auth/signin">
+                <Button variant="primary">로그인</Button>
+              </Link>
             </List.Row>
           </List>
         </nav>

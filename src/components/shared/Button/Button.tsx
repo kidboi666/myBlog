@@ -1,25 +1,26 @@
 import { ComponentProps, PropsWithChildren } from "react"
-import { cva } from "class-variance-authority"
 import cn from "@/src/lib/cn"
+import { cva } from "class-variance-authority"
 import { Size, Spinner } from "../Spinner/Spinner"
 
 interface Props extends ComponentProps<"button"> {
   variant?: "primary" | "secondary" | "teritory" | "icon"
   isLoading?: boolean
+  isSubmit?: boolean
 }
 
 const buttonVariants = cva(
-  "group flex items-center justify-center gap-2 rounded-full font-semibold text-white",
+  "group flex items-center justify-center gap-2 rounded-full border border-slate-800 font-semibold text-white hover:border-slate-300",
   {
     variants: {
       active: {
-        primary: "bg-slate-800 px-6 py-1 hover:bg-slate-300 hover:text-slate-800",
-        secondary: "text-slate-500 hover:underline",
-        teritory: "",
-        icon: "text-slate-500 hover:text-slate-600",
+        primary: "bg-slate-800 px-6 py-2 hover:bg-slate-300 hover:text-slate-800",
+        secondary: "border-slate-300 bg-slate-300 px-6 py-2 hover:bg-slate-800 hover:text-white",
+        teritory: "border-none text-slate-500 hover:underline",
+        icon: "border-none text-slate-500 hover:text-slate-600",
       },
       disabled: {
-        primary: "bg-slate-200 px-6 py-1",
+        primary: "border-slate-300 bg-slate-200 px-6 py-2",
         secondary: "",
         teritory: "",
         icon: "",
@@ -35,15 +36,16 @@ export const Button = ({
   className,
   disabled,
   isLoading,
+  isSubmit,
   ...props
 }: PropsWithChildren<Props>) => {
   return (
     <button
-      type="button"
+      type={isSubmit ? "submit" : "button"}
       disabled={disabled || isLoading}
       onClick={onClick}
       className={cn(
-        buttonVariants(isLoading ? { disabled: variant } : { active: variant }),
+        buttonVariants(isLoading || disabled ? { disabled: variant } : { active: variant }),
         className,
       )}
       {...props}

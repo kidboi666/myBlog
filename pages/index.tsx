@@ -15,7 +15,6 @@ import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { Card } from "@/src/components/shared/Card"
 import { Button } from "@/src/components/shared/Button"
 import { TextInput } from "@/src/components/shared/TextInput"
-import { Size, Spinner } from "@/src/components/shared/Spinner/Spinner"
 
 const Home = () => {
   const [title, onChangeTitle] = useInput("")
@@ -24,6 +23,13 @@ const Home = () => {
   const [image, setImage] = useState<File | null>()
   const [preview, setPreview] = useState("")
   const [postList, setPostList] = useState<Tables<"post">[]>()
+  const [me, setMe] = useState<any>(null)
+
+  const checkLogin = async () => {
+    const authInfo = supabase.auth.getSession()
+    const { session } = (await authInfo).data
+    setMe(session)
+  }
 
   const getAllPost = async () => {
     const { data: cardList } = await supabase.from("post").select()
@@ -50,6 +56,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllPost()
+    checkLogin()
   }, [])
 
   return (
@@ -73,7 +80,9 @@ const Home = () => {
             <option value="SUPABASE">SUPABASE</option>
             <option value="DB">DB</option>
           </select>
-          <Button onClick={addPost}>데이터보내기</Button>
+          <Button isLoading disabled={!title || !content || !image || !category} onClick={addPost}>
+            데이터보내기
+          </Button>
         </div>
       </Container>
       <Container

@@ -37,10 +37,7 @@ export const SearchBar = ({ targetRef, isAnimation, onAnimationEnd }: Props) => 
             <circle cx="11" cy="11" r="6" />
           </svg>
         </Button>
-        <TextInput
-          name="search"
-          className="size-full rounded-3xl border border-slate-100 bg-slate-100 px-4 py-2 pl-9 outline-none focus:border-slate-300"
-        />
+        <TextInput name="search" variant="search" />
       </div>
     </Container>
   )

@@ -14,3 +14,14 @@
 :lang(ko) {
   font-family: "Pretendard";
 }
+
+/* 크롬 및 엣지에서 자동완성된 필드의 배경색을 변경하는 CSS */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+}
+
+/* 모질라 파이어폭스에서 자동완성된 필드의 배경색을 변경하는 CSS */
+input:-moz-autofill {
+  box-shadow: 0 0 0px 1000px white inset;
+}

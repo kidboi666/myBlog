@@ -9,12 +9,12 @@ datasource db {
 }
 
 model post {
-  id        BigInt   @id @default(autoincrement())
   title     String
   content   String
   image     String?
   category  Category
   createdAt DateTime @default(now())
+  id        BigInt   @id @default(autoincrement())
 }
 
 enum Category {

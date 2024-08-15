@@ -1,18 +1,23 @@
-import { ring2 } from "ldrs"
+import { useEffect } from "react"
 
 interface Props {
   size: Size
 }
 
 export enum Size {
-  s = "20",
-  m = "40",
-  l = "60",
+  s = 20,
+  m = 40,
+  l = 60,
 }
 
 export const Spinner = ({ size = Size.m }: Props) => {
-  ring2.register()
-
+  useEffect(() => {
+    const getLoader = async () => {
+      const { ring2 } = await import("ldrs")
+      ring2.register()
+    }
+    getLoader()
+  })
   return (
     <l-ring-2
       size={size}

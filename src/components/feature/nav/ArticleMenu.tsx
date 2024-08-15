@@ -5,6 +5,8 @@ import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
 import { Button } from "../../shared/Button"
 import { SectionMenu } from "./SectionMenu"
+import { useQuery } from "@tanstack/react-query"
+import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 
 const blogMenuMock = [
   { name: "🖐🏽 리액트", id: 1 },
@@ -31,6 +33,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
   const [renderBlog, isAnimationBlog, handleAnimationEndBlog] = useAnimation(isOpenBlog)
   const [renderPortfolio, isAnimationPortfolio, handleAnimationEndPortfolio] =
     useAnimation(isOpenPortfolio)
+  const { data: categories } = useQuery(categoryQuery.queryOptions())
 
   useEffect(() => {
     if (!isOpenMenu) {
@@ -121,7 +124,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
       </Container>
       {renderBlog && (
         <SectionMenu
-          menuList={blogMenuMock}
+          menuList={categories}
           isAnimation={isAnimationBlog}
           onAnimationEnd={handleAnimationEndBlog}
         />

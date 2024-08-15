@@ -8,6 +8,8 @@ import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { Title } from "../../shared/Title/Title"
 import { Button } from "../../shared/Button"
 import { SearchBar } from "../../feature/nav/SearchBar"
+import { useQuery } from "@tanstack/react-query"
+import { meQuery } from "@/src/services/queries/auth/meQuery"
 
 export const Header = () => {
   const [isOpenSearch, setOpenSearch] = useState(false)
@@ -17,6 +19,7 @@ export const Header = () => {
   const [shouldRenderMenu, isAnimationMenu, handleAnimationEndMenu] = useAnimation(isOpenMenu)
   const [shouldRenderSearch, isAnimationSearch, handleAnimationEndSearch] =
     useAnimation(isOpenSearch)
+  const { data } = useQuery(meQuery.queryOptions())
 
   return (
     <>

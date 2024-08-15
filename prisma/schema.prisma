@@ -8,19 +8,21 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model post {
-  title     String
-  content   String
-  image     String?
-  category  Category
-  createdAt DateTime @default(now())
-  id        BigInt   @id @default(autoincrement())
+model category {
+  id                               BigInt @id @default(autoincrement())
+  name                             String @unique
+  post_post_categoryIdTocategory   post[] @relation("post_categoryIdTocategory")
+  post_post_categoryNameTocategory post[] @relation("post_categoryNameTocategory")
 }
 
-enum Category {
-  REACT
-  JAVASCRIPT
-  TYPESCRIPT
-  SUPABASE
-  DB
+model post {
+  title                                String
+  content                              String
+  image                                String?
+  createdAt                            DateTime  @default(now())
+  id                                   BigInt    @id @default(autoincrement())
+  categoryId                           BigInt
+  categoryName                         String?
+  category_post_categoryIdTocategory   category  @relation("post_categoryIdTocategory", fields: [categoryId], references: [id], onDelete: Cascade)
+  category_post_categoryNameTocategory category? @relation("post_categoryNameTocategory", fields: [categoryName], references: [name], onDelete: NoAction, onUpdate: NoAction)
 }

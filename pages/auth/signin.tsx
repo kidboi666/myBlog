@@ -10,8 +10,6 @@ import Link from "next/link"
 import { Line } from "@/src/components/shared/Line"
 import { GithubButton } from "@/src/components/feature/auth/GithubButton"
 import { Text } from "@/src/components/shared/Text"
-import { AppLayout } from "@/src/components/layout/AppLayout"
-import { Container } from "@/src/components/layout/Container"
 import { Title } from "@/src/components/shared/Title"
 
 const SignIn = () => {

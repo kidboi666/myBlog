@@ -67,9 +67,25 @@ export type Database = {
         }
         Relationships: []
       }
+      category: {
+        Row: {
+          id: number
+          name: string
+        }
+        Insert: {
+          id?: number
+          name: string
+        }
+        Update: {
+          id?: number
+          name?: string
+        }
+        Relationships: []
+      }
       post: {
         Row: {
-          category: Database["public"]["Enums"]["Category"]
+          categoryId: number
+          categoryName: string | null
           content: string
           createdAt: string
           id: number
@@ -77,7 +93,8 @@ export type Database = {
           title: string
         }
         Insert: {
-          category: Database["public"]["Enums"]["Category"]
+          categoryId: number
+          categoryName?: string | null
           content: string
           createdAt?: string
           id?: number
@@ -85,14 +102,30 @@ export type Database = {
           title: string
         }
         Update: {
-          category?: Database["public"]["Enums"]["Category"]
+          categoryId?: number
+          categoryName?: string | null
           content?: string
           createdAt?: string
           id?: number
           image?: string | null
           title?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "post_categoryId_fkey"
+            columns: ["categoryId"]
+            isOneToOne: false
+            referencedRelation: "category"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_categoryName_fkey"
+            columns: ["categoryName"]
+            isOneToOne: false
+            referencedRelation: "category"
+            referencedColumns: ["name"]
+          },
+        ]
       }
     }
     Views: {
@@ -102,7 +135,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      Category: "REACT" | "JAVASCRIPT" | "TYPESCRIPT" | "SUPABASE" | "DB"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never

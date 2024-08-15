@@ -1,11 +1,15 @@
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { supabase } from "@/src/lib/Supabase"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button } from "@/src/components/shared/Button"
 import { signUpSchema } from "@/src/lib/validators/auth"
 import { ISignUpForm } from "@/src/models/auth"
+import { Button } from "@/src/components/shared/Button"
 import { AuthForm } from "@/src/components/feature/auth/AuthForm"
-import { GithubButton } from "@/src/components/feature/auth/providers/GithubButton"
+import { Line } from "@/src/components/shared/Line"
+import { Text } from "@/src/components/shared/Text"
+import { GithubButton } from "@/src/components/feature/auth/GithubButton"
+import { Title } from "@/src/components/shared/Title"
 
 const SignUp = () => {
   const {
@@ -35,12 +39,28 @@ const SignUp = () => {
     })
   }
 
+  const handleSignUpToGithub = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: "http://localhost:3000",
+      },
+    })
+  }
+
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center gap-4 text-sm">
+    <div className="flex h-screen items-center justify-center">
       <form
         onSubmit={handleSubmit(handleSubmitSignUp)}
-        className="flex w-80 flex-col gap-4 text-sm"
+        className="flex w-80 flex-col gap-6 text-sm"
       >
+        <Title className="self-center">회원가입</Title>
+        <div className="flex gap-2 self-end">
+          <Text variant="caption">계정이 이미 있으신가요?</Text>
+          <Button variant="teritory" className="text-xs">
+            <Link href="/auth/signin">로그인 하러가기</Link>
+          </Button>
+        </div>
         <AuthForm
           name="이메일"
           type="email"
@@ -69,8 +89,17 @@ const SignUp = () => {
           dirtyField={dirtyFields.passwordConfirmation}
           error={errors.passwordConfirmation}
         />
-
         <Button isSubmit>회원가입</Button>
+        <div className="relative">
+          <Line className="border-[0.1px]" />
+          <Text
+            variant="caption"
+            className="absolute -top-2 left-1/2 -translate-x-1/2 bg-white px-2"
+          >
+            소셜 회원가입
+          </Text>
+        </div>
+        <GithubButton onSignUpToGithub={handleSignUpToGithub}>깃허브로 회원가입</GithubButton>
       </form>
     </div>
   )

@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useState } from "react"
 import useAnimation from "@/src/hooks/useAnimation"
 import useClickOutside from "@/src/hooks/useClickOutside"
@@ -7,7 +8,6 @@ import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { Title } from "../../shared/Title/Title"
 import { Button } from "../../shared/Button"
 import { SearchBar } from "../../feature/nav/SearchBar"
-import Link from "next/link"
 
 export const Header = () => {
   const [isOpenSearch, setOpenSearch] = useState(false)

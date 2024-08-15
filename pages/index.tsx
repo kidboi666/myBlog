@@ -15,6 +15,9 @@ import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { Card } from "@/src/components/shared/Card"
 import { Button } from "@/src/components/shared/Button"
 import { TextInput } from "@/src/components/shared/TextInput"
+import { useQuery } from "@tanstack/react-query"
+import { meService } from "@/src/services/auth/meService"
+import { postService } from "@/src/services/post/postService"
 
 const Home = () => {
   const [title, onChangeTitle] = useInput("")
@@ -22,21 +25,8 @@ const Home = () => {
   const [category, onChangeCategory] = useInput("REACT")
   const [image, setImage] = useState<File | null>()
   const [preview, setPreview] = useState("")
-  const [postList, setPostList] = useState<Tables<"post">[]>()
-  const [me, setMe] = useState<any>(null)
-
-  const checkLogin = async () => {
-    const authInfo = supabase.auth.getSession()
-    const { session } = (await authInfo).data
-    setMe(session)
-  }
-
-  const getAllPost = async () => {
-    const { data: cardList } = await supabase.from("post").select()
-    if (!cardList) return
-
-    setPostList(cardList)
-  }
+  const { data: me } = useQuery(meService.queryOptions())
+  const { data: postList } = useQuery(postService.queryOptions())
 
   const addPost = async () => {
     const { data } = await supabase.storage
@@ -53,11 +43,6 @@ const Home = () => {
       setImage(file)
     }
   }
-
-  useEffect(() => {
-    getAllPost()
-    checkLogin()
-  }, [])
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>

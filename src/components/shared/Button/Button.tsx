@@ -15,12 +15,12 @@ const buttonVariants = cva(
     variants: {
       active: {
         primary: "bg-slate-800 px-6 py-2 hover:bg-slate-300 hover:text-slate-800",
-        secondary: "border-slate-300 bg-slate-300 px-6 py-2 hover:bg-slate-800 hover:text-white",
-        teritory: "border-none text-slate-500 hover:underline",
+        secondary: "border-slate-300 px-6 py-2 text-slate-500 hover:bg-slate-300 hover:text-white",
+        teritory: "border-none text-slate-500 hover:text-slate-600 hover:underline",
         icon: "border-none text-slate-500 hover:text-slate-600",
       },
       disabled: {
-        primary: "border-slate-300 bg-slate-200 px-6 py-2",
+        primary: "border-slate-300 bg-slate-300 px-6 py-2",
         secondary: "",
         teritory: "",
         icon: "",

@@ -61,14 +61,14 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
         ref={targetRef}
         onAnimationEnd={onAnimationEnd}
         className={cn(
-          "fixed right-0 top-8 z-40 size-fit rounded-t-none bg-slate-100 pb-2 pt-12 xl:pl-10",
+          "fixed right-0 top-12 z-40 size-fit rounded-t-none bg-slate-100 pb-2 pt-12 md:pl-10",
           isAnimation ? "animate-slideDown" : "animate-slideUp",
         )}
       >
-        <List className="flex gap-20 md:gap-40">
+        <List className="flex gap-14">
           <List.Row className="relative">
             <Button
-              variant="secondary"
+              variant="teritory"
               className="gap-2 text-sm"
               onClick={() => handleOpenMenu("blog")}
             >
@@ -88,7 +88,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
           </List.Row>
           <List.Row className="relative">
             <Button
-              variant="secondary"
+              variant="teritory"
               className="gap-2 text-sm"
               onClick={() => handleOpenMenu("portfolio")}
             >
@@ -108,7 +108,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
           </List.Row>
           <List.Row>
             <Button
-              variant="secondary"
+              variant="teritory"
               className="text-sm"
               onClick={() => {
                 return null

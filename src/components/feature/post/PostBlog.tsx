@@ -66,8 +66,8 @@ export const PostBlog = () => {
       <div className="flex flex-col gap-4">
         {preview && <Image src={preview} alt="sdf" width={200} height={200} />}
         <input onChange={handleChangeFile} type="file" accept="image/*" />
-        <TextInput name="title" variant="search" value={title} onChange={onChangeTitle} />
-        <TextInput name="content" variant="search" value={content} onChange={onChangeContent} />
+        <TextInput name="title" variant="secondary" value={title} onChange={onChangeTitle} />
+        <TextInput name="content" variant="secondary" value={content} onChange={onChangeContent} />
         <select onChange={handleCategoryChange}>
           {categoryList?.map((category) => <option value={category.id}>{category.name}</option>)}
         </select>

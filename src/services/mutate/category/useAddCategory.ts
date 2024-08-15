@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 
 export const useAddCategory = () => {
   return useMutation({
-    mutationFn: async (name) => {
+    mutationFn: async (name: string) => {
       return supabase.from("category").insert({ name }).select()
     },
     onSuccess: () => {

@@ -17,8 +17,8 @@ export const PostCategory = () => {
   return (
     <Container>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <TextInput variant="search" onChange={onChangeCategoryName} />
-        <Button isLoading={isPending} isSubmit>
+        <TextInput variant="secondary" onChange={onChangeCategoryName} />
+        <Button isLoading={isPending} disabled={!categoryName} isSubmit className="w-full">
           카테고리 만들기
         </Button>
       </form>

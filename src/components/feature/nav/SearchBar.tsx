@@ -37,7 +37,7 @@ export const SearchBar = ({ targetRef, isAnimation, onAnimationEnd }: Props) => 
             <circle cx="11" cy="11" r="6" />
           </svg>
         </Button>
-        <TextInput name="search" variant="search" />
+        <TextInput name="search" variant="secondary" className="pl-9" />
       </div>
     </Container>
   )

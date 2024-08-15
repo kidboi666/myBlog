@@ -7,14 +7,14 @@ interface Props extends ComponentProps<"input"> {
   className?: string
   register?: UseFormRegisterReturn
   error?: FieldError
-  variant?: "primary" | "search"
+  variant?: "primary" | "secondary"
 }
 
-const searchVariants = cva("border px-2 py-2 outline-none", {
+const searchVariants = cva("border px-4 py-2 outline-none", {
   variants: {
     variant: {
       primary: "w-full rounded-lg focus:border-slate-300",
-      search: "size-full rounded-3xl border-slate-100 bg-slate-100 pl-9 focus:border-slate-300",
+      secondary: "size-full rounded-3xl border-slate-100 bg-slate-100 focus:border-slate-300",
     },
   },
 })

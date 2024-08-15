@@ -13,9 +13,10 @@ interface SectionProps {
 export const SectionMenu = ({ menuList, isAnimation, onAnimationEnd, className }: SectionProps) => {
   return (
     <Container
+      lang="en"
       onAnimationEnd={onAnimationEnd}
       className={cn(
-        "fixed right-0 top-16 size-fit rounded-t-none px-10 pb-2 xl:px-20",
+        "fixed right-0 top-16 z-30 size-fit rounded-t-none bg-slate-200 px-10 pb-2 xl:px-20",
         isAnimation ? "animate-slideDown" : "animate-slideUp",
         className,
       )}

@@ -7,7 +7,7 @@ interface Props {
 
 export const AppLayout = ({ children, Header, Footer }: PropsWithChildren<Props>) => {
   return (
-    <div className="animate-moveGradient gradient-move">
+    <div className="relative animate-moveGradient overflow-hidden gradient-move">
       {Header}
       <main>{children}</main>
       {Footer}

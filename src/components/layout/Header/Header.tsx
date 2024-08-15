@@ -1,12 +1,11 @@
 import { useState } from "react"
 import useAnimation from "@/src/hooks/useAnimation"
+import useClickOutside from "@/src/hooks/useClickOutside"
 import { Container } from "../Container"
 import { List } from "../List/List"
 import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { Title } from "../../shared/Title/Title"
 import { Button } from "../../shared/Button"
-import { TextInput } from "../../shared/TextInput"
-import useClickOutside from "@/src/hooks/useClickOutside"
 import { SearchBar } from "../../feature/nav/SearchBar"
 
 export const Header = () => {
@@ -20,7 +19,10 @@ export const Header = () => {
 
   return (
     <>
-      <Container as="header" className="fixed top-0 z-50 h-fit justify-between rounded-t-none py-6">
+      <Container
+        as="header"
+        className="fixed top-0 z-50 h-fit justify-between rounded-t-none bg-slate-50/90 py-6 backdrop-blur-lg"
+      >
         <Title lang="en" className="text-base text-slate-500">
           ORIGINAL .
         </Title>

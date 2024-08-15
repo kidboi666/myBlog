@@ -1,18 +1,26 @@
+import { TEXT_CONTENTS } from "@/src/constants/introduce"
 import { useTypingEffect } from "@/src/hooks/useTypingEffect"
 import { Title } from "@/src/components/shared/Title"
 import { Underbar } from "./Underbar"
 
 export const Introduce = () => {
-  const text1 = useTypingEffect("새로운 저의 블로그를 소개합니다.")
+  const text = useTypingEffect(TEXT_CONTENTS)
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center gap-2">
-      <Title as="h3" variant="sub">
-        환영합니다.
-      </Title>
-      <Title as="h2" className="text-3xl md:text-4xl xl:text-5xl">
-        <Underbar>{text1}</Underbar>
-      </Title>
+    <div
+      lang="en"
+      className="relative flex h-dvh w-full flex-col items-center justify-center gap-20"
+    >
+      <div className="flex flex-col items-center">
+        <Title as="h3" variant="sub" className="animate-fadeIn">
+          welcome.
+        </Title>
+        <Title as="h2" className="text-center text-2xl md:text-4xl xl:text-5xl">
+          <Underbar>
+            <span className="animate-fadeIn" dangerouslySetInnerHTML={{ __html: text }} />
+          </Underbar>
+        </Title>
+      </div>
     </div>
   )
 }

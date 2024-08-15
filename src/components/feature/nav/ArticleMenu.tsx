@@ -42,16 +42,12 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
   const handleOpenMenu = (value: "blog" | "portfolio") => {
     switch (value) {
       case "blog":
-        {
-          setOpenPortfolio(false)
-          setOpenBlog((prev) => !prev)
-        }
+        setOpenPortfolio(false)
+        setOpenBlog((prev) => !prev)
         break
       case "portfolio":
-        {
-          setOpenBlog(false)
-          setOpenPortfolio((prev) => !prev)
-        }
+        setOpenBlog(false)
+        setOpenPortfolio((prev) => !prev)
         break
       default:
         break
@@ -61,21 +57,26 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
   return (
     <>
       <Container
+        lang="en"
         ref={targetRef}
         onAnimationEnd={onAnimationEnd}
         className={cn(
-          "fixed right-0 top-8 z-30 size-fit rounded-t-none bg-slate-100 pb-2 pt-12",
+          "fixed right-0 top-8 z-40 size-fit rounded-t-none bg-slate-100 pb-2 pt-12 xl:pl-10",
           isAnimation ? "animate-slideDown" : "animate-slideUp",
         )}
       >
-        <List className="flex gap-40">
+        <List className="flex gap-20 md:gap-40">
           <List.Row className="relative">
-            <Button variant="secondary" className="gap-2" onClick={() => handleOpenMenu("blog")}>
+            <Button
+              variant="secondary"
+              className="gap-2 text-sm"
+              onClick={() => handleOpenMenu("blog")}
+            >
               <svg
                 width={12}
                 height={12}
                 className={cn(
-                  "transition-normal fill-slate-500 group-hover:fill-slate-600",
+                  "fill-slate-500 transition-normal group-hover:fill-slate-600",
                   isOpenBlog ? "rotate-0" : "-rotate-90",
                 )}
                 viewBox="0 0 12 12"
@@ -88,14 +89,14 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
           <List.Row className="relative">
             <Button
               variant="secondary"
-              className="gap-2"
+              className="gap-2 text-sm"
               onClick={() => handleOpenMenu("portfolio")}
             >
               <svg
                 width={12}
                 height={12}
                 className={cn(
-                  "transition-normal fill-slate-500 group-hover:fill-slate-600",
+                  "fill-slate-500 transition-normal group-hover:fill-slate-600",
                   isOpenPortfolio ? "rotate-0" : "-rotate-90",
                 )}
                 viewBox="0 0 12 12"
@@ -108,6 +109,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
           <List.Row>
             <Button
               variant="secondary"
+              className="text-sm"
               onClick={() => {
                 return null
               }}

@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model post {
+  id        BigInt   @id @default(autoincrement())
+  title     String
+  content   String
+  image     String?
+  category  Category
+  createdAt DateTime @default(now())
+}
+
+enum Category {
+  REACT
+  JAVASCRIPT
+  TYPESCRIPT
+  SUPABASE
+  DB
+}

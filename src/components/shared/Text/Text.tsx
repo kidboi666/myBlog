@@ -12,8 +12,8 @@ const textVariants = cva("text-slate-800", {
   variants: {
     variant: {
       body: "text-base",
-      description: "text-sm",
-      caption: "text-xs",
+      description: "text-sm text-slate-500",
+      caption: "text-xs text-slate-400",
     },
   },
 })

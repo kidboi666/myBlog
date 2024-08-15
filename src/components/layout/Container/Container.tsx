@@ -12,7 +12,7 @@ export const Container = forwardRef<HTMLElement, PropsWithRef<Props>>(
       <Component
         ref={ref}
         className={cn(
-          "flex h-full w-full items-center justify-center rounded-3xl bg-white px-12 py-12 shadow-md xl:px-40",
+          "flex h-full w-full items-center justify-center rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 xl:px-40",
           className,
         )}
         {...props}
@@ -22,3 +22,5 @@ export const Container = forwardRef<HTMLElement, PropsWithRef<Props>>(
     )
   },
 )
+
+// #06b6d4 0%, #3b82f6 25%, #3b82f6 50%, #06b6d4 75%, #3b82f6 100%)

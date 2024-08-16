@@ -6,7 +6,6 @@ import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Container } from "@/src/components/layout/Container"
 import { Content } from "@/src/components/layout/Content"
 import { Header } from "@/src/components/layout/Header"
-import { DropDown } from "@/src/components/shared/DropDown/DropDown"
 
 const Admin = () => {
   return (

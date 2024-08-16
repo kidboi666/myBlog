@@ -4,13 +4,15 @@ import { ComponentProps, ElementType, forwardRef, PropsWithRef } from "react"
 interface Props extends ComponentProps<"div"> {
   className?: string
   as?: ElementType
+  dataStatus?: string
 }
 
 export const Container = forwardRef<HTMLElement, PropsWithRef<Props>>(
-  ({ as: Component = "div", children, className, ...props }, ref) => {
+  ({ as: Component = "div", dataStatus, children, className, ...props }, ref) => {
     return (
       <Component
         ref={ref}
+        data-status={dataStatus}
         className={cn(
           "flex h-full w-full items-center justify-center rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 xl:px-40",
           className,

@@ -31,8 +31,9 @@ export const PostBlog = ({ className }: { className: string }) => {
     }
   }
 
-  const handleCategoryChange = (selectCategory: Record<string, string | number>) => {
-    setSelectedCategory(categoryList!.find((category) => category.id === selectCategory.id)!)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleCategoryChange = (selectCategory: Record<string, any>) => {
+    setSelectedCategory({ id: selectCategory.id, name: selectCategory.name })
   }
 
   const handleSubmitPost = () => {

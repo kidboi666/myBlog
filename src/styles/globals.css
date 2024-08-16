@@ -25,3 +25,9 @@ input:-webkit-autofill {
 input:-moz-autofill {
   box-shadow: 0 0 0px 1000px white inset;
 }
+
+@layer components {
+  .status-popup[data-status="closed"] {
+    @apply data-[status=closed]:scale-0 data-[status=closed]:transform data-[status=closed]:opacity-0;
+  }
+}

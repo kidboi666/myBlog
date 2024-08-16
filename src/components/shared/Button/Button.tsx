@@ -10,11 +10,11 @@ interface Props extends ComponentProps<"button"> {
 }
 
 const buttonVariants = cva(
-  "group flex items-center justify-center gap-2 rounded-lg border border-slate-800 text-xs font-semibold text-white hover:border-slate-300",
+  "group flex items-center justify-center gap-2 rounded-lg text-sm font-semibold text-white",
   {
     variants: {
       active: {
-        primary: "bg-slate-800 px-6 py-2 hover:bg-slate-300 hover:text-slate-800",
+        primary: "bg-slate-800 px-6 py-2 hover:bg-slate-600",
         secondary: "border-slate-300 px-6 py-2 text-slate-500 hover:bg-slate-300 hover:text-white",
         teritory: "border-none text-slate-500 hover:text-slate-600 hover:underline",
         icon: "border-none text-slate-500 hover:text-slate-600",

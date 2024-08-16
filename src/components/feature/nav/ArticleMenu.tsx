@@ -15,13 +15,10 @@ const portfolioMenuMock = [
 ]
 
 interface Props {
-  targetRef: RefObject<HTMLElement>
-  isOpenMenu: boolean
-  isAnimation: boolean
-  onAnimationEnd: () => void
+  statusRef: RefObject<HTMLDivElement>
 }
 
-export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd }: Props) => {
+export const ArticleMenu = ({ statusRef }: Props) => {
   const [isOpenBlog, setOpenBlog] = useState(false)
   const [isOpenPortfolio, setOpenPortfolio] = useState(false)
   const [renderBlog, isAnimationBlog, handleAnimationEndBlog] = useAnimation(isOpenBlog)
@@ -29,12 +26,12 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
     useAnimation(isOpenPortfolio)
   const { data: categories } = useQuery(categoryQuery.queryOptions())
 
-  useEffect(() => {
-    if (!isOpenMenu) {
-      setOpenBlog(false)
-      setOpenPortfolio(false)
-    }
-  }, [isOpenMenu])
+  // useEffect(() => {
+  //   if (!isOpenMenu) {
+  //     setOpenBlog(false)
+  //     setOpenPortfolio(false)
+  //   }
+  // }, [isOpenMenu])
 
   const handleOpenMenu = (value: "blog" | "portfolio") => {
     switch (value) {
@@ -55,14 +52,22 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
     <>
       <Container
         lang="en"
-        ref={targetRef}
-        onAnimationEnd={onAnimationEnd}
+        ref={statusRef}
+        dataStatus="closed"
         className={cn(
-          "fixed right-0 top-12 z-40 size-fit rounded-t-none bg-slate-100 pb-2 pt-12 md:pl-10",
-          isAnimation ? "animate-slideDown" : "animate-slideUp",
+          "status-popup absolute right-10 top-14 z-40 size-fit origin-top-right bg-slate-100 px-4 py-4 transition md:px-10 xl:px-4",
         )}
       >
-        <List className="flex gap-14">
+        <List className="flex w-40 flex-col gap-4">
+          {categories?.map((menu) => (
+            <List.Row key={menu.id} className="flex-end">
+              <Button variant="teritory" className="text-sm">
+                {menu.name}
+              </Button>
+            </List.Row>
+          ))}
+        </List>
+        {/* <List className="flex gap-14">
           <List.Row className="relative">
             <Button
               variant="teritory"
@@ -114,7 +119,7 @@ export const ArticleMenu = ({ targetRef, isOpenMenu, isAnimation, onAnimationEnd
               Guest
             </Button>
           </List.Row>
-        </List>
+        </List> */}
       </Container>
       {renderBlog && (
         <SectionMenu

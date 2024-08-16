@@ -29,10 +29,9 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-100%)" },
         },
-        growUp: {
-          "0%": { width: "0" },
-          "50%": { width: "100%" },
-          "100%": { width: "0" },
+        growUpWidth: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
         fadeIn: {
           "0%": { opacity: "0" },
@@ -52,7 +51,7 @@ const config: Config = {
         fadeIn: "fadeIn 0.4s ease-in-out forwards",
         fadeOut: "fadeIn 0.4s ease-in-out forwards",
         cardSlideDown: "slideDown 0.5s ease-in-out forwards",
-        growUp: "growUp 3s ease-in-out forwards",
+        growUp: "growUpWidth 0.15s ease-in-out forwards",
       },
     },
   },

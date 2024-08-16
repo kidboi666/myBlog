@@ -12,6 +12,8 @@ import { TextInput } from "../../shared/TextInput"
 import { Button } from "../../shared/Button"
 import { TextAreaInput } from "../../shared/TextAreaInput"
 import { DropDown } from "../../shared/DropDown/DropDown"
+import { UploadImageButton } from "../../icon/UploadImageIcon"
+import { Text } from "../../shared/Text"
 
 export const PostBlog = ({ className }: { className: string }) => {
   const [title, onChangeTitle] = useInput("")
@@ -61,15 +63,19 @@ export const PostBlog = ({ className }: { className: string }) => {
 
   return (
     <form className={cn(className)}>
-      {preview && <Image src={preview} alt="sdf" width={200} height={200} />}
-      <Button className="relative h-10">
+      <Button className="relative flex flex-col p-2 ring-1 ring-slate-200" variant="icon">
+        {preview ? (
+          <Image src={preview} alt="sdf" width={200} height={200} />
+        ) : (
+          <UploadImageButton />
+        )}
         <input
           onChange={handleChangeFile}
           type="file"
           accept="image/*"
-          className="cursur-pointer absolute inset-0 opacity-0"
+          className="absolute inset-0 opacity-0"
         />
-        파일 선택
+        <Text variant="caption">{preview ? image?.name : "이미지 파일 선택"}</Text>
       </Button>
       <TextInput name="title" variant="secondary" value={title} onChange={onChangeTitle} />
       <TextAreaInput
@@ -86,7 +92,7 @@ export const PostBlog = ({ className }: { className: string }) => {
       />
       <Button
         isLoading={isPendingPostBlog || isPendingPostImage}
-        disabled={!title || !content || !selectedCategory}
+        disabled={!title || !content || !selectedCategory.id}
         onClick={handleSubmitPost}
       >
         데이터보내기

@@ -14,7 +14,7 @@ export const Container = forwardRef<HTMLElement, PropsWithRef<Props>>(
         ref={ref}
         data-status={dataStatus}
         className={cn(
-          "flex h-full w-full items-center justify-center rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 xl:px-40",
+          "flex h-full w-full items-center justify-center rounded-3xl bg-white px-4 py-12 shadow-md md:px-12",
           className,
         )}
         {...props}

@@ -12,10 +12,10 @@ export const Introduce = () => {
       className="relative flex h-dvh w-full flex-col items-center justify-center gap-20"
     >
       <div className="flex flex-col items-center">
-        <Title as="h3" variant="sub" className="animate-fadeIn">
+        <Title as="h3" variant="sub" className="animate-fadeIn text-slate-800">
           welcome.
         </Title>
-        <Title as="h2" className="text-center text-2xl md:text-4xl xl:text-5xl">
+        <Title as="h2" className="text-center text-2xl text-slate-800 md:text-4xl xl:text-5xl">
           <Underbar>
             <span className="animate-fadeIn" dangerouslySetInnerHTML={{ __html: text }} />
           </Underbar>

@@ -52,7 +52,7 @@ const SignUp = () => {
     <div className="flex h-screen items-center justify-center">
       <form
         onSubmit={handleSubmit(handleSubmitSignUp)}
-        className="flex w-80 flex-col gap-6 text-sm"
+        className="flex w-96 flex-col gap-6 text-sm"
       >
         <Title className="self-center">회원가입</Title>
         <div className="flex gap-2 self-end">

@@ -1,4 +1,4 @@
-export const XButton = () => {
+export const Xicon = () => {
   return (
     <svg
       className="h-6 w-6"

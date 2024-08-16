@@ -46,7 +46,7 @@ const SignIn = () => {
     <div className="flex h-screen items-center justify-center">
       <form
         onSubmit={handleSubmit(handleSubmitSignIn)}
-        className="flex w-80 flex-col gap-6 text-sm"
+        className="flex w-96 flex-col gap-6 text-sm"
       >
         <Title className="self-center">로그인</Title>
         <div className="flex gap-2 self-end">

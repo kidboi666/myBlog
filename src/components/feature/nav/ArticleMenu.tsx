@@ -1,18 +1,12 @@
+import { useQuery } from "@tanstack/react-query"
 import { RefObject, useEffect, useState } from "react"
 import cn from "@/src/lib/cn"
+import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import useAnimation from "@/src/hooks/useAnimation"
 import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
 import { Button } from "../../shared/Button"
 import { SectionMenu } from "./SectionMenu"
-import { useQuery } from "@tanstack/react-query"
-import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
-
-const blogMenuMock = [
-  { name: "🖐🏽 리액트", id: 1 },
-  { name: "🦾 자바스크립트", id: 2 },
-  { name: "타입스크립트", id: 3 },
-]
 
 const portfolioMenuMock = [
   { name: "Rolling", id: 1 },

@@ -10,11 +10,11 @@ interface Props extends ComponentProps<"input"> {
   variant?: "primary" | "secondary"
 }
 
-const searchVariants = cva("border px-4 py-2 outline-none", {
+const searchVariants = cva("w-full border px-4 py-2 outline-none", {
   variants: {
     variant: {
-      primary: "w-full rounded-lg focus:border-slate-300",
-      secondary: "size-full rounded-3xl border-slate-100 bg-slate-100 focus:border-slate-300",
+      primary: "rounded-lg focus:border-slate-300",
+      secondary: "rounded-3xl border-slate-100 bg-slate-100 focus:border-slate-300",
     },
   },
 })
@@ -27,7 +27,7 @@ export const TextInput = ({ className, register, error, variant = "primary", ...
         {...register}
         {...props}
       />
-      <span className="mt-2 block text-xs text-red-600">{error && error.message}</span>
+      {error && <span className="mt-2 block text-xs text-red-600">{error.message}</span>}
     </>
   )
 }

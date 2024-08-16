@@ -9,8 +9,6 @@ import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { Card } from "@/src/components/shared/Card"
 import { useQuery } from "@tanstack/react-query"
 import { postQuery } from "@/src/services/queries/post/postQuery"
-import { PostBlog } from "@/src/components/feature/post/PostBlog"
-import { PostCategory } from "@/src/components/feature/post/PostCategory"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.queryOptions())
@@ -18,8 +16,7 @@ const Home = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-      <PostBlog />
-      <PostCategory />
+
       <Container
         as="article"
         className="relative grid grid-cols-1 items-start gap-14 2xl:grid-cols-2"

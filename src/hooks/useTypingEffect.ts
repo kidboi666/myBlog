@@ -1,21 +1,24 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { wait } from "../utils/wait"
 
 export const useTypingEffect = (value: string[]) => {
   const [text, setText] = useState("")
   const [renderedIdx, setRenderedIdx] = useState(0)
 
-  const createText = async (txt: string, idx: number, textLength: number) => {
-    await wait(2000)
+  const createText = useCallback(
+    async (txt: string, idx: number, textLength: number) => {
+      await wait(2000)
 
-    if (textLength - 1 === idx && value.length > renderedIdx + 1) {
-      setRenderedIdx(renderedIdx + 1)
-      setText((prev) => `${prev}${txt}<br>`)
-    } else {
-      setText((prev) => prev + txt)
-    }
-  }
-
+      if (textLength - 1 === idx && value.length > renderedIdx + 1) {
+        setRenderedIdx(renderedIdx + 1)
+        setText((prev) => `${prev}${txt}<br>`)
+      } else {
+        setText((prev) => prev + txt)
+      }
+    },
+    [renderedIdx],
+  )
+  console.log("asdf")
   useEffect(() => {
     const splitText = value[renderedIdx].split("")
     const timeoutArr: NodeJS.Timeout[] = []

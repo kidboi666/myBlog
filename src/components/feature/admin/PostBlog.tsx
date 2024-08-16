@@ -10,12 +10,14 @@ import { useInput } from "@/src/hooks/useInput"
 
 import { TextInput } from "../../shared/TextInput"
 import { Button } from "../../shared/Button"
+import { TextAreaInput } from "../../shared/TextAreaInput"
+import { DropDown } from "../../shared/DropDown/DropDown"
 
 export const PostBlog = ({ className }: { className: string }) => {
   const [title, onChangeTitle] = useInput("")
   const [content, onChangeContent] = useInput("")
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
-  const [image, setImage] = useState<File | null>()
+  const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
@@ -29,12 +31,8 @@ export const PostBlog = ({ className }: { className: string }) => {
     }
   }
 
-  const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const selectedCategoryId = parseInt(e.target.value, 10)
-    const selectedCategoryName = categoryList!.find(
-      (category) => category.id === selectedCategoryId,
-    )!
-    setSelectedCategory(selectedCategoryName)
+  const handleCategoryChange = (selectCategory: Record<string, string | number>) => {
+    setSelectedCategory(categoryList!.find((category) => category.id === selectCategory.id)!)
   }
 
   const handleSubmitPost = () => {
@@ -46,7 +44,7 @@ export const PostBlog = ({ className }: { className: string }) => {
       })
     }
     postImage(
-      { category: selectedCategory.name, image },
+      { category: selectedCategory.id, image },
       {
         onSuccess: (data) => {
           postBlog({
@@ -73,14 +71,18 @@ export const PostBlog = ({ className }: { className: string }) => {
         파일 선택
       </Button>
       <TextInput name="title" variant="secondary" value={title} onChange={onChangeTitle} />
-      <TextInput name="content" variant="secondary" value={content} onChange={onChangeContent} />
-      <select onChange={handleCategoryChange}>
-        {categoryList?.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
+      <TextAreaInput
+        name="content"
+        variant="secondary"
+        value={content}
+        onChange={onChangeContent}
+      />
+      <DropDown
+        itemList={categoryList}
+        selectedItem={selectedCategory.name}
+        listName="카테고리를 선택하세요."
+        onClick={handleCategoryChange}
+      />
       <Button
         isLoading={isPendingPostBlog || isPendingPostImage}
         disabled={!title || !content || !selectedCategory}

@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query"
 import { v4 as uuidv4 } from "uuid"
 
 interface IPost {
-  category: string
+  category: number
   image?: File | null
 }
 
@@ -13,7 +13,6 @@ export const usePostImage = () => {
       const { data } = await supabase.storage
         .from("postImage")
         .upload(`public/${params.category}/${uuidv4()}${params.image!.name}`, params.image!)
-
       return `${process.env.NEXT_PUBLIC_SUPABASE_IMAGE_BASE_URL!}${data?.fullPath}`
     },
   })

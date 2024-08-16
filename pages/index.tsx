@@ -16,7 +16,6 @@ const Home = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-
       <Container
         as="article"
         className="relative grid grid-cols-1 items-start gap-14 2xl:grid-cols-2"

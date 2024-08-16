@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 
@@ -10,12 +9,11 @@ import { ArticleMenu } from "../../feature/nav/ArticleMenu"
 import { SearchBar } from "../../feature/nav/SearchBar"
 import { SearchButton } from "../../feature/nav/SearchButton"
 import { MenuButton } from "../../feature/nav/MenuButton"
-import { Title } from "../../shared/Title/Title"
-import { Button } from "../../shared/Button"
 import { Container } from "../Container"
 import { List } from "../List/List"
 import { LogoButton } from "../../feature/nav/LogoButton"
 import { AdminButton } from "../../feature/nav/AdminButton"
+import { MeButton } from "../../feature/nav/MeButton"
 
 export const Header = () => {
   const [isOpenSearch, setOpenSearch] = useState(false)
@@ -46,9 +44,7 @@ export const Header = () => {
               <MenuButton setOpenMenu={setOpenMenu} />
             </List.Row>
             <List.Row>
-              <Link href="/auth/signin">
-                <Button variant="primary">로그인</Button>
-              </Link>
+              <MeButton />
             </List.Row>
           </List>
         </nav>

@@ -6,11 +6,12 @@ import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Container } from "@/src/components/layout/Container"
 import { Content } from "@/src/components/layout/Content"
 import { Header } from "@/src/components/layout/Header"
+import { DropDown } from "@/src/components/shared/DropDown/DropDown"
 
 const Admin = () => {
   return (
-    <AppLayout Header={<Header />} className="flex h-screen gap-4 overflow-scroll">
-      <Container className="mt-20 items-start justify-start gap-2">
+    <AppLayout Header={<Header />} className="flex h-screen flex-wrap gap-4 overflow-scroll">
+      <Container className="mt-20 grid grid-cols-4 items-start gap-2">
         <Content title="블로그 포스팅">
           <PostBlog className="flex flex-col gap-2" />
         </Content>

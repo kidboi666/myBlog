@@ -16,9 +16,9 @@ export const useTypingEffect = (value: string[]) => {
         setText((prev) => prev + txt)
       }
     },
-    [renderedIdx],
+    [renderedIdx, value.length],
   )
-  console.log("asdf")
+
   useEffect(() => {
     const splitText = value[renderedIdx].split("")
     const timeoutArr: NodeJS.Timeout[] = []
@@ -32,7 +32,7 @@ export const useTypingEffect = (value: string[]) => {
     return () => {
       timeoutArr.forEach((id) => clearTimeout(id))
     }
-  }, [value, renderedIdx])
+  }, [value, renderedIdx, createText])
 
   return text
 }

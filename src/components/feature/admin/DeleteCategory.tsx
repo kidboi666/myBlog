@@ -5,7 +5,7 @@ import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { useDeleteCategory } from "@/src/services/mutate/category/useDeleteCategory"
 import { Button } from "../../shared/Button"
 
-export const DeleteCategory = ({ className }) => {
+export const DeleteCategory = ({ className }: { className: string }) => {
   const [categoryId, setCategoryId] = useState(0)
   const { data: categories } = useQuery(categoryQuery.queryOptions())
   const { mutate, isPending } = useDeleteCategory()

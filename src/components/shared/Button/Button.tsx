@@ -10,7 +10,7 @@ interface Props extends ComponentProps<"button"> {
 }
 
 const buttonVariants = cva(
-  "group flex items-center justify-center gap-2 rounded-full border border-slate-800 font-semibold text-white hover:border-slate-300",
+  "group flex items-center justify-center gap-2 rounded-lg border border-slate-800 text-xs font-semibold text-white hover:border-slate-300",
   {
     variants: {
       active: {

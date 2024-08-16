@@ -15,7 +15,7 @@ export const Content = ({
   as: Component = "div",
 }: PropsWithChildren<Props>) => {
   return (
-    <Component className={cn("flex flex-col gap-2 rounded-md border p-2", className)}>
+    <Component className={cn("rounded-md p-2 ring-1 ring-slate-200", className)}>
       <Title variant="sub">{title}</Title>
       {children}
     </Component>

@@ -5,7 +5,7 @@ import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { postQuery } from "@/src/services/queries/post/postQuery"
 import { Button } from "../../shared/Button"
 
-export const DeleteBlogPost = ({ className }) => {
+export const DeleteBlogPost = ({ className }: { className: string }) => {
   const [categoryId, setCategoryId] = useState(0)
   const { data: posts } = useQuery(postQuery.queryOptions())
   const { mutate, isPending } = useDeletePost()

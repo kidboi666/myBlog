@@ -8,7 +8,7 @@ interface Props {
   className?: string
 }
 
-const textVariants = cva("text-slate-800", {
+const textVariants = cva("text-slate-600", {
   variants: {
     variant: {
       body: "text-base",

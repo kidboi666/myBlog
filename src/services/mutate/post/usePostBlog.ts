@@ -2,7 +2,7 @@ import { supabase } from "@/src/lib/Supabase"
 import { useMutation } from "@tanstack/react-query"
 
 interface IPost {
-  title: string
+  name: string
   content: string
   category: {
     id: number
@@ -17,7 +17,7 @@ export const usePostBlog = () => {
       return supabase
         .from("post")
         .insert({
-          title: params.title,
+          name: params.name,
           content: params.content,
           categoryId: params.category.id,
           categoryName: params.category.name,

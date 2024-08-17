@@ -11,7 +11,7 @@ import { Header } from "@/src/components/layout/Header"
 const Admin = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container className="mt-20 grid grid-cols-1 items-start gap-2 xl:grid-cols-2">
+      <Container className="mt-20 grid grid-cols-1 items-start gap-4 xl:grid-cols-2">
         <Content title="블로그 포스팅">
           <PostBlog className="flex flex-col gap-4" />
         </Content>

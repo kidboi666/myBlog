@@ -16,7 +16,7 @@ import { UploadImageButton } from "../../icon/UploadImageIcon"
 import { Text } from "../../shared/Text"
 
 export const PostBlog = ({ className }: { className: string }) => {
-  const [title, onChangeTitle] = useInput("")
+  const [name, onChangeName] = useInput("")
   const [content, onChangeContent] = useInput("")
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
   const [image, setImage] = useState<File | null>(null)
@@ -41,7 +41,7 @@ export const PostBlog = ({ className }: { className: string }) => {
   const handleSubmitPost = () => {
     if (!image) {
       postBlog({
-        title,
+        name,
         content,
         category: selectedCategory,
       })
@@ -51,7 +51,7 @@ export const PostBlog = ({ className }: { className: string }) => {
       {
         onSuccess: (data) => {
           postBlog({
-            title,
+            name,
             content,
             category: selectedCategory,
             image: data,
@@ -77,7 +77,7 @@ export const PostBlog = ({ className }: { className: string }) => {
         />
         <Text variant="caption">{preview ? image?.name : "이미지 파일 선택"}</Text>
       </Button>
-      <TextInput name="title" variant="secondary" value={title} onChange={onChangeTitle} />
+      <TextInput name="name" variant="secondary" value={name} onChange={onChangeName} />
       <TextAreaInput
         name="content"
         variant="secondary"
@@ -92,7 +92,7 @@ export const PostBlog = ({ className }: { className: string }) => {
       />
       <Button
         isLoading={isPendingPostBlog || isPendingPostImage}
-        disabled={!title || !content || !selectedCategory.id}
+        disabled={!name || !content || !selectedCategory.id}
         onClick={handleSubmitPost}
       >
         데이터보내기

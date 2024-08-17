@@ -90,7 +90,7 @@ export type Database = {
           createdAt: string
           id: number
           image: string | null
-          title: string
+          name: string
         }
         Insert: {
           categoryId: number
@@ -99,7 +99,7 @@ export type Database = {
           createdAt?: string
           id?: number
           image?: string | null
-          title: string
+          name: string
         }
         Update: {
           categoryId?: number
@@ -108,7 +108,7 @@ export type Database = {
           createdAt?: string
           id?: number
           image?: string | null
-          title?: string
+          name?: string
         }
         Relationships: [
           {

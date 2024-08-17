@@ -1,6 +1,5 @@
 import { RefObject } from "react"
 import { Container } from "../../layout/Container"
-import { Button } from "../../shared/Button"
 import { TextInput } from "../../shared/TextInput"
 import { SearchIcon } from "../../icon/SearchIcon"
 
@@ -13,7 +12,7 @@ export const SearchBar = ({ statusRef }: Props) => {
     <Container
       ref={statusRef}
       dataStatus="closed"
-      className="status-popup fixed left-1/2 top-8 z-30 w-[calc(100%-40px)] origin-top -translate-x-1/2 shadow-2xl transition"
+      className="status-popup fixed left-1/2 top-8 z-30 w-[calc(100%-48px)] origin-top -translate-x-1/2 shadow-2xl transition xl:w-[calc(100%-160px)]"
     >
       <div className="relative h-8 w-full">
         <div className="absolute left-1.5 top-1.5">

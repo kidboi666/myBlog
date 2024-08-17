@@ -70,6 +70,7 @@ export const PostBlog = ({ className }: { className: string }) => {
           <UploadImageButton />
         )}
         <input
+          name="image"
           onChange={handleChangeFile}
           type="file"
           accept="image/*"
@@ -83,6 +84,7 @@ export const PostBlog = ({ className }: { className: string }) => {
         variant="secondary"
         value={content}
         onChange={onChangeContent}
+        className="min-h-80"
       />
       <DropDown
         itemList={categoryList}

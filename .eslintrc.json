@@ -24,7 +24,7 @@
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "ignorePatterns": ["node_modules/"],
   "rules": {
-    "prttier/prettier": [
+    "prettier/prettier": [
       "error",
       {
         "endOfLine": "auto"

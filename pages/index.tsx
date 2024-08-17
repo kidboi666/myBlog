@@ -9,6 +9,8 @@ import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { Card } from "@/src/components/shared/Card"
 import { useQuery } from "@tanstack/react-query"
 import { postQuery } from "@/src/services/queries/post/postQuery"
+import { KebabIcon } from "@/src/components/icon/KebabIcon"
+import { Button } from "@/src/components/shared/Button"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.queryOptions())
@@ -24,7 +26,12 @@ const Home = () => {
           <Card key={card?.id} className="bg-blue-50">
             <Card.Image src={card?.image ?? ""} alt="나의 각오 이미지" className="h-52 md:w-52" />
             <Card.Content className="flex flex-1 flex-col gap-2">
-              <Title>{card.title}</Title>
+              <div className="flex justify-between">
+                <Title>{card.name}</Title>
+                <Button variant="icon" className="size-6 text-slate-400 hover:bg-slate-300">
+                  <KebabIcon size={20} />
+                </Button>
+              </div>
               <Text className="line-clamp-6 flex-1">{card.content}</Text>
               <div className="flex justify-between">
                 <Text variant="description">{card.categoryName} 카테고리</Text>

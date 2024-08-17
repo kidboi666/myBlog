@@ -1,3 +1,4 @@
+import { queryClient } from "@/src/lib/ReactQuery"
 import { supabase } from "@/src/lib/Supabase"
 import { useMutation } from "@tanstack/react-query"
 
@@ -24,6 +25,9 @@ export const usePostBlog = () => {
           image: params.image,
         })
         .select()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["post"] })
     },
   })
 }

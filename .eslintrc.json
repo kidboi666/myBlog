@@ -24,6 +24,12 @@
   "plugins": ["@typescript-eslint", "react", "prettier"],
   "ignorePatterns": ["node_modules/"],
   "rules": {
+    "prttier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/no-extraneous-dependencies": 0, //테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
     "react/react-in-jsx-scope": "off", //코드에 react import안하면 error off
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }], // 파일 확장자 .ts, .tsx로 한정

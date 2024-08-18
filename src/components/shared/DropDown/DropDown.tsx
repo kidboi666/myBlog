@@ -20,7 +20,7 @@ export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
         ref={ref}
         data-status="closed"
         className={cn(
-          "status-popup absolute z-10 mt-2 w-56 origin-top divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
+          "status-popup absolute z-10 mt-2 w-56 origin-top divide-y divide-gray-100 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
           className,
         )}
       >

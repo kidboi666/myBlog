@@ -14,8 +14,8 @@ const config: Config = {
           to: { backgroundPosition: "100%" },
         },
         slideDown: {
-          from: { opacity: "0", transform: "translateY(-50px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
+          from: { opacity: "0", transform: "translateY(-50px) scale(0.65)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
         },
         slideUp: {
           from: { opacity: "1", transform: "translateY(0)" },

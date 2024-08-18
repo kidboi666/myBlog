@@ -34,31 +34,3 @@ export const formatDateToYMD = (date: string) => {
   const day = newDate.getDate().toString().padStart(2, "0")
   return `${year}.${month}.${day}`
 }
-// const currentDateTime = Date.now() / (1000 * 60 * 60 * 24)
-// const currentHourTime = Date.now() / (1000 * 60 * 60)
-// const currentMinuteTime = Date.now() / (1000 * 60)
-// const dateTime = new Date(time).getTime() / (1000 * 60 * 60 * 24)
-// const hourTime = new Date(time).getTime() / (1000 * 60 * 60)
-// const minuteTime = new Date(time).getTime() / (1000 * 60)
-// let diffDate = currentDateTime - dateTime
-// let diffTime = currentHourTime - hourTime
-// let diffMinute = currentMinuteTime - minuteTime
-// console.log(time)
-// console.log(diffTime)
-// if (diffDate >= 365) {
-//   return `${Math.floor(diffDate / 365)} years ago`
-// }
-// if (diffDate > 31) {
-//   return `${Math.floor(diffDate / 30)} months ago`
-// }
-// if (diffDate >= 1) {
-//   return `${Math.floor(diffDate)} days ago`
-// }
-// if (diffTime < 24) {
-//   return `${Math.floor(diffTime <= 1 ? 1 : diffTime)} hour ago`
-// }
-// if (diffDate > 0) {
-//   diffDate = currentMinuteTime - minuteTime
-//   return `${Math.floor(diffDate <= 1 ? 1 : diffDate)} minutes ago`
-// }
-// return `1 minutes ago`

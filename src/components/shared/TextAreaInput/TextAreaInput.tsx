@@ -8,12 +8,12 @@ interface Props extends ComponentProps<"textarea"> {
 }
 
 const textAreaInputVariants = cva(
-  "w-full resize-none rounded-lg border px-2 py-2 text-sm outline-none",
+  "w-full resize-none rounded-lg border px-2 py-2 text-sm outline-none transition",
   {
     variants: {
       variant: {
         primary: "",
-        secondary: "border-slate-300 bg-slate-100",
+        secondary: "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100",
       },
     },
   },

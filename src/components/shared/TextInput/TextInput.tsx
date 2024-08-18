@@ -11,12 +11,12 @@ interface Props extends ComponentProps<"input"> {
 }
 
 const InputVaraints = cva(
-  "w-full rounded-lg border border-slate-300 px-2 py-2 text-sm outline-none",
+  "w-full rounded-lg border border-slate-300 px-2 py-2 text-sm outline-none transition",
   {
     variants: {
       variant: {
         primary: "",
-        secondary: "border-slate-300 bg-slate-100",
+        secondary: "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100",
       },
     },
   },

@@ -1,26 +1,30 @@
+import { useModal } from "@/src/store/useModal"
+
 import Image from "next/image"
 import { ChangeEvent, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import cn from "@/src/lib/cn"
 
 import { usePostBlog } from "@/src/services/mutate/post/usePostBlog"
 import { usePostImage } from "@/src/services/mutate/post/usePostImage"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { useInput } from "@/src/hooks/useInput"
+import { useToast } from "@/src/store/useToast"
 
-import { TextInput } from "../../shared/TextInput"
-import { Button } from "../../shared/Button"
-import { TextAreaInput } from "../../shared/TextAreaInput"
-import { DropDown } from "../../shared/DropDown/DropDown"
-import { UploadImageButton } from "../../icon/UploadImageIcon"
-import { Text } from "../../shared/Text"
+import { TextInput } from "../../../shared/TextInput"
+import { Button } from "../../../shared/Button"
+import { TextAreaInput } from "../../../shared/TextAreaInput"
+import { DropDown } from "../../../shared/DropDown/DropDown"
+import { UploadImageButton } from "../../../icon/UploadImageIcon"
+import { Text } from "../../../shared/Text"
+import { ModalWrapper } from "../ModalWrapper"
 
-export const PostBlog = ({ className }: { className: string }) => {
+export const NewPostModal = () => {
   const [name, onChangeName] = useInput("")
   const [content, onChangeContent] = useInput("")
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
+  const { type } = useModal()
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
   const { data: categoryList } = useQuery(categoryQuery.queryOptions())
@@ -61,8 +65,10 @@ export const PostBlog = ({ className }: { className: string }) => {
     )
   }
 
+  if (type !== "newPost") return null
+
   return (
-    <form className={cn(className)}>
+    <ModalWrapper as="form" title="게시물 포스팅">
       <Button className="relative flex flex-col p-2 ring-1 ring-slate-200" variant="icon">
         {preview ? (
           <Image src={preview} alt="sdf" width={200} height={200} />
@@ -99,6 +105,6 @@ export const PostBlog = ({ className }: { className: string }) => {
       >
         데이터보내기
       </Button>
-    </form>
+    </ModalWrapper>
   )
 }

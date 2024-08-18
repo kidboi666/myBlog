@@ -9,6 +9,7 @@ const Document = () => {
         <Script type="module" defer src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring2.js" />
         <Main />
         <NextScript />
+        <div id="portal" />
       </body>
     </Html>
   )

@@ -7,11 +7,27 @@ import { Container } from "@/src/components/layout/Container"
 import { Content } from "@/src/components/layout/Content"
 import { Footer } from "@/src/components/layout/Footer"
 import { Header } from "@/src/components/layout/Header"
+import { Button } from "@/src/components/shared/Button"
+import { useToast } from "@/src/store/useToast"
 
 const Admin = () => {
+  const { setOpen } = useToast()
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Container className="mt-20 grid grid-cols-1 items-start gap-12 xl:grid-cols-2">
+        <Content title="토스트띄우기" className="">
+          <Button
+            variant="secondary"
+            onClick={() => setOpen("warn", { title: "그냥 토스트", text: "앞길 조심하세요." })}
+          >
+            토스트띄우기
+          </Button>
+          <Button
+            onClick={() => setOpen("success", { title: "그냥 토스트", text: "앞길 조심하세요." })}
+          >
+            토스트띄우기
+          </Button>
+        </Content>
         <Content title="블로그 포스팅">
           <PostBlog className="flex flex-col gap-4" />
         </Content>

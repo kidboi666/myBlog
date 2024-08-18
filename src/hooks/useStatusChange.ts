@@ -34,8 +34,10 @@ export const useStatusChange = <T extends HTMLElement, S extends HTMLElement>():
       handleClickOutside(ev)
     }
 
+    document.getElementById("portal")?.addEventListener("click", handleMouseDown)
     document.addEventListener("click", handleMouseDown)
     return () => {
+      document.getElementById("portal")?.removeEventListener("click", handleMouseDown)
       document.removeEventListener("click", handleMouseDown)
     }
   }, [handleClickOutside])

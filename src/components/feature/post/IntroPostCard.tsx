@@ -1,6 +1,7 @@
 import { Tables } from "@/src/models/supabase"
 import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
+import { useModal } from "@/src/store/useModal"
 import { KebabIcon } from "../../icon/KebabIcon"
 import { Button } from "../../shared/Button"
 import { Card } from "../../shared/Card"
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export const IntroPostCard = ({ card, onDelete, onUpdate }: Props) => {
+  const { setOpen } = useModal()
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLUListElement
@@ -29,7 +31,13 @@ export const IntroPostCard = ({ card, onDelete, onUpdate }: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlePostChange = (menu: Record<string, any>) => {
     if (menu.name === "삭제하기") {
-      onDelete(card.id)
+      setOpen("alert", {
+        title: "포스팅 삭제",
+        text: "정말 해당 포스팅을 삭제하시겠습니까?",
+        yes: "삭제하기",
+        no: "취소",
+        onClick: () => onDelete(card.id),
+      })
     }
     if (menu.name === "수정하기") {
       // 수정 모달 띄우기

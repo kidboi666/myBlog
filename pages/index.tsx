@@ -1,18 +1,21 @@
 import { useQuery } from "@tanstack/react-query"
+import { useModal } from "@/src/store/useModal"
 import { postQuery } from "@/src/services/queries/post/postQuery"
+import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
+import { useUpdatePost } from "@/src/services/mutate/post/useUpdatePost"
 import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Header } from "@/src/components/layout/Header"
 import { Footer } from "@/src/components/layout/Footer"
 import { Container } from "@/src/components/layout/Container"
 import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { IntroPostCard } from "@/src/components/feature/post/IntroPostCard"
-import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
-import { useUpdatePost } from "@/src/services/mutate/post/useUpdatePost"
+import { Button } from "@/src/components/shared/Button"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.queryOptions())
   const { mutate: deletePost } = useDeletePost()
   const { mutate: updatePost } = useUpdatePost()
+  const { setOpen } = useModal()
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
@@ -21,6 +24,9 @@ const Home = () => {
         as="article"
         className="relative grid grid-cols-1 items-start gap-14 2xl:grid-cols-2"
       >
+        <Button variant="secondary" onClick={() => setOpen("newPost")}>
+          새 포스트 쓰기
+        </Button>
         {postList?.map((card) => (
           <IntroPostCard
             key={card.id}

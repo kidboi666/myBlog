@@ -1,28 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { MouseEvent } from "react"
+import { MouseEvent, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { meQuery } from "@/src/services/queries/auth/meQuery"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
+import { subCategoryQuery } from "@/src/services/queries/category/subCategoryQuery"
 
 import { Button } from "../../shared/Button"
 import { MeIcon } from "../../icon/MeIcon"
 import { MenuIcon } from "../../icon/MenuIcon"
 import { SearchIcon } from "../../icon/SearchIcon"
-import { Container } from "../Container"
-import { List } from "../List/List"
 import { SearchBar } from "../../feature/nav/SearchBar"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
+import { SlideBar } from "../../shared/SlideBar"
+import { List } from "../List/List"
+import { Container } from "../Container"
+import { NavMenuList } from "../../feature/nav/NavMenuList"
 
-const meMenu = [{ name: "로그아웃", id: 0 }]
+const meMenu = [
+  { name: "어드민 페이지", id: 0 },
+  { name: "로그아웃", id: 1 },
+]
 
 export const Header = () => {
   const [menuRef, menuStatusRef, handleMenuStatusChange] = useStatusChange<
     HTMLButtonElement,
-    HTMLUListElement
+    HTMLDivElement
   >()
   const [searchRef, searchStatusRef, handleSearchStatusChange] = useStatusChange<
     HTMLButtonElement,
@@ -35,6 +41,8 @@ export const Header = () => {
   const router = useRouter()
   const { data: categories } = useQuery(categoryQuery.queryOptions())
   const { data: me } = useQuery(meQuery.queryOptions())
+  const { data: subCategories } = useQuery(subCategoryQuery.queryOptions())
+  const [showSubCategory, setShowSubCategory] = useState(false)
 
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (me?.user) {
@@ -45,23 +53,51 @@ export const Header = () => {
   }
 
   const handleMenuClick = (menu: Record<string, any>) => {
-    router.push(`blog/${menu.id}`)
+    console.log(menu)
+    // router.replace({ pathname: "blog", query: { categoryId: menu.id } })
   }
 
-  const handleMeBtnClick = () => {}
+  const handleMeBtnClick = (menu: { name: string; id: number }) => {
+    if (menu.name === "어드민 페이지") {
+      router.push("/admin")
+    } else if (menu.name === "로그아웃") {
+      // 로그아웃
+    }
+  }
 
   return (
     <Container
       as="header"
       className="fixed top-0 z-50 h-fit justify-between rounded-t-none bg-slate-50 py-4 backdrop-blur-lg xl:px-40"
     >
-      <div className="flex items-center gap-4">
-        <Link href="/">
-          <Button variant="secondary">LOGO</Button>
-        </Link>
-        <Link href="/admin">
-          <Button variant="secondary">ADMIN</Button>
-        </Link>
+      <div className="flex items-center">
+        <div className="flex lg:hidden">
+          <Button variant="icon" ref={menuRef} onClick={handleMenuStatusChange}>
+            <MenuIcon />
+          </Button>
+          <SlideBar ref={menuStatusRef} onClick={handleMenuClick} />
+        </div>
+        <div className="hidden gap-6 lg:flex">
+          <Link href="/" className="hidden lg:flex">
+            <Button lang="en" variant="teritory" className="p-0">
+              ORIGINAL
+            </Button>
+          </Link>
+
+          {categories?.map((category) => {
+            const pickSubCategories =
+              subCategories?.filter(
+                (subCategory) => category.id === subCategory.parent_category_id,
+              ) || []
+            return (
+              <NavMenuList
+                key={category.id}
+                category={category}
+                subCategories={pickSubCategories}
+              />
+            )
+          })}
+        </div>
       </div>
       <nav className="relative justify-self-end">
         <List className="flex items-center gap-4">
@@ -70,17 +106,6 @@ export const Header = () => {
               <SearchIcon />
               <SearchBar statusRef={searchStatusRef} />
             </Button>
-          </List.Row>
-          <List.Row className="relative">
-            <Button variant="icon" ref={menuRef} onClick={handleMenuStatusChange}>
-              <MenuIcon />
-            </Button>
-            <DropDownList
-              ref={menuStatusRef}
-              itemList={categories}
-              onClick={handleMenuClick}
-              className="right-0 w-40"
-            />
           </List.Row>
           <List.Row className="relative">
             <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>

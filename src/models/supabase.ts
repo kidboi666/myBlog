@@ -84,46 +84,95 @@ export type Database = {
       }
       post: {
         Row: {
-          categoryId: number
-          categoryName: string | null
           content: string
-          createdAt: string
+          created_at: string
           id: number
           image: string | null
           name: string
+          parent_category_id: number
+          parent_category_name: string
+          sub_category_id: number | null
+          sub_category_name: string | null
         }
         Insert: {
-          categoryId: number
-          categoryName?: string | null
           content: string
-          createdAt?: string
+          created_at?: string
           id?: number
           image?: string | null
           name: string
+          parent_category_id: number
+          parent_category_name: string
+          sub_category_id?: number | null
+          sub_category_name?: string | null
         }
         Update: {
-          categoryId?: number
-          categoryName?: string | null
           content?: string
-          createdAt?: string
+          created_at?: string
           id?: number
           image?: string | null
           name?: string
+          parent_category_id?: number
+          parent_category_name?: string
+          sub_category_id?: number | null
+          sub_category_name?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "post_categoryId_fkey"
-            columns: ["categoryId"]
+            foreignKeyName: "post_category_id_fkey"
+            columns: ["sub_category_id"]
+            isOneToOne: false
+            referencedRelation: "sub_category"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_category_id_fkey1"
+            columns: ["sub_category_id"]
+            isOneToOne: false
+            referencedRelation: "sub_category"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_parent_category_id_fkey"
+            columns: ["parent_category_id"]
             isOneToOne: false
             referencedRelation: "category"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "post_categoryName_fkey"
-            columns: ["categoryName"]
+            foreignKeyName: "post_parent_category_name_fkey"
+            columns: ["parent_category_name"]
             isOneToOne: false
             referencedRelation: "category"
             referencedColumns: ["name"]
+          },
+        ]
+      }
+      sub_category: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          parent_category_id: number
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          parent_category_id: number
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          parent_category_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sub_category_parent_category_id_fkey"
+            columns: ["parent_category_id"]
+            isOneToOne: false
+            referencedRelation: "category"
+            referencedColumns: ["id"]
           },
         ]
       }

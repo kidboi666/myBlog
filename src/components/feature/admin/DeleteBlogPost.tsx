@@ -9,7 +9,7 @@ import { DropDown } from "../../shared/DropDown"
 
 export const DeleteBlogPost = ({ className }: { className: string }) => {
   const [selectedPost, setSelectedPost] = useState<Tables<"post">>()
-  const { data: posts } = useQuery(postQuery.queryOptions())
+  const { data: posts } = useQuery(postQuery.totalPost())
   const { mutate, isPending } = useDeletePost()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

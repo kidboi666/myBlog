@@ -1,7 +1,13 @@
-export const ArrowHeadIcon = () => {
+import cn from "@/src/lib/cn"
+
+interface Props {
+  className?: string
+}
+
+export const ArrowHeadIcon = ({ className }: Props) => {
   return (
     <svg
-      className="-mr-1 h-5 w-5 text-gray-400"
+      className={cn("-mr-1 h-5 w-5 text-gray-400", className)}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"

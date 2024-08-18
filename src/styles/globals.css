@@ -31,4 +31,7 @@ input:-moz-autofill {
   .status-popup[data-status="closed"] {
     @apply data-[status=closed]:scale-0 data-[status=closed]:transform data-[status=closed]:opacity-0;
   }
+  .status-slide[data-status="closed"] {
+    @apply data-[status=closed]:-translate-x-full data-[status=closed]:opacity-0;
+  }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Tables } from "@/src/models/supabase"
 import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
@@ -18,18 +19,25 @@ const options = [
 interface Props {
   card: Tables<"post">
   onDelete: (id: number) => void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onUpdate: (arg: { id: number; body: any }) => void
 }
 
-export const IntroPostCard = ({ card, onDelete, onUpdate }: Props) => {
+export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
   const { setOpen } = useModal()
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLUListElement
   >()
+  console.log(card)
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const validateCategoryBeforeRender = (post: Tables<"post">) => {
+    const baseCategory = `${post.parent_category_name}`
+    if (post.sub_category_id) {
+      return `${baseCategory} > ${post.sub_category_name} 카테고리`
+    }
+    return `${baseCategory} 카테고리`
+  }
+
   const handlePostChange = (menu: Record<string, any>) => {
     if (menu.name === "삭제하기") {
       setOpen("alert", {
@@ -68,10 +76,10 @@ export const IntroPostCard = ({ card, onDelete, onUpdate }: Props) => {
         </div>
         <Text className="line-clamp-6 flex-1">{card.content}</Text>
         <div className="flex justify-between">
-          <Text variant="description">{card.categoryName} 카테고리</Text>
+          <Text variant="description">{validateCategoryBeforeRender(card)}</Text>
           <div className="flex gap-4 self-end">
-            <Text variant="caption">{formatDate(card.createdAt)}</Text>
-            <Text variant="caption">{formatDateToYMD(card.createdAt)}</Text>
+            <Text variant="caption">{formatDate(card.created_at)}</Text>
+            <Text variant="caption">{formatDateToYMD(card.created_at)}</Text>
           </div>
         </div>
       </Card.Content>

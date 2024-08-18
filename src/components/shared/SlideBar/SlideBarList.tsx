@@ -3,20 +3,20 @@
 import cn from "@/src/lib/cn"
 import { ComponentPropsWithRef, forwardRef } from "react"
 
-interface DropDownListProps extends ComponentPropsWithRef<"ul"> {
+interface SlideBarListProps extends ComponentPropsWithRef<"ul"> {
   itemList?: Record<string, any>[]
   onClick: (arg: any) => void
   className?: string
 }
 
-export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
+export const SlideBarList = forwardRef<HTMLUListElement, SlideBarListProps>(
   ({ itemList, onClick, className }, ref) => {
     return (
       <ul
         ref={ref}
         data-status="closed"
         className={cn(
-          "status-popup absolute z-10 mt-2 w-fit min-w-40 origin-top rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
+          "absolute z-10 mt-2 w-56 origin-top rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
           className,
         )}
       >

@@ -14,7 +14,7 @@ export const Footer = () => {
       <Container
         as="footer"
         className={cn(
-          "relative mt-40 translate-y-40 flex-col gap-4 rounded-b-none transition-slow xl:px-40",
+          "relative translate-y-40 flex-col gap-4 rounded-b-none transition-slow xl:px-40",
           isIntersecting ? "translate-y-0" : "translate-y-40",
         )}
       >

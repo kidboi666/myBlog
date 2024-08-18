@@ -9,9 +9,16 @@ interface Props {
 
 export const AppLayout = ({ children, Header, Footer, className }: PropsWithChildren<Props>) => {
   return (
-    <div className={cn("relative animate-moveGradient overflow-hidden gradient-move", className)}>
+    <div
+      className={cn(
+        "relative flex min-h-dvh animate-moveGradient flex-col overflow-hidden gradient-move",
+        className,
+      )}
+    >
       {Header}
-      <main className={cn("flex w-full flex-col items-center justify-center md:px-12 xl:px-40")}>
+      <main
+        className={cn("flex w-full flex-1 flex-col items-center justify-center md:px-12 xl:px-40")}
+      >
         {children}
       </main>
       {Footer}

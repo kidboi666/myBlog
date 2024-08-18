@@ -27,8 +27,8 @@ export const PostBlog = ({ className }: { className: string }) => {
   const [preview, setPreview] = useState("")
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
-  const { data: categoryList } = useQuery(categoryQuery.queryOptions())
-  const { data: subCategories } = useQuery(subCategoryQuery.queryOptions())
+  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
+  const { data: subCategories } = useQuery(categoryQuery.subCategory(selectedCategory.id))
 
   const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const SlideBar = forwardRef<HTMLDivElement, PropsWithRef<Props>>(({ onClick }, ref) => {
-  const { data: categories } = useQuery(categoryQuery.queryOptions())
+  const { data: categories } = useQuery(categoryQuery.parentCategory())
 
   return (
     // <div className="status-slide fixed inset-0 z-50 h-dvh w-full bg-black/25 text-left">

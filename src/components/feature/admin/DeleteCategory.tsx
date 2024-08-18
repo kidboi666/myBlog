@@ -1,22 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormEvent, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import cn from "@/src/lib/cn"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
-import { useDeleteCategory } from "@/src/services/mutate/category/useDeleteCategory"
+import { useDeleteSubCategory } from "@/src/services/mutate/category/useDeleteSubCategory"
 import { Button } from "../../shared/Button"
 import { DropDown } from "../../shared/DropDown/DropDown"
 
 export const DeleteCategory = ({ className }: { className: string }) => {
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
-  const { data: categories } = useQuery(categoryQuery.queryOptions())
-  const { mutate, isPending } = useDeleteCategory()
+  const [selectedSubCategory, setSelectedSubCategory] = useState({ id: 0, name: "" })
+  const { data: categories } = useQuery(categoryQuery.parentCategory())
+  const { data: subCategories } = useQuery(categoryQuery.subCategory(selectedCategory.id))
+  const { mutate, isPending } = useDeleteSubCategory()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutate(selectedCategory.id)
+    mutate(selectedSubCategory.id)
   }
   const handleCategoryChange = (selectCategory: Record<string, any>) => {
     setSelectedCategory({ id: selectCategory.id, name: selectCategory.name })
+  }
+  const handleSubCategoryChange = (selectSubCategory: Record<string, any>) => {
+    setSelectedSubCategory({ id: selectSubCategory.id, name: selectSubCategory.name })
   }
 
   return (
@@ -27,6 +33,14 @@ export const DeleteCategory = ({ className }: { className: string }) => {
         selectedItem={selectedCategory.name}
         listName="카테고리를 선택하세요."
       />
+      {subCategories?.[0] && (
+        <DropDown
+          onClick={handleSubCategoryChange}
+          itemList={subCategories}
+          selectedItem={selectedSubCategory.name}
+          listName="카테고리를 선택하세요."
+        />
+      )}
       <Button isSubmit isLoading={isPending} className="w-full">
         카테고리 삭제
       </Button>

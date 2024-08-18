@@ -28,4 +28,12 @@ export const postQuery = {
         return data as Tables<"post">[]
       },
     }),
+  postDetail: (postId: number) =>
+    queryOptions({
+      queryKey: ["postDetail", postId],
+      queryFn: async () => {
+        const { data } = await supabase.from("post").select().eq("id", postId)
+        return data as Tables<"post">[]
+      },
+    }),
 }

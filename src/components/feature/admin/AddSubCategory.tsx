@@ -14,7 +14,7 @@ import { TextInput } from "../../shared/TextInput"
 export const AddSubCategory = ({ className }: { className: string }) => {
   const [selectedCategory, setSelectedCategory] = useState<Tables<"category">>()
   const [subCategoryName, onChangeSubCategoryName] = useInput("")
-  const { data: posts } = useQuery(categoryQuery.queryOptions())
+  const { data: posts } = useQuery(categoryQuery.parentCategory())
   const { mutate, isPending } = useAddSubCategory()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

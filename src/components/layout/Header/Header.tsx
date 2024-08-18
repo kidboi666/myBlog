@@ -39,7 +39,7 @@ export const Header = () => {
     HTMLUListElement
   >()
   const router = useRouter()
-  const { data: categories } = useQuery(categoryQuery.queryOptions())
+  const { data: categories } = useQuery(categoryQuery.parentCategory())
   const { data: me } = useQuery(meQuery.queryOptions())
   const { data: subCategories } = useQuery(subCategoryQuery.queryOptions())
   const [showSubCategory, setShowSubCategory] = useState(false)

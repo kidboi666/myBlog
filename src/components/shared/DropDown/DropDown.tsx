@@ -1,3 +1,4 @@
+import cn from "@/src/lib/cn"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
 import { Text } from "../Text"
@@ -8,11 +9,12 @@ interface Props {
   itemList?: Record<string, any>[]
   listName?: string
   selectedItem?: string
+  disabled?: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick: (arg: any) => void
 }
 
-export const DropDown = ({ itemList, listName, selectedItem, onClick }: Props) => {
+export const DropDown = ({ itemList, listName, selectedItem, disabled, onClick }: Props) => {
   const [targetRef, statusRef, handleClickOutside] = useStatusChange<
     HTMLDivElement,
     HTMLUListElement
@@ -23,9 +25,13 @@ export const DropDown = ({ itemList, listName, selectedItem, onClick }: Props) =
       {/** 메뉴 버튼 */}
       <div ref={targetRef}>
         <button
+          disabled={!itemList?.[0]}
           type="button"
           onClick={handleClickOutside}
-          className="inline-flex w-full items-center justify-between gap-x-1.5 rounded-lg bg-white px-3 py-2 shadow-sm ring-1 ring-inset ring-slate-300 transition hover:bg-slate-50"
+          className={cn(
+            "inline-flex w-full items-center justify-between gap-x-1.5 rounded-lg bg-white px-3 py-2 shadow-sm ring-1 ring-inset ring-slate-300 transition hover:bg-slate-50",
+            !itemList?.[0] ? "bg-slate-200 hover:bg-slate-200" : "",
+          )}
         >
           {selectedItem ? (
             <Text variant="body" className="text-sm">
@@ -34,6 +40,7 @@ export const DropDown = ({ itemList, listName, selectedItem, onClick }: Props) =
           ) : (
             <Text variant="caption">{listName}</Text>
           )}
+
           <ArrowHeadIcon />
         </button>
       </div>

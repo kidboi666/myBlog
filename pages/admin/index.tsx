@@ -20,17 +20,17 @@ const Admin = () => {
         <Content title="블로그 포스팅">
           <PostBlog className="flex flex-col gap-4" />
         </Content>
-        <Content title="카테고리 추가">
-          <PostCategory className="flex flex-col gap-4" />
-        </Content>
-        <Content title="카테고리 삭제">
-          <DeleteCategory className="flex flex-col gap-4" />
-        </Content>
         <Content title="포스트 삭제">
           <DeleteBlogPost className="flex flex-col gap-4" />
         </Content>
+        <Content title="카테고리 추가">
+          <PostCategory className="flex flex-col gap-4" />
+        </Content>
         <Content title="서브 카테고리 추가">
           <AddSubCategory className="flex flex-col gap-4" />
+        </Content>
+        <Content title="카테고리 삭제">
+          <DeleteCategory className="flex flex-col gap-4" />
         </Content>
       </Container>
     </AppLayout>

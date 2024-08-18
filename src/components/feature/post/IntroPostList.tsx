@@ -10,6 +10,7 @@ import { Card } from "../../shared/Card"
 import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
+import { useRouter } from "next/router"
 
 const options = [
   { name: "삭제하기", id: 0 },
@@ -24,11 +25,11 @@ interface Props {
 
 export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
   const { setOpen } = useModal()
+  const router = useRouter()
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLUListElement
   >()
-  console.log(card)
 
   const validateCategoryBeforeRender = (post: Tables<"post">) => {
     const baseCategory = `${post.parent_category_name}`
@@ -54,7 +55,7 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
   }
 
   return (
-    <Card key={card?.id} className="bg-blue-50">
+    <Card key={card?.id} className="bg-blue-50" onClick={() => router.push(`/blog/${card.id}`)}>
       <Card.Image src={card?.image ?? ""} alt="카드 이미지" className="h-52 md:w-52" />
       <Card.Content className="flex flex-1 flex-col gap-2">
         <div className="flex justify-between">

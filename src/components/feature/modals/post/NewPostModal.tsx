@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useModal } from "@/src/store/useModal"
 
 import Image from "next/image"
@@ -21,12 +22,14 @@ export const NewPostModal = () => {
   const [name, onChangeName] = useInput("")
   const [content, onChangeContent] = useInput("")
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
+  const [selectedSubCategory, setSelectedSubCategory] = useState({ id: 0, name: "" })
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
   const { type } = useModal()
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
-  const { data: categoryList } = useQuery(categoryQuery.queryOptions())
+  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
+  const { data: subCategoryList } = useQuery(categoryQuery.subCategory(selectedCategory.id))
 
   const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -36,9 +39,11 @@ export const NewPostModal = () => {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCategoryChange = (selectCategory: Record<string, any>) => {
     setSelectedCategory({ id: selectCategory.id, name: selectCategory.name })
+  }
+  const handleSubCategoryChange = (selectCategory: Record<string, any>) => {
+    setSelectedSubCategory({ id: selectCategory.id, name: selectCategory.name })
   }
 
   const handleSubmitPost = () => {
@@ -46,7 +51,8 @@ export const NewPostModal = () => {
       postBlog({
         name,
         content,
-        category: selectedCategory,
+        parentCategory: selectedCategory,
+        subCategory: selectedSubCategory,
       })
     }
     postImage(
@@ -56,7 +62,8 @@ export const NewPostModal = () => {
           postBlog({
             name,
             content,
-            category: selectedCategory,
+            parentCategory: selectedCategory,
+            subCategory: selectedSubCategory,
             image: data,
           })
         },
@@ -103,6 +110,13 @@ export const NewPostModal = () => {
         selectedItem={selectedCategory.name}
         listName="카테고리를 선택하세요."
         onClick={handleCategoryChange}
+      />
+      <DropDown
+        itemList={subCategoryList}
+        selectedItem={selectedSubCategory.name}
+        listName="하위 카테고리를 선택하세요."
+        disabled={!selectedCategory.id}
+        onClick={handleSubCategoryChange}
       />
       <Button
         isLoading={isPendingPostBlog || isPendingPostImage}

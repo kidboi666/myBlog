@@ -20,7 +20,7 @@ export const Card = ({
     <Component
       ref={target}
       className={cn(
-        "flex h-full w-full flex-col gap-6 rounded-2xl p-6 opacity-0 transition-slow hover:-translate-y-2 hover:shadow-lg md:flex-row",
+        "flex h-full w-full cursor-pointer flex-col gap-6 rounded-2xl p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row",
         isIntersecting && "animate-cardSlideDown",
         className,
       )}

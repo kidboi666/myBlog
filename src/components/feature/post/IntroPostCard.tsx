@@ -5,9 +5,10 @@ import { useModal } from "@/src/store/useModal"
 import { KebabIcon } from "../../icon/KebabIcon"
 import { Button } from "../../shared/Button"
 import { Card } from "../../shared/Card"
-import { DropDownList } from "../../shared/DropDown"
+
 import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
+import { DropDownList } from "../../shared/DropDown/DropDowList"
 
 const options = [
   { name: "삭제하기", id: 0 },
@@ -54,7 +55,7 @@ export const IntroPostCard = ({ card, onDelete, onUpdate }: Props) => {
             variant="icon"
             ref={targetRef}
             onClick={handleStatusChange}
-            className="relative size-6 text-slate-400 hover:bg-slate-300"
+            className="relative text-slate-400 hover:bg-slate-300"
           >
             <KebabIcon size={20} />
           </Button>

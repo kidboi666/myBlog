@@ -1,4 +1,6 @@
 import Link from "next/link"
+
+import { useRouter } from "next/router"
 import { useQuery } from "@tanstack/react-query"
 
 import { useStatusChange } from "@/src/hooks/useStatusChange"
@@ -22,7 +24,17 @@ export const Header = () => {
     HTMLButtonElement,
     HTMLDivElement
   >()
-  const { data } = useQuery(meQuery.queryOptions())
+  const router = useRouter()
+  const { data: me } = useQuery(meQuery.queryOptions())
+
+  const handleAuthButton = () => {
+    console.log(me?.user.user_metadata)
+    if (me?.user.user_metadata) {
+      // 뭔가를 할거임
+    } else {
+      router.push("/auth/signin")
+    }
+  }
 
   return (
     <Container
@@ -52,11 +64,9 @@ export const Header = () => {
             <ArticleMenu statusRef={menuStatusRef} />
           </List.Row>
           <List.Row>
-            <Link href="/auth/signin">
-              <Button variant="icon">
-                <MeIcon />
-              </Button>
-            </Link>
+            <Button variant="icon" onClick={handleAuthButton}>
+              <MeIcon />
+            </Button>
           </List.Row>
         </List>
       </nav>

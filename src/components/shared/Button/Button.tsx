@@ -5,27 +5,28 @@ import { Size, Spinner } from "../Spinner/Spinner"
 
 interface Props extends ComponentProps<"button"> {
   as?: ElementType
-  variant?: "primary" | "secondary" | "teritory" | "icon"
+  variant?: "primary" | "secondary" | "teritory" | "icon" | "warn"
   isLoading?: boolean
   isSubmit?: boolean
 }
 
 const buttonVariants = cva(
-  "group flex items-center justify-center gap-2 rounded-lg text-sm font-semibold text-white transition",
+  "group flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-sm font-semibold text-white transition",
   {
     variants: {
       active: {
-        primary: "bg-blue-400 px-6 py-2 hover:bg-blue-500",
-        secondary:
-          "px-6 py-2 text-slate-500 ring-1 ring-slate-300 hover:bg-slate-300 hover:text-white",
-        teritory: "border-none text-slate-500 hover:text-slate-600 hover:underline",
-        icon: "border-none text-slate-500 hover:text-slate-600",
+        primary: "bg-blue-400 hover:bg-blue-500",
+        secondary: "text-slate-500 ring-1 ring-slate-300 hover:bg-slate-300 hover:text-white",
+        teritory: "text-slate-500 hover:text-slate-600 hover:underline",
+        icon: "px-2 text-slate-500 hover:text-slate-600",
+        warn: "bg-red-500 text-white hover:bg-red-600",
       },
       disabled: {
-        primary: "border-slate-300 bg-slate-300 px-6 py-2",
+        primary: "border-slate-300 bg-slate-300",
         secondary: "",
         teritory: "",
         icon: "",
+        warn: "",
       },
     },
   },

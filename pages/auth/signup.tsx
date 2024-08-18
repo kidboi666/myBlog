@@ -1,17 +1,21 @@
 import Link from "next/link"
 import { useForm } from "react-hook-form"
-import { supabase } from "@/src/lib/Supabase"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { signUpSchema } from "@/src/lib/validators/auth"
 import { ISignUpForm } from "@/src/models/auth"
-import { Button } from "@/src/components/shared/Button"
+import { useSignInOAuth } from "@/src/services/mutate/auth/useSignInOAuth"
+import { useSignUp } from "@/src/services/mutate/auth/useSignUp"
+
+import { GithubButton } from "@/src/components/feature/auth/GithubButton"
 import { AuthForm } from "@/src/components/feature/auth/AuthForm"
+import { Button } from "@/src/components/shared/Button"
 import { Line } from "@/src/components/shared/Line"
 import { Text } from "@/src/components/shared/Text"
-import { GithubButton } from "@/src/components/feature/auth/GithubButton"
 import { Title } from "@/src/components/shared/Title"
 
 const SignUp = () => {
+  const { mutate: signInOAuth } = useSignInOAuth()
+  const { mutate: signUp } = useSignUp()
   const {
     register,
     handleSubmit,
@@ -28,24 +32,11 @@ const SignUp = () => {
   })
 
   const handleSubmitSignUp = async (authData: ISignUpForm) => {
-    const { data, error } = await supabase.auth.signUp({
-      email: authData.email,
-      password: authData.password,
-      options: {
-        data: {
-          nickname: authData.nickname,
-        },
-      },
-    })
+    signUp(authData)
   }
 
   const handleSignUpToGithub = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: "http://localhost:3000",
-      },
-    })
+    signInOAuth()
   }
 
   return (

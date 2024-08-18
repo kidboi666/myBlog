@@ -8,7 +8,6 @@ import { usePostBlog } from "@/src/services/mutate/post/usePostBlog"
 import { usePostImage } from "@/src/services/mutate/post/usePostImage"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { useInput } from "@/src/hooks/useInput"
-import { useToast } from "@/src/store/useToast"
 
 import { TextInput } from "../../../shared/TextInput"
 import { Button } from "../../../shared/Button"
@@ -84,8 +83,15 @@ export const NewPostModal = () => {
         />
         <Text variant="caption">{preview ? image?.name : "이미지 파일 선택"}</Text>
       </Button>
-      <TextInput name="name" variant="secondary" value={name} onChange={onChangeName} />
+      <TextInput
+        placeholder="제목을 입력하세요."
+        name="name"
+        variant="secondary"
+        value={name}
+        onChange={onChangeName}
+      />
       <TextAreaInput
+        placeholder="내용을 입력하세요."
         name="content"
         variant="secondary"
         value={content}

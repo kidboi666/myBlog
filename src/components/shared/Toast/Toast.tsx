@@ -1,28 +1,29 @@
 import { useEffect } from "react"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { cva } from "class-variance-authority"
 import cn from "@/src/lib/cn"
 import { useToast } from "@/src/store/useToast"
 import { Container } from "../../layout/Container"
 import { Title } from "../Title"
 import { Text } from "../Text"
+import { Xicon } from "../../icon/XIcon"
+import { Button } from "../Button"
 
-const toastVariants = cva("text-white", {
+const toastVariants = cva("text-sm", {
   variants: {
     container: {
-      warn: "bg-red-500",
+      warn: "bg-white",
       success: "bg-green-500",
       failure: "bg-red-600",
     },
     title: {
-      warn: "",
-      success: "",
-      failure: "",
+      warn: "text-slate-500",
+      success: "text-white",
+      failure: "text-white",
     },
     text: {
-      warn: "",
-      success: "",
-      failure: "",
+      warn: "text-slate-500",
+      success: "text-white",
+      failure: "text-white",
     },
   },
 })
@@ -38,19 +39,28 @@ export const Toast = () => {
     return () => {
       clearTimeout(timer)
     }
-  })
+  }, [setClose, isOpen, type, time])
 
   if (!isOpen) return null
 
   return (
     <Container
       className={cn(
-        "fixed right-4 top-4 z-50 h-20 w-fit animate-slideDown flex-col items-start px-8 py-4",
+        "fixed right-4 top-4 z-50 h-fit w-fit animate-slideDown items-start gap-4 py-4 md:px-6",
         toastVariants({ container: type }),
       )}
     >
-      <Title className={cn(toastVariants({ title: type }))}>{data?.title}</Title>
-      <Text className={cn(toastVariants({ text: type }))}>{data?.text}</Text>
+      <div>
+        <Title className={cn(toastVariants({ title: type }))}>{data?.title}</Title>
+        <Text className={cn(toastVariants({ text: type }))}>{data?.text}</Text>
+      </div>
+      <Button
+        variant="icon"
+        onClick={() => setClose()}
+        className={cn("p-0 hover:rotate-90", toastVariants({ text: type }))}
+      >
+        <Xicon />
+      </Button>
     </Container>
   )
 }

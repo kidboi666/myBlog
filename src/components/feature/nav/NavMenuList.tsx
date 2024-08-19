@@ -20,8 +20,8 @@ export const NavMenuList = ({ category, subCategories }: Props) => {
   const router = useRouter()
 
   const handleMenuClick = (menu: Record<string, any>) => {
-    router.replace({
-      pathname: "blog",
+    router.push({
+      pathname: "/blog",
       query: { categoryId: menu.parent_category_id, subCategoryId: menu.id },
     })
   }

@@ -12,14 +12,11 @@ export const categoryQuery = {
         return data as Tables<"category">[]
       },
     }),
-  subCategory: (parentCategoryId: number) =>
-    queryOptions({
-      queryKey: ["category", parentCategoryId],
+  subCategory: () =>
+    queryOptions<Tables<"sub_category">[]>({
+      queryKey: ["sub_category"],
       queryFn: async () => {
-        const { data } = await supabase
-          .from("sub_category")
-          .select()
-          .eq("parent_category_id", parentCategoryId)
+        const { data } = await supabase.from("sub_category").select()
         return data as Tables<"sub_category">[]
       },
     }),

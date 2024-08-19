@@ -22,7 +22,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "react", "prettier"],
-  "ignorePatterns": ["node_modules/"],
+  "ignorePatterns": ["node_modules/", "next.config.mjs"],
   "rules": {
     "prettier/prettier": [
       "error",

@@ -9,16 +9,16 @@ import { meQuery } from "@/src/services/queries/auth/meQuery"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { subCategoryQuery } from "@/src/services/queries/category/subCategoryQuery"
 
-import { Button } from "../../shared/Button"
+import { SlideBar } from "../../feature/nav/SlideBar"
+import { NavMenuList } from "../../feature/nav/NavMenuList"
+import { SearchBar } from "../../feature/nav/SearchBar"
 import { MeIcon } from "../../icon/MeIcon"
 import { MenuIcon } from "../../icon/MenuIcon"
 import { SearchIcon } from "../../icon/SearchIcon"
-import { SearchBar } from "../../feature/nav/SearchBar"
+import { Button } from "../../shared/Button"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
-import { SlideBar } from "../../shared/SlideBar"
 import { List } from "../List/List"
 import { Container } from "../Container"
-import { NavMenuList } from "../../feature/nav/NavMenuList"
 
 const meMenu = [
   { name: "어드민 페이지", id: 0 },
@@ -42,7 +42,6 @@ export const Header = () => {
   const { data: categories } = useQuery(categoryQuery.parentCategory())
   const { data: me } = useQuery(meQuery.queryOptions())
   const { data: subCategories } = useQuery(subCategoryQuery.queryOptions())
-  const [showSubCategory, setShowSubCategory] = useState(false)
 
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (me?.user) {
@@ -50,11 +49,6 @@ export const Header = () => {
     } else {
       router.push("/auth/signin")
     }
-  }
-
-  const handleMenuClick = (menu: Record<string, any>) => {
-    console.log(menu)
-    // router.replace({ pathname: "blog", query: { categoryId: menu.id } })
   }
 
   const handleMeBtnClick = (menu: { name: string; id: number }) => {
@@ -75,7 +69,7 @@ export const Header = () => {
           <Button variant="icon" ref={menuRef} onClick={handleMenuStatusChange}>
             <MenuIcon />
           </Button>
-          <SlideBar ref={menuStatusRef} onClick={handleMenuClick} />
+          <SlideBar targetRef={menuStatusRef} />
         </div>
         <div className="hidden gap-6 lg:flex">
           <Link href="/" className="hidden lg:flex">
@@ -83,7 +77,6 @@ export const Header = () => {
               ORIGINAL
             </Button>
           </Link>
-
           {categories?.map((category) => {
             const pickSubCategories =
               subCategories?.filter(

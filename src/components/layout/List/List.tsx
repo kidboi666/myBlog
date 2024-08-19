@@ -1,13 +1,14 @@
-import { ComponentProps, PropsWithChildren } from "react"
+import { ComponentProps, PropsWithChildren, RefObject } from "react"
 import cn from "@/src/lib/cn"
 
 interface Props extends ComponentProps<"ul"> {
   className?: string
+  targetRef?: RefObject<HTMLUListElement>
 }
 
-export const List = ({ children, className, ...props }: PropsWithChildren<Props>) => {
+export const List = ({ children, className, targetRef, ...props }: PropsWithChildren<Props>) => {
   return (
-    <ul className={cn("list-none", className)} {...props}>
+    <ul ref={targetRef} className={cn("list-none", className)} {...props}>
       {children}
     </ul>
   )

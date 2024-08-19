@@ -1,16 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useRouter } from "next/router"
 import { Tables } from "@/src/models/supabase"
+import { MouseEvent } from "react"
+
 import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { useModal } from "@/src/store/useModal"
+
 import { KebabIcon } from "../../icon/KebabIcon"
 import { Button } from "../../shared/Button"
 import { Card } from "../../shared/Card"
-
 import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
-import { useRouter } from "next/router"
 
 const options = [
   { name: "삭제하기", id: 0 },
@@ -54,6 +56,11 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
     }
   }
 
+  const handleKebabMenuClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    handleStatusChange(e)
+  }
+
   return (
     <Card key={card?.id} className="bg-blue-50" onClick={() => router.push(`/blog/${card.id}`)}>
       <Card.Image src={card?.image ?? ""} alt="카드 이미지" className="h-52 md:w-52" />
@@ -63,17 +70,17 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
           <Button
             variant="icon"
             ref={targetRef}
-            onClick={handleStatusChange}
+            onClick={handleKebabMenuClick}
             className="relative text-slate-400 hover:bg-slate-300"
           >
             <KebabIcon size={20} />
+            <DropDownList
+              ref={statusRef}
+              itemList={options}
+              onClick={handlePostChange}
+              className="right-0 top-5"
+            />
           </Button>
-          <DropDownList
-            ref={statusRef}
-            itemList={options}
-            onClick={handlePostChange}
-            className="right-4 top-12 w-fit"
-          />
         </div>
         <Text className="line-clamp-6 flex-1">{card.content}</Text>
         <div className="flex justify-between">

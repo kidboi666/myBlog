@@ -9,23 +9,37 @@ export const useStatusChange = <T extends HTMLElement, S extends HTMLElement>():
   const statusRef = useRef<S>(null)
 
   const openStatus = useCallback(() => {
-    statusRef.current?.setAttribute("data-status", "opened")
+    statusRef.current!.setAttribute("data-status", "opened")
   }, [])
 
   const closeStatus = useCallback(() => {
-    statusRef.current?.setAttribute("data-status", "closed")
+    statusRef.current!.setAttribute("data-status", "closed")
   }, [])
 
-  const handleClickOutside = useCallback(
-    (e: React.MouseEvent<HTMLElement>) => {
-      if (!targetRef.current) return
-      if (!targetRef.current.contains(e.target as Node)) {
+  const toggleStatus = useCallback(
+    (e: React.MouseEvent<HTMLElement>, currentStatus: string) => {
+      e.stopPropagation()
+      if (currentStatus === "opened") {
         closeStatus()
       } else {
         openStatus()
       }
     },
-    [closeStatus, openStatus],
+    [openStatus, closeStatus],
+  )
+
+  const handleClickOutside = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      if (!targetRef.current) return
+      const currentStatus = statusRef.current!.getAttribute("data-status")
+
+      if (!targetRef.current.contains(e.target as Node)) {
+        closeStatus()
+      } else {
+        toggleStatus(e, currentStatus!)
+      }
+    },
+    [closeStatus, toggleStatus],
   )
 
   useEffect(() => {

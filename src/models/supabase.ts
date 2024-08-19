@@ -69,14 +69,17 @@ export type Database = {
       }
       category: {
         Row: {
+          icon: string | null
           id: number
           name: string
         }
         Insert: {
+          icon?: string | null
           id?: number
           name: string
         }
         Update: {
+          icon?: string | null
           id?: number
           name?: string
         }
@@ -91,8 +94,8 @@ export type Database = {
           name: string
           parent_category_id: number
           parent_category_name: string
-          sub_category_id: number | null
-          sub_category_name: string | null
+          sub_category_id: number
+          sub_category_name: string
         }
         Insert: {
           content: string
@@ -102,8 +105,8 @@ export type Database = {
           name: string
           parent_category_id: number
           parent_category_name: string
-          sub_category_id?: number | null
-          sub_category_name?: string | null
+          sub_category_id: number
+          sub_category_name: string
         }
         Update: {
           content?: string
@@ -113,8 +116,8 @@ export type Database = {
           name?: string
           parent_category_id?: number
           parent_category_name?: string
-          sub_category_id?: number | null
-          sub_category_name?: string | null
+          sub_category_id?: number
+          sub_category_name?: string
         }
         Relationships: [
           {

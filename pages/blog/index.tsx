@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
-import { useUpdatePost } from "@/src/services/mutate/post/useUpdatePost"
-import { useModal } from "@/src/store/useModal"
 
 import { IntroPostList } from "@/src/components/feature/post/IntroPostList"
 import { AppLayout } from "@/src/components/layout/AppLayout"
@@ -19,8 +17,6 @@ const Blog = () => {
     postQuery.subCategoryPost(Number(categoryId), Number(subCategoryId)),
   )
   const { mutate: deletePost } = useDeletePost()
-  const { mutate: updatePost } = useUpdatePost()
-  const { setOpen } = useModal()
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
@@ -28,16 +24,11 @@ const Blog = () => {
         as="article"
         className="relative mb-12 mt-28 grid grid-cols-1 items-start gap-14 2xl:grid-cols-2"
       >
-        <Button variant="secondary" onClick={() => setOpen("newPost")}>
+        <Button variant="secondary" onClick={() => router.push("/write")}>
           새 포스트 쓰기
         </Button>
         {postList?.map((card) => (
-          <IntroPostList
-            key={card.id}
-            card={card}
-            onDelete={(id) => deletePost(id)}
-            onUpdate={(params) => updatePost(params)}
-          />
+          <IntroPostList key={card.id} card={card} onDelete={(id) => deletePost(id)} />
         ))}
       </Container>
     </AppLayout>

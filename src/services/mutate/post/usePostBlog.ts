@@ -1,22 +1,9 @@
 import { queryClient } from "@/src/lib/ReactQuery"
 import { supabase } from "@/src/lib/Supabase"
+import { IPost } from "@/src/models/blog/post"
 import { useModal } from "@/src/store/useModal"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
-
-interface IPost {
-  name: string
-  content: string
-  subCategory?: {
-    id: number
-    name: string
-  }
-  parentCategory: {
-    id: number
-    name: string
-  }
-  image?: string
-}
 
 export const usePostBlog = () => {
   const { setOpen } = useToast()
@@ -29,10 +16,10 @@ export const usePostBlog = () => {
         .insert({
           name: params.name,
           content: params.content,
-          sub_category_id: params?.subCategory?.id ?? null,
-          sub_category_name: params?.subCategory?.name ?? null,
-          parent_category_id: params.parentCategory.id,
-          parent_category_name: params.parentCategory.name,
+          sub_category_id: params.selectedSubCategory.id,
+          sub_category_name: params.selectedSubCategory.name,
+          parent_category_id: params.selectedCategory.id,
+          parent_category_name: params.selectedCategory.name,
           image: params.image,
         })
         .select()

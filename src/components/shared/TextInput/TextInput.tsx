@@ -11,7 +11,7 @@ interface Props extends ComponentProps<"input"> {
 }
 
 const InputVaraints = cva(
-  "w-full rounded-lg border border-slate-300 px-2 py-2 text-xs outline-none transition",
+  "w-full rounded-lg border border-slate-300 px-2 py-2 text-sm outline-none transition",
   {
     variants: {
       variant: {

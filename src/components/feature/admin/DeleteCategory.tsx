@@ -3,6 +3,7 @@ import { FormEvent, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import cn from "@/src/lib/cn"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
+import { useDeleteCategory } from "@/src/services/mutate/category/useDeleteCategory"
 import { useDeleteSubCategory } from "@/src/services/mutate/category/useDeleteSubCategory"
 import { Button } from "../../shared/Button"
 import { DropDown } from "../../shared/DropDown/DropDown"
@@ -11,12 +12,16 @@ export const DeleteCategory = ({ className }: { className: string }) => {
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
   const [selectedSubCategory, setSelectedSubCategory] = useState({ id: 0, name: "" })
   const { data: categories } = useQuery(categoryQuery.parentCategory())
-  const { data: subCategories } = useQuery(categoryQuery.subCategory(selectedCategory.id))
-  const { mutate, isPending } = useDeleteSubCategory()
+  const { data: subCategories } = useQuery(categoryQuery.subCategory())
+  const { mutate: deleteSubCategory, isPending: deletePending } = useDeleteSubCategory()
+  const { mutate: deleteCategory, isPending: deleteSubPending } = useDeleteCategory()
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutate(selectedSubCategory.id)
+    if (!selectedSubCategory.id) {
+      deleteCategory(selectedCategory.id)
+    }
+    deleteSubCategory(selectedSubCategory.id)
   }
   const handleCategoryChange = (selectCategory: Record<string, any>) => {
     setSelectedCategory({ id: selectCategory.id, name: selectCategory.name })
@@ -41,7 +46,7 @@ export const DeleteCategory = ({ className }: { className: string }) => {
           listName="카테고리를 선택하세요."
         />
       )}
-      <Button isSubmit isLoading={isPending} className="w-full">
+      <Button isSubmit isLoading={deletePending || deleteSubPending} className="w-full">
         카테고리 삭제
       </Button>
     </form>

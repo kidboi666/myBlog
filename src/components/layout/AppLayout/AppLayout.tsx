@@ -9,6 +9,7 @@ interface Props {
 
 export const AppLayout = ({ children, Header, Footer, className }: PropsWithChildren<Props>) => {
   return (
+    // <div className={cn("relative flex min-h-dvh flex-col overflow-hidden bg-blue-200", className)}>
     <div
       className={cn(
         "relative flex min-h-dvh animate-moveGradient flex-col overflow-hidden gradient-move",

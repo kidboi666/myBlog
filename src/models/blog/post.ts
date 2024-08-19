@@ -1,10 +1,18 @@
-export interface Post {
-  category: Category
-  content: string
-  createdAt: string
-  id: number
-  image?: string
-  title: string
+export interface IOption {
+  id?: number
+  name?: string
 }
 
-export type Category = "REACT" | "JAVASCRIPT" | "TYPESCRIPT" | "SUPABASE" | "DB"
+export interface IPost {
+  name: string
+  content: string
+  selectedSubCategory: {
+    id: number
+    name: string
+  }
+  selectedCategory: {
+    id: number
+    name: string
+  }
+  image?: string
+}

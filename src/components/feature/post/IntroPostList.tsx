@@ -3,9 +3,11 @@ import { useRouter } from "next/router"
 import { Tables } from "@/src/models/supabase"
 import { MouseEvent } from "react"
 
-import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { useModal } from "@/src/store/useModal"
+import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
+import { IOption } from "@/src/models/blog/post"
+import { useStatusChange } from "@/src/hooks/useStatusChange"
+import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 
 import { KebabIcon } from "../../icon/KebabIcon"
 import { Button } from "../../shared/Button"
@@ -14,18 +16,12 @@ import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
 
-const options = [
-  { name: "삭제하기", id: 0 },
-  { name: "수정하기", id: 1 },
-]
-
 interface Props {
   card: Tables<"post">
   onDelete: (id: number) => void
-  onUpdate: (arg: { id: number; body: any }) => void
 }
 
-export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
+export const IntroPostList = ({ card, onDelete }: Props) => {
   const { setOpen } = useModal()
   const router = useRouter()
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
@@ -41,7 +37,7 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
     return `${baseCategory} 카테고리`
   }
 
-  const handlePostChange = (menu: Record<string, any>) => {
+  const handleOptionClick = (menu: IOption) => {
     if (menu.name === "삭제하기") {
       setOpen("alert", {
         title: "포스팅 삭제",
@@ -52,7 +48,7 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
       })
     }
     if (menu.name === "수정하기") {
-      // 수정 모달 띄우기
+      router.push({ pathname: "/write", query: { postId: card.id } })
     }
   }
 
@@ -76,8 +72,8 @@ export const IntroPostList = ({ card, onDelete, onUpdate }: Props) => {
             <KebabIcon size={20} />
             <DropDownList
               ref={statusRef}
-              itemList={options}
-              onClick={handlePostChange}
+              itemList={KEBAB_CARD_OPTION}
+              onClick={handleOptionClick}
               className="right-0 top-5"
             />
           </Button>

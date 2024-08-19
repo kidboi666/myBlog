@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "avatars.githubusercontent.com",
       },
+      {
+        protocol: "https",
+        hostname: "noticon-static.tammolo.com",
+      },
     ],
   },
 }

@@ -1,8 +1,8 @@
-import { ChangeEvent, useCallback, useState } from "react"
+import { ChangeEvent, Dispatch, SetStateAction, useCallback, useState } from "react"
 
 type TChangeEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
 
-type ReturnType<T> = [T, (e: TChangeEvent) => void, () => void]
+type ReturnType<T> = [T, (e: TChangeEvent) => void, Dispatch<SetStateAction<T>>]
 
 /**
  *
@@ -23,9 +23,5 @@ export const useInput = <T extends string | number | Record<string, string | num
     setValue(e.target.value as T)
   }, [])
 
-  const initValue = () => {
-    setValue(initialValue)
-  }
-
-  return [value, handler, initValue]
+  return [value, handler, setValue]
 }

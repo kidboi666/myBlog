@@ -1,5 +1,4 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { Tables } from "@/src/models/supabase"
 import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
@@ -12,14 +11,13 @@ interface Props {
 }
 
 export const NavMenuList = ({ category, subCategories }: Props) => {
-  const [showSubCategory, setShowSubCategory] = useState(false)
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLUListElement
   >()
   const router = useRouter()
 
-  const handleMenuClick = (menu: Record<string, any>) => {
+  const handleMenuClick = (menu: Tables<"sub_category">) => {
     router.push({
       pathname: "/blog",
       query: { categoryId: menu.parent_category_id, subCategoryId: menu.id },

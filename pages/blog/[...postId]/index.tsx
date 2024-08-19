@@ -1,66 +1,94 @@
+import { useQuery } from "@tanstack/react-query"
+import Image from "next/image"
+import { useRouter } from "next/router"
+
+import { KEBAB_CARD_OPTION } from "@/src/constants/options"
+import { useStatusChange } from "@/src/hooks/useStatusChange"
+import { IOption } from "@/src/models/blog/post"
+import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
+import { postQuery } from "@/src/services/queries/post/postQuery"
+import { useModal } from "@/src/store/useModal"
+import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
+
+import { KebabIcon } from "@/src/components/icon/KebabIcon"
 import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Container } from "@/src/components/layout/Container"
 import { Footer } from "@/src/components/layout/Footer"
 import { Header } from "@/src/components/layout/Header"
-import { Card } from "@/src/components/shared/Card"
-
+import { Button } from "@/src/components/shared/Button"
+import { DropDownList } from "@/src/components/shared/DropDown/DropDowList"
 import { Text } from "@/src/components/shared/Text"
 import { Title } from "@/src/components/shared/Title"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
-import { Tables } from "@/src/models/supabase"
-import { postQuery } from "@/src/services/queries/post/postQuery"
-import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
-import { useQuery } from "@tanstack/react-query"
-import { useRouter } from "next/router"
+import { Line } from "@/src/components/shared/Line"
 
 const Post = () => {
+  const [targetRef, statusRef, handleStatusChange] = useStatusChange<
+    HTMLButtonElement,
+    HTMLUListElement
+  >()
   const router = useRouter()
-  const pathname = router.query
-  const { data: post } = useQuery(postQuery.postDetail(Number(pathname)))
-  const [targetRef, statusRef, handleStatusChange] = useStatusChange()
-  console.log(post)
+  const { postId } = router.query
+  const { data } = useQuery(postQuery.postDetail(Number(postId?.[0])))
+  const post = data?.[0]
+  const { mutate: deletePost } = useDeletePost()
+  const { setOpen } = useModal()
 
-  const validateCategoryBeforeRender = (post: Tables<"post">) => {
-    const baseCategory = `${post?.parent_category_name}`
-    if (post?.sub_category_id) {
-      return `${baseCategory} > ${post?.sub_category_name} 카테고리`
+  const handleOptionClick = (menu: IOption) => {
+    if (menu.name === "삭제하기") {
+      setOpen("alert", {
+        title: "포스팅 삭제",
+        text: "정말 해당 포스팅을 삭제하시겠습니까?",
+        yes: "삭제하기",
+        no: "취소",
+        onClick: () => deletePost(post!.id),
+      })
     }
-    return `${baseCategory} 카테고리`
+    if (menu.name === "수정하기") {
+      router.push({ pathname: "/write", query: { postId: post?.id } })
+    }
   }
+
+  if (!post) return null
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container>
-        <Card key={post?.id} className="bg-blue-50">
-          <Card.Image src={post?.image ?? ""} alt="카드 이미지" className="h-52 md:w-52" />
-          <Card.Content className="flex flex-1 flex-col gap-2">
-            <div className="flex justify-between">
-              <Title>{post?.name}</Title>
-              {/* <Button
-                variant="icon"
-                ref={targetRef}
-                onClick={handleStatusChange}
-                className="relative text-slate-400 hover:bg-slate-300"
-              >
-                <KebabIcon size={20} />
-              </Button> */}
-              {/* <DropDownList
-                ref={statusRef}
-                itemList={options}
-                onClick={handlePostChange}
-                className="right-4 top-12 w-fit"
-              /> */}
-            </div>
-            <Text className="line-clamp-6 flex-1">{post?.content}</Text>
-            <div className="flex justify-between">
-              <Text variant="description">{validateCategoryBeforeRender(post)}</Text>
-              <div className="flex gap-4 self-end">
-                <Text variant="caption">{formatDate(post?.created_at)}</Text>
-                <Text variant="caption">{formatDateToYMD(post?.created_at)}</Text>
-              </div>
-            </div>
-          </Card.Content>
-        </Card>
+      <Container className="mb-12 mt-28 flex-col items-start gap-4">
+        {post.image && (
+          <div className="relative h-80 w-full">
+            <Image src={post.image} alt="포스트이미지" fill className="rounded-3xl object-cover" />
+          </div>
+        )}
+        <div className="relative mt-12 flex w-full justify-between">
+          <Title className="text-6xl text-slate-600">{post?.name}</Title>
+          <Button ref={targetRef} variant="icon">
+            <KebabIcon size={20} className="rotate-90" />
+          </Button>
+          <DropDownList
+            ref={statusRef}
+            itemList={KEBAB_CARD_OPTION}
+            onClick={handleOptionClick}
+            className="right-2 top-10"
+          />
+        </div>
+        <div className="mt-4">
+          <Text variant="description">
+            {post?.parent_category_name}&nbsp;
+            <Text as="span" className="text-sm">
+              {" "}
+              ➡️{" "}
+            </Text>
+            &nbsp;
+            {post?.sub_category_name} 카테고리
+          </Text>
+        </div>
+        <div className="flex gap-12">
+          <Text variant="description">{formatDateToYMD(post.created_at)}</Text>
+          <Text variant="description">{formatDate(post.created_at)}</Text>
+        </div>
+        <Line />
+        <div className="mt-4">
+          <Text>{post?.content}</Text>
+        </div>
       </Container>
     </AppLayout>
   )

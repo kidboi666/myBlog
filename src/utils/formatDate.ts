@@ -9,22 +9,22 @@ export const formatDate = (time: string) => {
   const diffInYears = diffInDays / 365
 
   if (diffInYears >= 1) {
-    return `${Math.floor(diffInYears)} years ago`
+    return `${Math.floor(diffInYears)} 년 전`
   }
   if (diffInDays >= 30) {
-    return `${Math.floor(diffInDays / 30)} months ago`
+    return `${Math.floor(diffInDays / 30)} 달 전`
   }
   if (diffInDays >= 1) {
-    return `${Math.floor(diffInDays)} days ago`
+    return `${Math.floor(diffInDays)} 일 전`
   }
   if (diffInHours >= 1) {
-    return `${Math.floor(diffInHours)} hour${Math.floor(diffInHours) > 1 ? "s" : ""} ago`
+    return `${Math.floor(diffInHours)} 시간 전`
   }
   if (diffInMinutes >= 1) {
-    return `${Math.floor(diffInMinutes)} minute${Math.floor(diffInMinutes) > 1 ? "s" : ""} ago`
+    return `${Math.floor(diffInMinutes)} 분 전`
   }
 
-  return `just now`
+  return `방금 전`
 }
 
 export const formatDateToYMD = (date: string) => {

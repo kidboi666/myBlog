@@ -32,6 +32,9 @@ const Admin = () => {
         <Content title="카테고리 삭제">
           <DeleteCategory className="flex flex-col gap-4" />
         </Content>
+        <Content title="카테고리 아이콘 추가">
+          <PostCategory className="flex flex-col gap-4" />
+        </Content>
       </Container>
     </AppLayout>
   )

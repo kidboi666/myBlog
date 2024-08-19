@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import cn from "@/src/lib/cn"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
@@ -5,16 +6,13 @@ import { Text } from "../Text"
 import { DropDownList } from "./DropDowList"
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   itemList?: Record<string, any>[]
   listName?: string
   selectedItem?: string
-  disabled?: boolean
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick: (arg: any) => void
 }
 
-export const DropDown = ({ itemList, listName, selectedItem, disabled, onClick }: Props) => {
+export const DropDown = ({ itemList, listName, selectedItem, onClick }: Props) => {
   const [targetRef, statusRef, handleClickOutside] = useStatusChange<
     HTMLDivElement,
     HTMLUListElement
@@ -45,7 +43,6 @@ export const DropDown = ({ itemList, listName, selectedItem, disabled, onClick }
         </button>
       </div>
       {/** 메뉴 아이템들 */}
-
       <DropDownList itemList={itemList} ref={statusRef} onClick={onClick} />
     </div>
   )

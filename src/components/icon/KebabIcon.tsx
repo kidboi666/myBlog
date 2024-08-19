@@ -1,4 +1,11 @@
-export const KebabIcon = ({ size }: { size: number }) => {
+import cn from "@/src/lib/cn"
+
+interface Props {
+  size: number
+  className?: string
+}
+
+export const KebabIcon = ({ size, className }: Props) => {
   return (
     <svg
       width={size}
@@ -6,7 +13,7 @@ export const KebabIcon = ({ size }: { size: number }) => {
       fill="none"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-foreground-lighter"
+      className={cn("text-foreground-lighter", className)}
     >
       <path
         fillRule="evenodd"

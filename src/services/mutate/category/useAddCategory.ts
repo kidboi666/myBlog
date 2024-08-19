@@ -4,8 +4,11 @@ import { useMutation } from "@tanstack/react-query"
 
 export const useAddCategory = () => {
   return useMutation({
-    mutationFn: async (name: string) => {
-      return supabase.from("category").insert({ name }).select()
+    mutationFn: async (params: { name: string; icon: string }) => {
+      return supabase
+        .from("category")
+        .insert({ ...params })
+        .select()
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["category"] })

@@ -8,7 +8,6 @@ import { Tables } from "@/src/models/supabase"
 import { usePostBlog } from "@/src/services/mutate/post/usePostBlog"
 import { usePostImage } from "@/src/services/mutate/post/usePostImage"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
-import { subCategoryQuery } from "@/src/services/queries/category/subCategoryQuery"
 import { useInput } from "@/src/hooks/useInput"
 
 import { TextInput } from "../../shared/TextInput"
@@ -28,7 +27,7 @@ export const PostBlog = ({ className }: { className: string }) => {
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
   const { data: categoryList } = useQuery(categoryQuery.parentCategory())
-  const { data: subCategories } = useQuery(categoryQuery.subCategory(selectedCategory.id))
+  const { data: subCategories } = useQuery(categoryQuery.subCategory())
 
   const handleChangeFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -55,8 +54,8 @@ export const PostBlog = ({ className }: { className: string }) => {
       postBlog({
         name,
         content,
-        parentCategory: selectedCategory,
-        subCategory: selectedSubCategory,
+        selectedCategory,
+        selectedSubCategory,
       })
     }
     postImage(
@@ -66,8 +65,8 @@ export const PostBlog = ({ className }: { className: string }) => {
           postBlog({
             name,
             content,
-            parentCategory: selectedCategory,
-            subCategory: selectedSubCategory,
+            selectedCategory,
+            selectedSubCategory,
             image: data,
           })
         },
@@ -110,7 +109,7 @@ export const PostBlog = ({ className }: { className: string }) => {
         <DropDown
           itemList={subCategoryList}
           selectedItem={selectedSubCategory?.name}
-          listName="카테고리를 선택하세요."
+          listName="하위 카테고리를 선택하세요."
           onClick={handleSubCategoryChange}
         />
       )}

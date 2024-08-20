@@ -48,7 +48,7 @@ const SignUp = () => {
         <Title className="self-center">회원가입</Title>
         <div className="flex gap-2 self-end">
           <Text variant="caption">계정이 이미 있으신가요?</Text>
-          <Button variant="teritory" className="text-xs">
+          <Button variant="teritory" className="p-0 text-xs">
             <Link href="/auth/signin">로그인 하러가기</Link>
           </Button>
         </div>

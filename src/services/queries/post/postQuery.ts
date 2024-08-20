@@ -12,20 +12,19 @@ export const postQuery = {
         return data as Tables<"post">[]
       },
     }),
-  parentCategoryPost: (categoryId: number) =>
+  categoryPost: (categoryId: number, subCategoryId?: number) =>
     queryOptions({
       queryKey: ["post", categoryId],
       queryFn: async () => {
-        const { data } = await supabase.from("post").select().eq("parent_category_id", categoryId)
-        return data as Tables<"post">[]
-      },
-    }),
-  subCategoryPost: (categoryId: number, subCategoryId: number) =>
-    queryOptions({
-      queryKey: ["post", categoryId, subCategoryId],
-      queryFn: async () => {
-        const { data } = await supabase.from("post").select().eq("sub_category_id", subCategoryId)
-        return data as Tables<"post">[]
+        let response
+        if (subCategoryId) {
+          const { data } = await supabase.from("post").select().eq("sub_category_id", subCategoryId)
+          response = data
+        } else {
+          const { data } = await supabase.from("post").select().eq("parent_category_id", categoryId)
+          response = data
+        }
+        return response as Tables<"post">[]
       },
     }),
   postDetail: (postId: number) =>

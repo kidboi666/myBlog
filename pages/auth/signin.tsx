@@ -46,7 +46,7 @@ const SignIn = () => {
         <Title className="self-center">로그인</Title>
         <div className="flex gap-2 self-end">
           <Text variant="caption">계정이 없으신가요?</Text>
-          <Button variant="teritory" className="text-xs">
+          <Button variant="teritory" className="p-0 text-xs">
             <Link href="/auth/signup">계정 만들기</Link>
           </Button>
         </div>

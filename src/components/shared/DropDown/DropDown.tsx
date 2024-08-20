@@ -36,7 +36,9 @@ export const DropDown = ({ itemList, listName, selectedItem, onClick }: Props) =
               {selectedItem}
             </Text>
           ) : (
-            <Text variant="caption">{listName}</Text>
+            <Text variant="caption" className="text-sm">
+              {listName}
+            </Text>
           )}
 
           <ArrowHeadIcon />

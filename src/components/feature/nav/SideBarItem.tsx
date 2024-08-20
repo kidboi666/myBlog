@@ -8,10 +8,16 @@ import { DropDownList } from "../../shared/DropDown/DropDowList"
 interface Props {
   category: Tables<"category">
   subCategories: Tables<"sub_category">[]
-  onClick: (menu: Tables<"sub_category">) => void
+  onCategoryButtonClick: (menu: Tables<"category">) => void
+  onSubCategoryButtonClick: (menu: Tables<"sub_category">) => void
 }
 
-export const SideBarItem = ({ category, subCategories, onClick }: Props) => {
+export const SideBarItem = ({
+  category,
+  subCategories,
+  onCategoryButtonClick,
+  onSubCategoryButtonClick,
+}: Props) => {
   const subCategoriesStatus = useRef<HTMLUListElement>(null)
   const titleStatus = useRef<HTMLButtonElement>(null)
 
@@ -31,7 +37,11 @@ export const SideBarItem = ({ category, subCategories, onClick }: Props) => {
       onMouseLeave={() => closeStatusChange()}
       className="relative flex"
     >
-      <Button variant="secondary" className="flex px-4 py-4 text-base text-slate-500 ring-0">
+      <Button
+        variant="secondary"
+        onClick={() => onCategoryButtonClick(category)}
+        className="flex px-4 py-4 text-base text-slate-500 ring-0"
+      >
         {category.icon && (
           <Image
             src={category.icon}
@@ -45,14 +55,14 @@ export const SideBarItem = ({ category, subCategories, onClick }: Props) => {
       <Button
         ref={titleStatus}
         data-status="closed"
-        className="absolute -top-5 left-12 text-nowrap rounded-t-lg bg-slate-300 p-2 text-sm transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
+        className="absolute -top-5 left-12 text-nowrap rounded-t-lg bg-slate-300 p-2 text-sm shadow-lg transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
       >
         {category.name}
       </Button>
       <DropDownList
         itemList={subCategories}
         ref={subCategoriesStatus}
-        onClick={onClick}
+        onClick={onSubCategoryButtonClick}
         className="left-12 origin-left"
       />
     </List.Row>

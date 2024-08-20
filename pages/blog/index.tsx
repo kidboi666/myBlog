@@ -22,7 +22,7 @@ const Blog = () => {
   const { categoryId, subCategoryId, name } = router.query
   const renderText = useStrTypingEffect(text)
   const { data: postList, isSuccess } = useQuery(
-    postQuery.subCategoryPost(castArray(Number(categoryId)), castArray(Number(subCategoryId))),
+    postQuery.categoryPost(castArray(Number(categoryId)), castArray(Number(subCategoryId))),
   )
   const { mutate: deletePost } = useDeletePost()
 
@@ -39,7 +39,7 @@ const Blog = () => {
         >
           <Underbar>{renderText}</Underbar>
         </Title>
-        {isSuccess && postList.length === 0 && <EmptyCategory />}
+        {isSuccess && postList?.length === 0 && <EmptyCategory />}
         {postList?.map((card) => (
           <PostCard key={card.id} card={card} onDelete={(id) => deletePost(id)} />
         ))}

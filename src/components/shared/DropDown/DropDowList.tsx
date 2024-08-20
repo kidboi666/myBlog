@@ -24,7 +24,7 @@ export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
           <li
             key={menu.id}
             onClick={() => onClick(menu)}
-            className="relative w-full cursor-pointer px-4 py-2 text-start text-sm font-normal text-slate-600 transition hover:bg-slate-200"
+            className="relative w-full cursor-pointer px-4 py-2 text-start text-base font-normal text-slate-600 transition hover:bg-slate-200"
           >
             {menu.name}
           </li>

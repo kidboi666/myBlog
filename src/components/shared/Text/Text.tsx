@@ -6,6 +6,7 @@ interface Props {
   as?: ElementType
   variant?: "body" | "description" | "caption"
   className?: string
+  dataStatus?: string
 }
 
 const textVariants = cva("text-slate-600", {
@@ -19,9 +20,14 @@ const textVariants = cva("text-slate-600", {
 })
 
 export const Text = forwardRef<HTMLElement, PropsWithChildren<Props>>(
-  ({ as: Component = "p", variant = "body", children, className, ...props }, ref) => {
+  ({ as: Component = "p", variant = "body", children, className, dataStatus, ...props }, ref) => {
     return (
-      <Component ref={ref} className={cn(textVariants({ variant }), className)} {...props}>
+      <Component
+        ref={ref}
+        data-status={dataStatus}
+        className={cn(textVariants({ variant }), className)}
+        {...props}
+      >
         {children}
       </Component>
     )

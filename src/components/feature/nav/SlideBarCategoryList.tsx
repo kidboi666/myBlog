@@ -30,31 +30,33 @@ export const SlideBarCategoryList = ({ category, subCategories }: Props) => {
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
       pathname: "/blog",
-      query: { categoryId: menu.parent_category_id, subCategoryId: menu.id },
+      query: { categoryId: menu.parent_category_id, name: menu.name, subCategoryId: menu.id },
     })
   }
 
   return (
     <List.Row className="flex w-full flex-col items-start">
-      <Button variant="teritory" onClick={(e) => handleCategoryButtonClick(e)} className="px-0">
-        <div className="flex items-center gap-4 text-base text-slate-500">
-          {category.icon && (
-            <Image
-              src={category.icon}
-              alt="카테고리 아이콘"
-              width={24}
-              height={24}
-              className="rounded-md"
-            />
-          )}
-          <ArrowHeadIcon ref={arrowRef} className="transition data-[status=closed]:-rotate-90" />
-          {category.name}
-        </div>
+      <Button
+        variant="teritory"
+        onClick={(e) => handleCategoryButtonClick(e)}
+        className="px-0 text-base font-medium text-slate-500"
+      >
+        {category.icon && (
+          <Image
+            src={category.icon}
+            alt="카테고리 아이콘"
+            width={24}
+            height={24}
+            className="rounded-md"
+          />
+        )}
+        <ArrowHeadIcon ref={arrowRef} className="transition data-[status=closed]:-rotate-90" />
+        {category.name}
       </Button>
       <List
         data-status="closed"
         targetRef={listRef}
-        className="ml-12 origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
+        className="ml-10 origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
       >
         {subCategories.map((subCategory) => (
           <List.Row key={subCategory.id}>

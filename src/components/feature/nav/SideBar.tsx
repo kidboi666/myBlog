@@ -18,7 +18,11 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
       pathname: "/blog",
-      query: { categoryId: menu.parent_category_id, subCategoryId: menu.id },
+      query: {
+        categoryId: menu.parent_category_id,
+        name: menu.name,
+        subCategoryId: menu.id,
+      },
     })
   }
 

@@ -1,10 +1,10 @@
 import { TEXT_CONTENTS } from "@/src/constants/introduce"
-import { useTypingEffect } from "@/src/hooks/useTypingEffect"
 import { Title } from "@/src/components/shared/Title"
+import { useArrTypingEffect } from "@/src/hooks/useArrTypingEffect"
 import { Underbar } from "./Underbar"
 
 export const Introduce = () => {
-  const text = useTypingEffect(TEXT_CONTENTS)
+  const text = useArrTypingEffect(TEXT_CONTENTS)
 
   return (
     <div
@@ -17,7 +17,7 @@ export const Introduce = () => {
         </Title>
         <Title as="h2" className="text-center text-2xl text-slate-800 md:text-4xl xl:text-5xl">
           <Underbar>
-            <span className="animate-fadeIn" dangerouslySetInnerHTML={{ __html: text }} />
+            <span dangerouslySetInnerHTML={{ __html: text }} />
           </Underbar>
         </Title>
       </div>

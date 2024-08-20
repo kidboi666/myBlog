@@ -1,10 +1,12 @@
-import { Content } from "../../layout/Content"
+import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
 
 export const EmptyCategory = () => {
   return (
-    <Content title="앗">
+    <>
       <Title>앗! 이런..</Title>
-    </Content>
+      <Text>아직 포스팅한 게시물이 없습니다..</Text>
+      <Text>귀찮아..</Text>
+    </>
   )
 }

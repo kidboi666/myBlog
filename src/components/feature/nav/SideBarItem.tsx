@@ -31,7 +31,7 @@ export const SideBarItem = ({ category, subCategories, onClick }: Props) => {
       onMouseLeave={() => closeStatusChange()}
       className="relative flex"
     >
-      <Button variant="teritory" className="flex px-4 py-4 text-base text-slate-500">
+      <Button variant="secondary" className="flex px-4 py-4 text-base text-slate-500 ring-0">
         {category.icon && (
           <Image
             src={category.icon}
@@ -45,7 +45,7 @@ export const SideBarItem = ({ category, subCategories, onClick }: Props) => {
       <Button
         ref={titleStatus}
         data-status="closed"
-        className="absolute -top-6 left-12 text-nowrap rounded-lg bg-slate-300 p-2 text-sm transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
+        className="absolute -top-5 left-12 text-nowrap rounded-t-lg bg-slate-300 p-2 text-sm transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
       >
         {category.name}
       </Button>

@@ -19,7 +19,7 @@ export const useStatusChange = <T extends HTMLElement, S extends HTMLElement>():
   const toggleStatus = useCallback(
     (e: React.MouseEvent<HTMLElement>, currentStatus: string) => {
       e.stopPropagation()
-      console.log("asdf")
+
       if (currentStatus === "opened") {
         closeStatus()
       } else {

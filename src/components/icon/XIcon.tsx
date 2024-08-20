@@ -1,7 +1,13 @@
-export const Xicon = () => {
+import cn from "@/src/lib/cn"
+
+interface Props {
+  className?: string
+}
+
+export const Xicon = ({ className }: Props) => {
   return (
     <svg
-      className="h-6 w-6"
+      className={cn("h-4 w-4", className)}
       fill="none"
       viewBox="0 0 24 24"
       strokeWidth="1.5"

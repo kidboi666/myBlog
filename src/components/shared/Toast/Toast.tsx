@@ -45,6 +45,7 @@ export const Toast = () => {
 
   return (
     <Container
+      variant="other"
       className={cn(
         "fixed right-4 top-4 z-50 h-fit w-fit animate-slideDown items-start gap-4 py-4 md:px-6",
         toastVariants({ container: type }),

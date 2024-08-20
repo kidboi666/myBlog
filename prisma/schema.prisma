@@ -27,6 +27,7 @@ model post {
   sub_category_name                            String
   parent_category_id                           BigInt
   parent_category_name                         String
+  tags                                         String[]
   sub_category                                 sub_category @relation(fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "post_category_id_fkey")
   category_post_parent_category_idTocategory   category     @relation("post_parent_category_idTocategory", fields: [parent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   category_post_parent_category_nameTocategory category     @relation("post_parent_category_nameTocategory", fields: [parent_category_name], references: [name], onDelete: NoAction, onUpdate: NoAction)

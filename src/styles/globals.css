@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+p {
+  word-break: break-all;
+}
+
 :lang(en) {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;

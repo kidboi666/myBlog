@@ -20,6 +20,7 @@ import { DropDownList } from "@/src/components/shared/DropDown/DropDowList"
 import { Text } from "@/src/components/shared/Text"
 import { Title } from "@/src/components/shared/Title"
 import { Line } from "@/src/components/shared/Line"
+import { Tag } from "@/src/components/shared/Tag"
 
 const Post = () => {
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
@@ -52,7 +53,7 @@ const Post = () => {
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container className="mb-12 mt-28 flex-col items-start gap-4">
+      <Container variant="post">
         {post.image && (
           <div className="relative h-80 w-full">
             <Image src={post.image} alt="포스트이미지" fill className="rounded-3xl object-cover" />
@@ -69,6 +70,9 @@ const Post = () => {
             onClick={handleOptionClick}
             className="right-2 top-10"
           />
+        </div>
+        <div className="flex gap-2">
+          {post.tags?.map((tag, idx) => <Tag key={`${tag + idx}`} tag={tag} />)}
         </div>
         <div className="mt-4">
           <Text variant="description">

@@ -1,6 +1,6 @@
 import cn from "@/src/lib/cn"
 import { cva } from "class-variance-authority"
-import { ElementType, PropsWithChildren } from "react"
+import { ElementType, forwardRef, PropsWithChildren } from "react"
 
 interface Props {
   as?: ElementType
@@ -18,16 +18,12 @@ const titleVariants = cva("text-slate-500", {
   },
 })
 
-export const Title = ({
-  as: Component = "h1",
-  children,
-  className,
-  variant = "title",
-  ...props
-}: PropsWithChildren<Props>) => {
-  return (
-    <Component className={cn(titleVariants({ variant }), className)} {...props}>
-      {children}
-    </Component>
-  )
-}
+export const Title = forwardRef<HTMLElement, PropsWithChildren<Props>>(
+  ({ as: Component = "h1", children, className, variant = "title", ...props }, ref) => {
+    return (
+      <Component ref={ref} className={cn(titleVariants({ variant }), className)} {...props}>
+        {children}
+      </Component>
+    )
+  },
+)

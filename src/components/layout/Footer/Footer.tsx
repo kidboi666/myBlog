@@ -13,6 +13,7 @@ export const Footer = () => {
       <div ref={target} />
       <Container
         as="footer"
+        variant="footer"
         className={cn(
           "relative translate-y-40 flex-col gap-4 rounded-b-none transition-slow xl:px-40",
           isIntersecting ? "translate-y-0" : "translate-y-40",

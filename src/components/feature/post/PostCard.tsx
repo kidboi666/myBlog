@@ -21,7 +21,7 @@ interface Props {
   onDelete: (id: number) => void
 }
 
-export const IntroPostList = ({ card, onDelete }: Props) => {
+export const PostCard = ({ card, onDelete }: Props) => {
   const { setOpen } = useModal()
   const router = useRouter()
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<

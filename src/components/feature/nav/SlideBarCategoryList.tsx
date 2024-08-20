@@ -1,8 +1,7 @@
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { ComponentPropsWithRef, MouseEvent } from "react"
+import { ComponentPropsWithRef, MouseEvent, useRef } from "react"
 import { Tables } from "@/src/models/supabase"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { List } from "../../layout/List"
 import { Button } from "../../shared/Button"
 import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
@@ -14,14 +13,18 @@ interface Props extends ComponentPropsWithRef<"ul"> {
 
 export const SlideBarCategoryList = ({ category, subCategories }: Props) => {
   const router = useRouter()
-  const [targetRef, statusRef, handleStatusChange] = useStatusChange<
-    HTMLButtonElement,
-    HTMLUListElement
-  >()
+  const arrowRef = useRef<SVGSVGElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
 
   const handleCategoryButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    handleStatusChange(e)
+    if (listRef.current?.getAttribute("data-status") === "closed") {
+      arrowRef.current?.setAttribute("data-status", "opened")
+      listRef.current?.setAttribute("data-status", "opened")
+    } else {
+      arrowRef.current?.setAttribute("data-status", "closed")
+      listRef.current?.setAttribute("data-status", "closed")
+    }
   }
 
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
@@ -33,14 +36,8 @@ export const SlideBarCategoryList = ({ category, subCategories }: Props) => {
 
   return (
     <List.Row className="flex w-full flex-col items-start">
-      <Button
-        ref={targetRef}
-        variant="teritory"
-        onClick={(e) => handleCategoryButtonClick(e)}
-        className="px-0"
-      >
+      <Button variant="teritory" onClick={(e) => handleCategoryButtonClick(e)} className="px-0">
         <div className="flex items-center gap-4 text-base text-slate-500">
-          <ArrowHeadIcon />
           {category.icon && (
             <Image
               src={category.icon}
@@ -50,12 +47,13 @@ export const SlideBarCategoryList = ({ category, subCategories }: Props) => {
               className="rounded-md"
             />
           )}
+          <ArrowHeadIcon ref={arrowRef} className="transition data-[status=closed]:-rotate-90" />
           {category.name}
         </div>
       </Button>
       <List
         data-status="closed"
-        targetRef={statusRef}
+        targetRef={listRef}
         className="ml-12 origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
       >
         {subCategories.map((subCategory) => (

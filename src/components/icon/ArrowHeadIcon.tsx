@@ -1,14 +1,16 @@
 import cn from "@/src/lib/cn"
+import { forwardRef, SVGProps } from "react"
 
 interface Props {
-  isOpen?: boolean
   className?: string
 }
 
-export const ArrowHeadIcon = ({ isOpen, className }: Props) => {
+export const ArrowHeadIcon = forwardRef<SVGSVGElement, SVGProps<Props>>(({ className }, ref) => {
   return (
     <svg
-      className={cn("-mr-1 h-5 w-5 text-gray-400", isOpen ? "rotate-45" : "", className)}
+      ref={ref}
+      data-status="closed"
+      className={cn("-mr-1 h-5 w-5 text-gray-400", className)}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"
@@ -20,4 +22,4 @@ export const ArrowHeadIcon = ({ isOpen, className }: Props) => {
       />
     </svg>
   )
-}
+})

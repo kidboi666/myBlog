@@ -21,6 +21,7 @@ export const usePostBlog = () => {
           parent_category_id: params.selectedCategory.id,
           parent_category_name: params.selectedCategory.name,
           image: params.image,
+          tags: params.tags,
         })
         .select()
     },

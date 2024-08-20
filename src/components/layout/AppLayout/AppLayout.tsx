@@ -1,28 +1,26 @@
-import cn from "@/src/lib/cn"
 import { PropsWithChildren, ReactNode } from "react"
+import { Container } from "../Container"
 
 interface Props {
   Header?: ReactNode
   Footer?: ReactNode
-  className?: string
 }
 
-export const AppLayout = ({ children, Header, Footer, className }: PropsWithChildren<Props>) => {
+export const AppLayout = ({ children, Header, Footer }: PropsWithChildren<Props>) => {
   return (
-    // <div className={cn("relative flex min-h-dvh flex-col overflow-hidden bg-blue-200", className)}>
-    <div
+    <Container variant="background">
+      {/* <Container
+      variant="background"
       className={cn(
         "relative flex min-h-dvh animate-moveGradient flex-col overflow-hidden gradient-move",
         className,
       )}
-    >
+    > */}
       {Header}
-      <main
-        className={cn("flex w-full flex-1 flex-col items-center justify-center md:px-12 xl:px-40")}
-      >
+      <Container as="main" variant="wrapper">
         {children}
-      </main>
+      </Container>
       {Footer}
-    </div>
+    </Container>
   )
 }

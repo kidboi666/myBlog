@@ -16,6 +16,7 @@ export const useUpdatePost = () => {
           parent_category_id: params.body.selectedCategory.id,
           parent_category_name: params.body.selectedCategory.name,
           image: params.body.image,
+          tags: params.body.tags,
         })
         .eq("id", params.id)
       return params.id

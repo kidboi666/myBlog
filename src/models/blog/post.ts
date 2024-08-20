@@ -15,4 +15,5 @@ export interface IPost {
     name: string
   }
   image?: string
+  tags?: string[]
 }

@@ -22,12 +22,14 @@ import { DropDown } from "@/src/components/shared/DropDown"
 import { Text } from "@/src/components/shared/Text"
 import { TextAreaInput } from "@/src/components/shared/TextAreaInput"
 import { TextInput } from "@/src/components/shared/TextInput"
+import { TagsInput } from "@/src/components/feature/post/TagsInput"
 
 const WritePost = () => {
   const router = useRouter()
   const { postId } = router.query || null
   const [name, onChangeName, setName] = useInput<string>("")
   const [content, onChangeContent, setContent] = useInput<string>("")
+  const [tags, setTags] = useState<string[]>([])
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
@@ -60,6 +62,7 @@ const WritePost = () => {
         content,
         selectedCategory,
         selectedSubCategory,
+        tags,
       })
     }
     postImage(
@@ -72,6 +75,7 @@ const WritePost = () => {
             selectedCategory,
             selectedSubCategory,
             image: data,
+            tags,
           })
         },
       },
@@ -82,7 +86,7 @@ const WritePost = () => {
     if (!image) {
       updatePost({
         id: castArray(Number(postId)),
-        body: { name, content, selectedCategory, selectedSubCategory },
+        body: { name, content, selectedCategory, selectedSubCategory, tags },
       })
     }
     postImage(
@@ -91,7 +95,7 @@ const WritePost = () => {
         onSuccess: (data) => {
           updatePost({
             id: castArray(Number(postId)),
-            body: { name, content, selectedCategory, selectedSubCategory, image: data },
+            body: { name, content, selectedCategory, selectedSubCategory, image: data, tags },
           })
         },
       },
@@ -112,6 +116,9 @@ const WritePost = () => {
       if (prevPost.image) {
         setPreview(prevPost.image)
       }
+      if (prevPost.tags) {
+        setTags(prevPost.tags)
+      }
       setName(prevPost.name)
       setContent(prevPost.content)
       handleCategoryChange({ id: prevPost.parent_category_id, name: prevPost.parent_category_name })
@@ -121,10 +128,13 @@ const WritePost = () => {
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container className="mb-12 mt-28 grid grid-cols-1 items-start gap-4">
-        <Button className="relative flex flex-col p-2 ring-1 ring-slate-200" variant="icon">
+      <Container variant="post">
+        <Button
+          className="relative flex h-80 w-full flex-col p-2 ring-1 ring-slate-200"
+          variant="icon"
+        >
           {preview ? (
-            <Image src={preview} alt="sdf" width={200} height={200} />
+            <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
           ) : (
             <UploadImageButton />
           )}
@@ -150,8 +160,9 @@ const WritePost = () => {
           variant="secondary"
           value={content}
           onChange={onChangeContent}
-          className="min-h-80"
+          className="min-h-96"
         />
+        <TagsInput tags={tags} setTags={setTags} />
         <DropDown
           itemList={categoryList}
           selectedItem={selectedCategory.name}

@@ -1,7 +1,6 @@
 import { RefObject } from "react"
-import { useQuery } from "@tanstack/react-query"
-import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { useRouter } from "next/router"
+import { Tables } from "@/src/models/supabase"
 
 import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
@@ -9,19 +8,20 @@ import { SlideBarCategoryList } from "./SlideBarCategoryList"
 import { Button } from "../../shared/Button"
 
 interface Props {
-  targetRef: RefObject<HTMLDivElement>
+  categories?: Tables<"category">[]
+  subCategories?: Tables<"sub_category">[]
+  statusRef: RefObject<HTMLDivElement>
 }
 
-export const SlideBar = ({ targetRef }: Props) => {
+export const SlideBar = ({ categories, subCategories, statusRef }: Props) => {
   const router = useRouter()
-  const { data: categories } = useQuery(categoryQuery.parentCategory())
-  const { data: subCategories } = useQuery(categoryQuery.subCategory())
 
   return (
     <Container
-      ref={targetRef}
+      ref={statusRef}
       data-status="closed"
-      className="status-slide fixed left-0 top-0 z-50 h-screen w-96 items-start rounded-l-none shadow-2xl transition"
+      variant="other"
+      className="status-slide fixed left-0 top-0 z-50 h-screen w-96 items-start rounded-l-none px-8 py-12 shadow-2xl transition"
     >
       <List className="flex w-full flex-col">
         <List.Row className="mb-4 flex gap-2">

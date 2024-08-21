@@ -26,7 +26,7 @@ export const RightSection = () => {
   >()
 
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
-    if (me?.id) {
+    if (me?.user) {
       handleMeBtnStatusChange(e)
     } else {
       router.push("/auth/signin")

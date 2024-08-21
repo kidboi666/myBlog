@@ -60,7 +60,7 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
 
   return (
     <Card key={card?.id} className="bg-blue-50" onClick={() => router.push(`/blog/${card.id}`)}>
-      <Card.Image src={card?.image || icon} alt="카드 이미지" className="h-52 md:w-52" />
+      <Card.Image src={card?.image ?? icon} alt="카드 이미지" className="h-52 md:w-52" />
       <Card.Content className="flex flex-1 flex-col gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>

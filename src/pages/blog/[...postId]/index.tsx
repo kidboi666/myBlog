@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
 
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
@@ -21,6 +22,8 @@ import { Text } from "@/src/components/shared/Text"
 import { Title } from "@/src/components/shared/Title"
 import { Line } from "@/src/components/shared/Line"
 import { Tag } from "@/src/components/shared/Tag"
+
+const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
 const Post = () => {
   const [targetRef, statusRef, handleStatusChange] = useStatusChange<
@@ -91,7 +94,9 @@ const Post = () => {
         </div>
         <Line />
         <div className="mt-4">
-          <Text>{post?.content}</Text>
+          <Text>
+            <Markdown text={post?.content} />
+          </Text>
         </div>
       </Container>
     </AppLayout>

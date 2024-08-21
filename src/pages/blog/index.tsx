@@ -15,6 +15,8 @@ import { Header } from "@/src/components/layout/Header"
 import { Underbar } from "@/src/components/feature/intro/Underbar"
 import { Title } from "@/src/components/shared/Title"
 import { EmptyCategory } from "@/src/components/feature/fallback/EmptyCategory"
+import { queryClient } from "@/src/lib/ReactQuery"
+import { Tables } from "@/src/models/supabase"
 
 const Blog = () => {
   const router = useRouter()
@@ -28,6 +30,8 @@ const Blog = () => {
     ),
   )
   const { mutate: deletePost } = useDeletePost()
+  const categoryList = queryClient.getQueryData<Tables<"category">[]>(["category"])
+  const categoryIcon = categoryList?.filter((category) => category.id === Number(categoryId))
 
   useEffect(() => {
     setText(stringOrFirstString(name))
@@ -44,7 +48,12 @@ const Blog = () => {
         </Title>
         {isSuccess && postList?.length === 0 && <EmptyCategory />}
         {postList?.map((card) => (
-          <PostCard key={card.id} card={card} onDelete={(id) => deletePost(id)} />
+          <PostCard
+            key={card.id}
+            card={card}
+            icon={categoryIcon?.[0].icon ?? ""}
+            onDelete={(id) => deletePost(id)}
+          />
         ))}
       </Container>
     </AppLayout>

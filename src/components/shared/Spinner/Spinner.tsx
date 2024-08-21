@@ -17,7 +17,7 @@ export const Spinner = ({ size = Size.m }: Props) => {
       ring2.register()
     }
     getLoader()
-  })
+  }, [])
   return (
     <l-ring-2
       size={size}

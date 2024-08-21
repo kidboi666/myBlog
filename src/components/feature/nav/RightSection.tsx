@@ -24,7 +24,7 @@ export const RightSection = () => {
     HTMLButtonElement,
     HTMLUListElement
   >()
-  console.log(me)
+
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (me?.id) {
       handleMeBtnStatusChange(e)

@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/Supabase"
+import { supabase } from "@/src/lib/supabase/client"
 import { Tables } from "@/src/models/supabase"
 import { queryOptions } from "@tanstack/react-query"
 

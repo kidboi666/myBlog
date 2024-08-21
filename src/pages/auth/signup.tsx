@@ -19,6 +19,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, dirtyFields },
   } = useForm<ISignUpForm>({
     resolver: zodResolver(signUpSchema),
@@ -32,7 +33,14 @@ const SignUp = () => {
   })
 
   const handleSubmitSignUp = async (authData: ISignUpForm) => {
-    signUp(authData)
+    signUp(authData, {
+      onError: (error) => {
+        setError("email", {
+          type: "validateError",
+          message: error.message,
+        })
+      },
+    })
   }
 
   const handleSignUpToGithub = async () => {

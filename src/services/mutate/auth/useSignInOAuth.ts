@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/Supabase"
+import { supabase } from "@/src/lib/supabase/client"
 import { useMutation } from "@tanstack/react-query"
 
 export const useSignInOAuth = () => {

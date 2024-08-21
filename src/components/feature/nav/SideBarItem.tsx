@@ -55,7 +55,7 @@ export const SideBarItem = ({
       <Button
         ref={titleStatus}
         data-status="closed"
-        className="absolute -top-5 left-12 text-nowrap rounded-t-lg bg-slate-300 p-2 text-sm shadow-lg transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
+        className="absolute -top-5 left-12 text-nowrap rounded-t-lg bg-slate-300 p-2 text-sm shadow-lg transition hover:-translate-y-1 data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
       >
         {category.name}
       </Button>

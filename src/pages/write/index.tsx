@@ -10,7 +10,7 @@ import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { postQuery } from "@/src/services/queries/post/postQuery"
 import { useCategorySelector } from "@/src/hooks/useCategorySelector"
 import { useInput } from "@/src/hooks/useInput"
-import { castArray } from "@/src/utils/castArray"
+import { stringOrFirstString } from "@/src/utils/stringOrFirstString"
 
 import { UploadImageButton } from "@/src/components/icon/UploadImageIcon"
 import { AppLayout } from "@/src/components/layout/AppLayout"
@@ -37,7 +37,7 @@ const WritePost = () => {
   const { mutate: updatePost, isPending: isPendingUpdatePost } = useUpdatePost()
   const { data: categoryList } = useQuery(categoryQuery.parentCategory())
   const { data: subCategories } = useQuery(categoryQuery.subCategory())
-  const { data: previousPost } = useQuery(postQuery.postDetail(castArray(Number(postId))))
+  const { data: previousPost } = useQuery(postQuery.postDetail(stringOrFirstString(Number(postId))))
 
   const {
     selectedCategory,
@@ -85,7 +85,7 @@ const WritePost = () => {
   const submitPostUpdate = () => {
     if (!image) {
       updatePost({
-        id: castArray(Number(postId)),
+        id: stringOrFirstString(Number(postId)),
         body: { name, content, selectedCategory, selectedSubCategory, tags },
       })
     }
@@ -94,7 +94,7 @@ const WritePost = () => {
       {
         onSuccess: (data) => {
           updatePost({
-            id: castArray(Number(postId)),
+            id: stringOrFirstString(Number(postId)),
             body: { name, content, selectedCategory, selectedSubCategory, image: data, tags },
           })
         },

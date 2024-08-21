@@ -24,9 +24,9 @@ export const RightSection = () => {
     HTMLButtonElement,
     HTMLUListElement
   >()
-
+  console.log(me)
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
-    if (me?.user) {
+    if (me?.id) {
       handleMeBtnStatusChange(e)
     } else {
       router.push("/auth/signin")
@@ -51,15 +51,21 @@ export const RightSection = () => {
           </Button>
         </List.Row>
         <List.Row className="relative">
-          <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>
-            <MeIcon />
-          </Button>
-          <DropDownList
-            ref={meBtnStatusRef}
-            itemList={ME_OPTION}
-            onClick={handleMeBtnClick}
-            className="right-0 w-40"
-          />
+          {me ? (
+            <>
+              <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>
+                <MeIcon />
+              </Button>
+              <DropDownList
+                ref={meBtnStatusRef}
+                itemList={ME_OPTION}
+                onClick={handleMeBtnClick}
+                className="right-0 w-40"
+              />
+            </>
+          ) : (
+            <Button onClick={() => router.push("/auth/signin")}>로그인</Button>
+          )}
         </List.Row>
       </List>
     </div>

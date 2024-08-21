@@ -1,3 +1,3 @@
-export const PROTECTED_ROUTES = ["admin"]
+export const PROTECTED_ROUTES = ["/admin", "/write"]
 
-export const AUTH_RESTRICTED_ROUTES = ["/auth", "/signin", "/signup"]
+export const AUTH_RESTRICTED_ROUTES = ["/auth/signin", "/auth/signup"]

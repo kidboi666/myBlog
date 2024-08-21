@@ -1,5 +1,5 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabase } from "@/src/lib/Supabase"
+import { supabase } from "@/src/lib/supabase/client"
 import { IPost } from "@/src/models/blog/post"
 import { useModal } from "@/src/store/useModal"
 import { useToast } from "@/src/store/useToast"

@@ -6,7 +6,7 @@ export const useStrTypingEffect = (value: string) => {
 
   const createText = useCallback(
     async (txt: string) => {
-      await wait(1000)
+      // await wait(1000)
 
       setText((prev) => prev + txt)
     },

@@ -1,5 +1,5 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabase } from "@/src/lib/Supabase"
+import { supabase } from "@/src/lib/supabase/client"
 import { useModal } from "@/src/store/useModal"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"

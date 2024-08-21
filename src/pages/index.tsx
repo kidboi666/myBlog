@@ -11,7 +11,6 @@ import { PostCard } from "@/src/components/feature/post/PostCard"
 const Home = () => {
   const { data: postList } = useQuery(postQuery.totalPost())
   const { mutate: deletePost } = useDeletePost()
-
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />

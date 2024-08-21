@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { postQuery } from "@/src/services/queries/post/postQuery"
 import { useStrTypingEffect } from "@/src/hooks/useStrTypingEffect"
-import { castArray } from "@/src/utils/castArray"
+import { stringOrFirstString } from "@/src/utils/stringOrFirstString"
 
 import { PostCard } from "@/src/components/feature/post/PostCard"
 import { AppLayout } from "@/src/components/layout/AppLayout"
@@ -22,12 +22,15 @@ const Blog = () => {
   const { categoryId, subCategoryId, name } = router.query
   const renderText = useStrTypingEffect(text)
   const { data: postList, isSuccess } = useQuery(
-    postQuery.categoryPost(castArray(Number(categoryId)), castArray(Number(subCategoryId))),
+    postQuery.categoryPost(
+      stringOrFirstString(Number(categoryId)),
+      stringOrFirstString(Number(subCategoryId)),
+    ),
   )
   const { mutate: deletePost } = useDeletePost()
 
   useEffect(() => {
-    setText(castArray(name))
+    setText(stringOrFirstString(name))
   }, [name])
 
   return (

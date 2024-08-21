@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/Supabase"
+import { supabase } from "@/src/lib/supabase/client"
 import { queryOptions } from "@tanstack/react-query"
 
 export const meQuery = {
@@ -7,8 +7,9 @@ export const meQuery = {
     queryOptions({
       queryKey: ["me"],
       queryFn: async () => {
-        const authInfo = await supabase.auth.getSession()
-        const { session } = authInfo.data
+        const {
+          data: { session },
+        } = await supabase.auth.getSession()
 
         return session
       },

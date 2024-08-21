@@ -14,11 +14,12 @@ import { Title } from "@/src/components/shared/Title"
 import { Button } from "@/src/components/shared/Button"
 
 const SignIn = () => {
-  const { mutate: signIn } = useSignIn()
-  const { mutate: signInOAuth } = useSignInOAuth()
+  const { mutate: signIn, isPending: isPendingSignIn } = useSignIn()
+  const { mutate: signInOAuth, isPending: isPendingSignInOAuth } = useSignInOAuth()
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, dirtyFields },
   } = useForm<ISignInForm>({
     resolver: zodResolver(signInSchema),
@@ -30,7 +31,14 @@ const SignIn = () => {
   })
 
   const handleSubmitSignIn = async (authData: ISignInForm) => {
-    signIn(authData)
+    signIn(authData, {
+      onError: (error) => {
+        setError("email", {
+          type: "validateError",
+          message: error.message,
+        })
+      },
+    })
   }
 
   const handleSignInToGithub = async () => {
@@ -69,7 +77,9 @@ const SignIn = () => {
             error={errors.password}
           />
         </div>
-        <Button isSubmit>로그인</Button>
+        <Button isSubmit isLoading={isPendingSignIn || isPendingSignInOAuth}>
+          로그인
+        </Button>
         <div className="relative">
           <Line className="border-[0.1px]" />
           <Text

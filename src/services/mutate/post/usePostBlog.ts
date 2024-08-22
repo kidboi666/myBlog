@@ -1,13 +1,13 @@
 import { queryClient } from "@/src/lib/ReactQuery"
 import { supabase } from "@/src/lib/supabase/client"
 import { IPost } from "@/src/models/blog/post"
-import { useModal } from "@/src/store/useModal"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
+import { useRouter } from "next/router"
 
 export const usePostBlog = () => {
   const { setOpen } = useToast()
-  const { setClose } = useModal()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: async (params: IPost) => {
@@ -25,10 +25,13 @@ export const usePostBlog = () => {
         })
         .select()
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       queryClient.invalidateQueries({ queryKey: ["post"] })
       setOpen("success", { title: "포스팅 성공", text: "포스팅에 성공하였습니다!" })
-      setClose()
+      router.push({
+        pathname: "/blog",
+        query: { categoryId: data?.[0]?.parent_category_id, name: data?.[0].name },
+      })
     },
   })
 }

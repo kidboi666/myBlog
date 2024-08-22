@@ -23,6 +23,7 @@ import { TextInput } from "@/src/components/shared/TextInput"
 import { TagsInput } from "@/src/components/feature/post/TagsInput"
 import { Xicon } from "@/src/components/icon/XIcon"
 import { Line } from "@/src/components/shared/Line"
+import { Back } from "@/src/components/shared/Back"
 
 const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
@@ -140,6 +141,7 @@ const WritePost = () => {
 
   return (
     <Container variant="write" className="flex-col">
+      <Back className="self-start" />
       <Button
         variant="teritory"
         onMouseEnter={() => setShowCancelButton(true)}
@@ -186,7 +188,7 @@ const WritePost = () => {
             variant="primary"
             value={content}
             onChange={onChangeContent}
-            className="h-full overflow-y-auto"
+            className="h-screen overflow-y-auto"
           />
           <div className="flex w-full flex-col gap-2">
             <TagsInput tags={tags} setTags={setTags} />

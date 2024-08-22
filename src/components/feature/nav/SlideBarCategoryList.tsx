@@ -20,6 +20,13 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
 
   const handleCategoryButtonClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
+    if (subCategories.length === 0) {
+      slideBarRef.current?.setAttribute("data-status", "closed")
+      router.push({
+        pathname: "/blog",
+        query: { categoryId: category.id, name: category.name },
+      })
+    }
     if (listRef.current?.getAttribute("data-status") === "closed") {
       arrowRef.current?.setAttribute("data-status", "opened")
       listRef.current?.setAttribute("data-status", "opened")
@@ -50,10 +57,9 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
   return (
     <List.Row className="flex w-full flex-col items-start">
       <Button
-        variant="teritory"
-        disabled={subCategories.length === 0}
+        variant="secondary"
         onClick={(e) => handleCategoryButtonClick(e)}
-        className="w-full justify-between px-0 text-base font-medium"
+        className="w-full justify-between px-2 text-base font-medium ring-0"
       >
         <div className="flex items-center gap-4">
           {category.icon && (
@@ -76,27 +82,36 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
       <List
         data-status="closed"
         targetRef={listRef}
-        className="ml-4 origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
+        className="ml-4 w-full origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
       >
-        <List.Row>
-          <Button variant="teritory" onClick={(e) => handleParentCategoryButtonClick(e, category)}>
-            <Title as="h3" className="text-sm font-normal">
-              전체
-            </Title>
-          </Button>
-        </List.Row>
-        {subCategories.map((subCategory) => (
-          <List.Row key={subCategory.id}>
-            <Button
-              variant="teritory"
-              onClick={(e) => handleSubCategoryButtonClick(e, subCategory)}
-            >
-              <Title as="h3" className="text-sm font-normal">
-                {subCategory.name}
-              </Title>
-            </Button>
-          </List.Row>
-        ))}
+        {subCategories.length !== 0 && (
+          <>
+            <List.Row>
+              <Button
+                variant="teritory"
+                onClick={(e) => handleParentCategoryButtonClick(e, category)}
+                className="w-full justify-start"
+              >
+                <Title as="h3" className="text-sm font-normal">
+                  전체
+                </Title>
+              </Button>
+            </List.Row>
+            {subCategories.map((subCategory) => (
+              <List.Row key={subCategory.id}>
+                <Button
+                  variant="teritory"
+                  onClick={(e) => handleSubCategoryButtonClick(e, subCategory)}
+                  className="w-full justify-start"
+                >
+                  <Title as="h3" className="text-sm font-normal">
+                    {subCategory.name}
+                  </Title>
+                </Button>
+              </List.Row>
+            ))}
+          </>
+        )}
       </List>
     </List.Row>
   )

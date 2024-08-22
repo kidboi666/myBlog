@@ -23,6 +23,7 @@ import { Text } from "@/src/components/shared/Text"
 import { TextAreaInput } from "@/src/components/shared/TextAreaInput"
 import { TextInput } from "@/src/components/shared/TextInput"
 import { TagsInput } from "@/src/components/feature/post/TagsInput"
+import { Xicon } from "@/src/components/icon/XIcon"
 
 const WritePost = () => {
   const router = useRouter()
@@ -32,6 +33,7 @@ const WritePost = () => {
   const [tags, setTags] = useState<string[]>([])
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
+  const [showCancelButton, setShowCancelButton] = useState(false)
   const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
   const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
   const { mutate: updatePost, isPending: isPendingUpdatePost } = useUpdatePost()
@@ -86,7 +88,14 @@ const WritePost = () => {
     if (!image) {
       updatePost({
         id: stringOrFirstString(Number(postId)),
-        body: { name, content, selectedCategory, selectedSubCategory, tags },
+        body: {
+          name,
+          content,
+          selectedCategory,
+          selectedSubCategory,
+          tags,
+          image: preview || null,
+        },
       })
     }
     postImage(
@@ -132,9 +141,20 @@ const WritePost = () => {
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Container variant="post">
         <Button
+          onMouseEnter={() => setShowCancelButton(true)}
+          onMouseLeave={() => setShowCancelButton(false)}
           className="relative flex h-80 w-full flex-col p-2 ring-1 ring-slate-200"
           variant="icon"
         >
+          {preview && showCancelButton && (
+            <Button
+              variant="secondary"
+              onClick={() => setPreview("")}
+              className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
+            >
+              <Xicon className="h-10 w-10" />
+            </Button>
+          )}
           {preview ? (
             <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
           ) : (

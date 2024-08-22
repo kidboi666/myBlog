@@ -14,6 +14,6 @@ export interface IPost {
     id: number
     name: string
   }
-  image?: string
+  image?: string | null
   tags?: string[]
 }

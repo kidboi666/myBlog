@@ -1,7 +1,13 @@
-export const UploadImageButton = () => {
+import cn from "@/src/lib/cn"
+
+interface Props {
+  className?: string
+}
+
+export const UploadImageButton = ({ className }: Props) => {
   return (
     <svg
-      className="mx-auto h-12 w-12 text-gray-300"
+      className={cn("h-12 w-12", className)}
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"

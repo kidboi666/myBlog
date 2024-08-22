@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Tables } from "../models/supabase"
 
 interface Props {
@@ -25,6 +25,10 @@ export const useCategorySelector = ({ subCategories }: Props) => {
   const handleSubCategoryChange = (selectCategory: { id: number | null; name: string | null }) => {
     setSelectedSubCategory({ id: selectCategory.id, name: selectCategory.name })
   }
+
+  useEffect(() => {
+    setSelectedSubCategory({ id: null, name: null })
+  }, [selectedCategory])
 
   return {
     selectedCategory,

@@ -15,7 +15,7 @@ import { Button } from "../../shared/Button"
 import { Card } from "../../shared/Card"
 import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
-import { DropDownList } from "../../shared/DropDown/DropDowList"
+import { DropDownList } from "../../shared/DropDown/DropDownList"
 
 interface Props {
   card: Tables<"post">

@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { ChangeEvent, useEffect, useState } from "react"
@@ -13,10 +14,7 @@ import { useInput } from "@/src/hooks/useInput"
 import { stringOrFirstString } from "@/src/utils/stringOrFirstString"
 
 import { UploadImageButton } from "@/src/components/icon/UploadImageIcon"
-import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Container } from "@/src/components/layout/Container"
-import { Footer } from "@/src/components/layout/Footer"
-import { Header } from "@/src/components/layout/Header"
 import { Button } from "@/src/components/shared/Button"
 import { DropDown } from "@/src/components/shared/DropDown"
 import { Text } from "@/src/components/shared/Text"
@@ -24,6 +22,9 @@ import { TextAreaInput } from "@/src/components/shared/TextAreaInput"
 import { TextInput } from "@/src/components/shared/TextInput"
 import { TagsInput } from "@/src/components/feature/post/TagsInput"
 import { Xicon } from "@/src/components/icon/XIcon"
+import { Line } from "@/src/components/shared/Line"
+
+const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
 const WritePost = () => {
   const router = useRouter()
@@ -138,76 +139,97 @@ const WritePost = () => {
   }, [previousPost])
 
   return (
-    <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container variant="post">
-        <Button
-          onMouseEnter={() => setShowCancelButton(true)}
-          onMouseLeave={() => setShowCancelButton(false)}
-          className="relative flex h-80 w-full flex-col p-2 ring-1 ring-slate-200"
-          variant="icon"
-        >
-          {preview && showCancelButton && (
-            <Button
-              variant="secondary"
-              onClick={() => setPreview("")}
-              className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
-            >
-              <Xicon className="h-10 w-10" />
-            </Button>
-          )}
-          {preview ? (
-            <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
-          ) : (
-            <UploadImageButton />
-          )}
-          <input
-            name="image"
-            onChange={handleChangeFile}
-            type="file"
-            accept="image/*"
-            className="absolute inset-0 opacity-0"
-          />
-          <Text variant="caption">{preview ? image?.name : "커버 이미지 파일 선택"}</Text>
-        </Button>
-        <TextInput
-          placeholder="제목을 입력하세요."
-          name="name"
-          variant="secondary"
-          value={name}
-          onChange={onChangeName}
-        />
-        <TextAreaInput
-          placeholder="내용을 입력하세요."
-          name="content"
-          variant="secondary"
-          value={content}
-          onChange={onChangeContent}
-          className="min-h-96"
-        />
-        <TagsInput tags={tags} setTags={setTags} />
-        <DropDown
-          itemList={categoryList}
-          selectedItem={selectedCategory.name}
-          listName="카테고리를 선택하세요."
-          onClick={handleCategoryChange}
-        />
-        {selectedCategory && (
-          <DropDown
-            itemList={subCategoryList}
-            selectedItem={selectedSubCategory.name}
-            listName="하위 카테고리를 선택하세요."
-            onClick={handleSubCategoryChange}
-          />
+    <Container variant="write" className="flex-col">
+      <Button
+        variant="teritory"
+        onMouseEnter={() => setShowCancelButton(true)}
+        onMouseLeave={() => setShowCancelButton(false)}
+        className="relative h-40 w-full flex-col p-12 ring-1 ring-slate-200"
+      >
+        {preview && showCancelButton && (
+          <Button
+            variant="secondary"
+            onClick={() => setPreview("")}
+            className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
+          >
+            <Xicon className="h-10 w-10" />
+          </Button>
         )}
-        <Button
-          isLoading={isPendingPostBlog || isPendingPostImage || isPendingUpdatePost}
-          disabled={!name || !content || !selectedCategory.id}
-          onClick={handleSubmit}
-        >
-          데이터보내기
-        </Button>
-      </Container>
-    </AppLayout>
+        {preview ? (
+          <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
+        ) : (
+          <UploadImageButton />
+        )}
+        <input
+          name="image"
+          onChange={handleChangeFile}
+          type="file"
+          accept="image/*"
+          className="absolute inset-0 opacity-0"
+        />
+        <Text variant="caption">{preview ? image?.name : "커버 이미지 파일 선택"}</Text>
+      </Button>
+      <div className="flex w-full gap-4 overflow-y-auto">
+        <div className="flex size-full flex-1 flex-col gap-2">
+          <TextInput
+            placeholder="제목을 입력하세요."
+            name="name"
+            variant="primary"
+            value={name}
+            onChange={onChangeName}
+            className="mt-4 text-5xl font-semibold"
+          />
+          <Line />
+          <TextAreaInput
+            placeholder="내용을 입력하세요."
+            name="content"
+            variant="primary"
+            value={content}
+            onChange={onChangeContent}
+            className="h-full overflow-y-auto"
+          />
+          <div className="flex w-full flex-col gap-2">
+            <TagsInput tags={tags} setTags={setTags} />
+            <DropDown
+              itemList={categoryList}
+              selectedItem={selectedCategory.name}
+              listName="카테고리를 선택하세요."
+              onClick={handleCategoryChange}
+              innerClassName="bottom-[calc(100%--4px)] right-8 w-[calc(100%-64px)]"
+            />
+            {selectedCategory && (
+              <DropDown
+                itemList={subCategoryList}
+                selectedItem={selectedSubCategory.name}
+                listName="하위 카테고리를 선택하세요."
+                onClick={handleSubCategoryChange}
+                innerClassName="bottom-[calc(100%--4px)] ring-1 right-8 w-[calc(100%-64px)]"
+              />
+            )}
+            <Button
+              isLoading={isPendingPostBlog || isPendingPostImage || isPendingUpdatePost}
+              disabled={!name || !content || !selectedCategory.id}
+              onClick={handleSubmit}
+            >
+              포스팅하기
+            </Button>
+          </div>
+        </div>
+        <div className="hidden w-full overflow-y-auto md:flex md:flex-1 md:flex-col md:gap-2">
+          <TextInput
+            placeholder="제목을 입력하세요."
+            name="name"
+            variant="primary"
+            value={name}
+            readOnly
+            onChange={onChangeName}
+            className="mt-4 text-5xl font-semibold"
+          />
+          <Line />
+          <Markdown text={content} />
+        </div>
+      </div>
+    </Container>
   )
 }
 

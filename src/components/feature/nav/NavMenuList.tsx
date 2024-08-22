@@ -3,7 +3,7 @@ import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { Tables } from "@/src/models/supabase"
 import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
 import { Button } from "../../shared/Button"
-import { DropDownList } from "../../shared/DropDown/DropDowList"
+import { DropDownList } from "../../shared/DropDown/DropDownList"
 
 interface Props {
   category: Tables<"category">

@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useRef } from "react"
 import { Button } from "../../shared/Button"
 import { List } from "../../layout/List"
-import { DropDownList } from "../../shared/DropDown/DropDowList"
+import { DropDownList } from "../../shared/DropDown/DropDownList"
 
 interface Props {
   category: Tables<"category">

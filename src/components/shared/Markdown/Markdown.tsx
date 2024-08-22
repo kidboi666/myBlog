@@ -92,11 +92,13 @@ const li = ({ children }: PropsWithChildren) => <li className="mt-[1em]">{childr
 interface Props {
   text: string
   showLine?: boolean
+  className?: string
 }
 
-const Markdown = ({ text, showLine = false }: Props) => {
+const Markdown = ({ text, className, showLine = false }: Props) => {
   return (
     <Md
+      className={className}
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
       components={{

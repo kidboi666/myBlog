@@ -30,10 +30,10 @@ const containerVariants = cva("flex items-center justify-center", {
       other: "h-fit w-fit rounded-3xl bg-white shadow-md",
       wrapper: "flex w-full flex-1 flex-col items-center justify-center px-0 lg:px-28 xl:px-40",
       background: "relative flex min-h-dvh flex-col overflow-hidden gradient-move",
-      write: "mb-12 mt-28 size-full flex-col gap-4 rounded-3xl bg-white p-4 md:grid md:grid-cols-2",
+      write: "h-screen w-screen gap-4 bg-white p-4",
       search: "size-full rounded-lg bg-white p-4 shadow-md",
       dropdown:
-        "status-popup absolute z-10 w-fit min-w-40 origin-top rounded-md bg-white px-4 py-4 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
+        "status-popup absolute z-10 w-fit min-w-40 origin-top rounded-md bg-white px-4 py-4 shadow-md ring-1 ring-black ring-opacity-10 transition focus:outline-none",
     },
   },
 })

@@ -17,7 +17,7 @@ interface Props {
 export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   const router = useRouter()
   const addPostButtonRef = useRef<HTMLButtonElement>(null)
-  const showRef = useRef(null)
+  const showRef = useRef<HTMLDivElement>(null)
 
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
@@ -49,7 +49,7 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   }
 
   return (
-    <div onMouseLeave={() => showRef?.current.setAttribute("data-status", "closed")}>
+    <div onMouseLeave={() => showRef.current?.setAttribute("data-status", "closed")}>
       <Container
         ref={showRef}
         data-status="closed"
@@ -79,7 +79,7 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
         as="nav"
         ref={statusRef && statusRef}
         data-status="closed"
-        onMouseEnter={() => showRef?.current.setAttribute("data-status", "opened")}
+        onMouseEnter={() => showRef.current?.setAttribute("data-status", "opened")}
         variant="other"
         className={cn(
           "fixed left-0 top-28 origin-top-left flex-col rounded-l-none px-2 py-4 transition md:px-2",

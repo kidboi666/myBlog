@@ -12,6 +12,7 @@ import { Button } from "@/src/components/shared/Button"
 import { Line } from "@/src/components/shared/Line"
 import { Text } from "@/src/components/shared/Text"
 import { Title } from "@/src/components/shared/Title"
+import { Back } from "@/src/components/shared/Back"
 
 const SignUp = () => {
   const { mutate: signInOAuth } = useSignInOAuth()
@@ -49,6 +50,7 @@ const SignUp = () => {
 
   return (
     <div className="flex h-screen items-center justify-center">
+      <Back className="fixed left-4 top-4" />
       <form
         onSubmit={handleSubmit(handleSubmitSignUp)}
         className="flex w-96 flex-col gap-6 text-sm"

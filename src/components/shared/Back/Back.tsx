@@ -12,7 +12,7 @@ export const Back = ({ className }: Props) => {
   return (
     <Button
       variant="teritory"
-      onClick={() => router.back()}
+      onClick={() => router.push("/")}
       className={cn("rotate-90 p-0 text-slate-600", className)}
     >
       <ArrowHeadIcon className="size-8" />

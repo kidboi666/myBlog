@@ -12,6 +12,7 @@ import { Line } from "@/src/components/shared/Line"
 import { Text } from "@/src/components/shared/Text"
 import { Title } from "@/src/components/shared/Title"
 import { Button } from "@/src/components/shared/Button"
+import { Back } from "@/src/components/shared/Back"
 
 const SignIn = () => {
   const { mutate: signIn, isPending: isPendingSignIn } = useSignIn()
@@ -46,7 +47,8 @@ const SignIn = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <Back className="fixed left-4 top-4" />
       <form
         onSubmit={handleSubmit(handleSubmitSignIn)}
         className="flex w-96 flex-col gap-6 text-sm"

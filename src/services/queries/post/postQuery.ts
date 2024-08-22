@@ -36,4 +36,15 @@ export const postQuery = {
       },
       enabled: !!postId,
     }),
+  countPostsByCategory: (categoryId: number) =>
+    queryOptions({
+      queryKey: ["post_count"],
+      queryFn: async () => {
+        const { data } = await supabase
+          .from("post")
+          .select("*", { count: "exact", head: true })
+          .eq("parent_category_id", categoryId)
+        return data
+      },
+    }),
 }

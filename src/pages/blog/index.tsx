@@ -18,7 +18,7 @@ import { EmptyCategory } from "@/src/components/feature/fallback/EmptyCategory"
 import { queryClient } from "@/src/lib/ReactQuery"
 import { Tables } from "@/src/models/supabase"
 
-const Blog = () => {
+const BlogPage = () => {
   const router = useRouter()
   const [text, setText] = useState("")
   const { categoryId, subCategoryId, name } = router.query
@@ -32,7 +32,9 @@ const Blog = () => {
   const { mutate: deletePost } = useDeletePost()
   const categoryList = queryClient.getQueryData<Tables<"category">[]>(["category"])
   const categoryIcon = categoryList?.filter((category) => category.id === Number(categoryId))
+  // const { data } = useQuery(postQuery.countPostsByCategory(stringOrFirstString(Number(categoryId))))
 
+  // console.log(data)
   useEffect(() => {
     setText(stringOrFirstString(name))
   }, [name])
@@ -60,4 +62,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default BlogPage

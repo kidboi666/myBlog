@@ -8,14 +8,11 @@ interface Props {
 
 export const AppLayout = ({ children, Header, Footer }: PropsWithChildren<Props>) => {
   return (
-    <Container variant="background">
-      {/* <Container
+    // <Container variant="background">
+    <Container
       variant="background"
-      className={cn(
-        "relative flex min-h-dvh animate-moveGradient flex-col overflow-hidden gradient-move",
-        className,
-      )}
-    > */}
+      className="relative flex min-h-dvh animate-moveGradient flex-col overflow-hidden gradient-move"
+    >
       {Header}
       <Container as="main" variant="wrapper">
         {children}

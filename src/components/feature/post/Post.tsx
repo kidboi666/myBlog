@@ -55,7 +55,7 @@ export const Post = ({ post, icon }: Props) => {
           <Image src={post.image} alt="포스트이미지" fill className="rounded-3xl object-cover" />
         </div>
       ) : (
-        <div className="relative size-20 px-20">
+        <div className="relative size-20">
           <Image src={icon} alt="포스트이미지" fill className="rounded-3xl object-contain" />
         </div>
       )}

@@ -14,7 +14,7 @@ export const postQuery = {
     }),
   categoryPost: (categoryId: number, subCategoryId?: number) =>
     queryOptions({
-      queryKey: ["post", categoryId],
+      queryKey: ["post", categoryId, subCategoryId ?? null],
       queryFn: async () => {
         let response
         if (subCategoryId) {

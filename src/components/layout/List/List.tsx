@@ -16,11 +16,12 @@ export const List = ({ children, className, targetRef, ...props }: PropsWithChil
 
 interface RowProps extends ComponentProps<"li"> {
   className?: string
+  targetRef?: RefObject<HTMLLIElement>
 }
 
-List.Row = ({ children, className, ...props }: PropsWithChildren<RowProps>) => {
+List.Row = ({ children, className, targetRef, ...props }: PropsWithChildren<RowProps>) => {
   return (
-    <li className={cn(className)} {...props}>
+    <li ref={targetRef} className={cn(className)} {...props}>
       {children}
     </li>
   )

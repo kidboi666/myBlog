@@ -59,8 +59,17 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
   }
 
   return (
-    <Card key={card?.id} className="bg-blue-50" onClick={() => router.push(`/blog/${card.id}`)}>
-      <Card.Image src={card?.image ?? icon} alt="카드 이미지" className="h-52 md:w-52" />
+    <Card
+      key={card?.id}
+      className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row"
+      onClick={() => router.push(`/blog/${card.id}`)}
+    >
+      <Card.Image
+        src={card?.image ?? icon}
+        alt="카드 이미지"
+        className="h-52 flex-shrink-0 md:w-52"
+        innerClassName="object-cover"
+      />
       <Card.Content className="flex flex-1 flex-col gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>

@@ -11,11 +11,17 @@ import { List } from "../../layout/List"
 import { Button } from "../../shared/Button"
 import { DropDownList } from "../../shared/DropDown/DropDowList"
 import { SearchBar } from "./SearchBar"
+import { Todos } from "../todos/Todos"
+import { PencilIcon } from "../../icon/PencilIcon"
 
 export const RightSection = () => {
   const router = useRouter()
   const { data: me } = useQuery(meQuery.queryOptions())
   const { mutate: signOut } = useSignOut()
+  const [todoRef, todoStatusRef, handleTodosStatusChange] = useStatusChange<
+    HTMLButtonElement,
+    HTMLDivElement
+  >()
   const [searchRef, searchStatusRef, handleSearchStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLDivElement
@@ -45,24 +51,28 @@ export const RightSection = () => {
     <div className="relative justify-self-end">
       <List className="flex items-center gap-4">
         <List.Row>
+          <Button variant="icon" ref={todoRef} onClick={handleTodosStatusChange}>
+            <PencilIcon />
+            <Todos statusRef={todoStatusRef} />
+          </Button>
+        </List.Row>
+        <List.Row>
           <Button variant="icon" ref={searchRef} onClick={handleSearchStatusChange}>
             <SearchIcon />
             <SearchBar statusRef={searchStatusRef} />
           </Button>
         </List.Row>
-        <List.Row className="relative">
+        <List.Row>
           {me ? (
-            <>
-              <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>
-                <MeIcon />
-              </Button>
+            <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>
+              <MeIcon />
               <DropDownList
                 ref={meBtnStatusRef}
                 itemList={ME_OPTION}
                 onClick={handleMeBtnClick}
-                className="right-0 w-40"
+                className="right-0 top-full w-40"
               />
-            </>
+            </Button>
           ) : (
             <Button onClick={() => router.push("/auth/signin")}>로그인</Button>
           )}

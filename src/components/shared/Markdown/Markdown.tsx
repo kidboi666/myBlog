@@ -17,7 +17,7 @@ const h1 = ({ children }: PropsWithChildren) => {
       {Children.map(children, (child) => {
         if (typeof child === "string") return child
 
-        if (isValidElement(child) && child.props.node.tagName === "code") {
+        if (isValidElement(child) && child?.props?.node?.tagName === "code") {
           return (
             <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400">
               {child.props.children}

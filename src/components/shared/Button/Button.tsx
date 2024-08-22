@@ -11,7 +11,7 @@ interface Props extends ComponentProps<"button"> {
 }
 
 const buttonVariants = cva(
-  "group flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-sm font-semibold text-white transition",
+  "group relative flex items-center justify-center gap-2 rounded-lg px-6 py-2 text-sm font-semibold text-white transition",
   {
     variants: {
       active: {
@@ -24,7 +24,7 @@ const buttonVariants = cva(
       disabled: {
         primary: "border-slate-300 bg-slate-300",
         secondary: "",
-        teritory: "",
+        teritory: "text-slate-200",
         icon: "",
         warn: "",
       },

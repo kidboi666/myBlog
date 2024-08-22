@@ -11,10 +11,11 @@ export const SearchBar = ({ statusRef }: Props) => {
   return (
     <Container
       ref={statusRef}
+      variant="dropdown"
       dataStatus="closed"
-      className="status-popup fixed left-1/2 top-8 z-30 w-[calc(100%-60px)] origin-top -translate-x-1/2 shadow-2xl transition md:w-[600px]"
+      className="fixed left-1/2 top-full w-[calc(100%-60px)] origin-top -translate-x-1/2 transition md:w-[600px]"
     >
-      <div className="relative h-8 w-full">
+      <div className="relative w-full">
         <div className="absolute left-1.5 top-1.5">
           <SearchIcon />
         </div>

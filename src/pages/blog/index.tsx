@@ -39,10 +39,10 @@ const Blog = () => {
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
-      <Container as="article">
+      <Container variant="main" as="article">
         <Title
           as="h2"
-          className="absolute -top-20 text-center text-2xl text-slate-800 md:text-4xl xl:text-5xl"
+          className="absolute -top-20 ml-4 text-4xl text-slate-800 md:ml-12 xl:text-5xl"
         >
           <Underbar>{renderText}</Underbar>
         </Title>

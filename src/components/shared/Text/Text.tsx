@@ -12,8 +12,8 @@ interface Props {
 const textVariants = cva("text-slate-600", {
   variants: {
     variant: {
-      body: "text-base",
-      description: "text-sm text-slate-500",
+      body: "text-sm",
+      description: "text-xs text-slate-500",
       caption: "text-xs text-slate-400",
     },
   },

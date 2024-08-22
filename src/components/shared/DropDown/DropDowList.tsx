@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import cn from "@/src/lib/cn"
 import { ComponentPropsWithRef, forwardRef } from "react"
+import { Container } from "../../layout/Container"
 
 interface DropDownListProps extends ComponentPropsWithRef<"ul"> {
   itemList?: Record<string, any>[]
@@ -12,24 +13,23 @@ interface DropDownListProps extends ComponentPropsWithRef<"ul"> {
 export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
   ({ itemList, onClick, className }, ref) => {
     return (
-      <ul
+      <Container
+        as="ul"
+        variant="dropdown"
         ref={ref}
-        data-status="closed"
-        className={cn(
-          "status-popup absolute z-10 mt-2 w-fit min-w-40 origin-top rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none",
-          className,
-        )}
+        dataStatus="closed"
+        className={cn("max-h-60 flex-col overflow-y-auto px-0 py-1", className)}
       >
         {itemList?.map((menu) => (
           <li
             key={menu.id}
             onClick={() => onClick(menu)}
-            className="relative w-full cursor-pointer px-4 py-2 text-start text-base font-normal text-slate-600 transition hover:bg-slate-200"
+            className="relative w-full cursor-pointer px-2 py-2 text-start text-base font-normal text-slate-600 transition hover:bg-slate-200"
           >
             {menu.name}
           </li>
         ))}
-      </ul>
+      </Container>
     )
   },
 )

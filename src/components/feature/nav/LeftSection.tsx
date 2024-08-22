@@ -8,7 +8,7 @@ import { SideBar } from "./SideBar"
 import { SlideBar } from "./SlideBar"
 
 export const LeftSection = () => {
-  const [menuRef, menuStatusRef, handleMenuStatusChange] = useStatusChange<
+  const [buttonRef, slideBarRef, handleSlideBarChange] = useStatusChange<
     HTMLDivElement,
     HTMLDivElement
   >()
@@ -17,11 +17,11 @@ export const LeftSection = () => {
 
   return (
     <div className="flex items-center">
-      <div className="flex lg:hidden" ref={menuRef}>
-        <Button variant="icon" onClick={handleMenuStatusChange}>
+      <div className="flex lg:hidden" ref={buttonRef}>
+        <Button variant="icon" onClick={handleSlideBarChange}>
           <MenuIcon />
         </Button>
-        <SlideBar categories={categories} subCategories={subCategories} statusRef={menuStatusRef} />
+        <SlideBar categories={categories} subCategories={subCategories} slideBarRef={slideBarRef} />
       </div>
       <div className="hidden gap-6 lg:flex">
         <Link href="/">

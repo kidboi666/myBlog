@@ -1,12 +1,18 @@
-export const PencilIcon = () => {
+import cn from "@/src/lib/cn"
+
+interface Props {
+  className?: string
+}
+
+export const PencilIcon = ({ className }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       fill="none"
-      className="injected-svg"
+      className={cn("injected-svg", className)}
       data-src="https://cdn.hugeicons.com/icons/pencil-stroke-sharp.svg"
       role="img"
       color="#000000"

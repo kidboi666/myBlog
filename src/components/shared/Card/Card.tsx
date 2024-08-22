@@ -14,13 +14,13 @@ export const Card = ({
   children,
   ...props
 }: PropsWithChildren<Props>) => {
-  const [target, isIntersecting] = useIntersect<HTMLDivElement>({ threshold: 0.1 })
+  const [target, isIntersecting] = useIntersect<HTMLDivElement>({ threshold: 0.1 }, true)
 
   return (
     <Component
       ref={target}
       className={cn(
-        "flex h-full w-full cursor-pointer flex-col gap-6 rounded-2xl p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row",
+        "flex h-full w-full cursor-pointer",
         isIntersecting && "animate-cardSlideDown",
         className,
       )}
@@ -40,8 +40,8 @@ interface ImageProps {
 
 Card.Image = ({ src, alt, className, innerClassName }: ImageProps) => {
   return (
-    <div className={cn("relative flex-shrink-0", className)}>
-      <Image src={src} alt={alt} fill className={cn("rounded-2xl object-cover", innerClassName)} />
+    <div className={cn("relative", className)}>
+      <Image src={src} alt={alt} fill className={cn("rounded-2xl", innerClassName)} />
     </div>
   )
 }

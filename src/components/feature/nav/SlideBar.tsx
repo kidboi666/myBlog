@@ -1,4 +1,4 @@
-import { RefObject } from "react"
+import { MouseEvent, RefObject } from "react"
 import { useRouter } from "next/router"
 import { Tables } from "@/src/models/supabase"
 
@@ -6,46 +6,60 @@ import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
 import { SlideBarCategoryList } from "./SlideBarCategoryList"
 import { Button } from "../../shared/Button"
+import { Xicon } from "../../icon/XIcon"
+import { Line } from "../../shared/Line"
 
 interface Props {
   categories?: Tables<"category">[]
   subCategories?: Tables<"sub_category">[]
-  statusRef: RefObject<HTMLDivElement>
+  slideBarRef: RefObject<HTMLDivElement>
 }
 
-export const SlideBar = ({ categories, subCategories, statusRef }: Props) => {
+export const SlideBar = ({ categories, subCategories, slideBarRef }: Props) => {
   const router = useRouter()
+
+  const closeSlideBar = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation()
+    slideBarRef.current?.setAttribute("data-status", "closed")
+  }
 
   return (
     <Container
-      ref={statusRef}
+      ref={slideBarRef}
       data-status="closed"
       variant="other"
-      className="status-slide fixed left-0 top-0 z-50 h-screen w-96 items-start rounded-l-none px-8 py-12 shadow-2xl transition"
+      className="status-slide fixed left-0 top-0 z-50 h-screen w-full flex-col justify-between overflow-y-auto rounded-l-none px-4 py-4 shadow-2xl transition"
     >
-      <List className="flex w-full flex-col">
-        <List.Row className="mb-4 flex gap-2">
-          <Button variant="secondary" onClick={() => router.push("/")} className="flex-1">
-            홈으로 가기
+      <div className="w-full">
+        <div className="flex justify-between gap-4">
+          <Button lang="en" variant="icon" onClick={() => router.push("/")} className="">
+            ORIGINAL .
           </Button>
-          <Button variant="primary" onClick={() => router.push("/write")} className="flex-1">
-            새 게시물 쓰기
+          <Button variant="secondary" onClick={closeSlideBar} className="size-fit p-2">
+            <Xicon />
           </Button>
-        </List.Row>
-        {categories?.map((category) => {
-          const pickSubCategories =
-            subCategories?.filter(
-              (subCategory) => category.id === subCategory.parent_category_id,
-            ) || []
-          return (
-            <SlideBarCategoryList
-              key={category.id}
-              category={category}
-              subCategories={pickSubCategories}
-            />
-          )
-        })}
-      </List>
+        </div>
+        <Line className="my-4" />
+        <List className="flex w-full flex-col">
+          {categories?.map((category) => {
+            const pickSubCategories =
+              subCategories?.filter(
+                (subCategory) => category.id === subCategory.parent_category_id,
+              ) || []
+            return (
+              <SlideBarCategoryList
+                key={category.id}
+                category={category}
+                subCategories={pickSubCategories}
+                slideBarRef={slideBarRef}
+              />
+            )
+          })}
+        </List>
+      </div>
+      <Button variant="primary" onClick={() => router.push("/write")} className="w-full">
+        새 게시물 쓰기
+      </Button>
     </Container>
   )
 }

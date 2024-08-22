@@ -7,13 +7,10 @@ import { Footer } from "@/src/components/layout/Footer"
 import { Container } from "@/src/components/layout/Container"
 import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { PostCard } from "@/src/components/feature/post/PostCard"
-import { queryClient } from "../lib/ReactQuery"
-import { Tables } from "../models/supabase"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.totalPost())
   const { mutate: deletePost } = useDeletePost()
-  const categoryList = queryClient.getQueryData<Tables<"category">[]>(["category"])
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>

@@ -21,7 +21,9 @@ export const useStatusChange = <T extends HTMLElement, S extends HTMLElement>():
       e.stopPropagation()
 
       if (currentStatus === "opened") {
-        closeStatus()
+        if (!targetRef.current?.contains(e.target as Node)) {
+          closeStatus()
+        }
       } else {
         openStatus()
       }

@@ -2,6 +2,7 @@
 import { useRouter } from "next/router"
 import { Tables } from "@/src/models/supabase"
 import { MouseEvent } from "react"
+import cn from "@/src/lib/cn"
 
 import { useModal } from "@/src/store/useModal"
 import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
@@ -64,12 +65,21 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
       className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row"
       onClick={() => router.push(`/blog/${card.id}`)}
     >
-      <Card.Image
-        src={card?.image ?? icon}
-        alt="카드 이미지"
-        className="h-52 flex-shrink-0 md:w-52"
-        innerClassName="object-cover"
-      />
+      {card?.image ? (
+        <Card.Image
+          src={card?.image ?? icon}
+          alt="카드 이미지"
+          className={cn("h-40 flex-shrink-0 md:w-40")}
+          innerClassName="object-cover"
+        />
+      ) : (
+        <Card.Image
+          src={icon}
+          alt="카드 이미지"
+          className={cn("h-40 md:w-40")}
+          innerClassName="object-contain"
+        />
+      )}
       <Card.Content className="flex flex-1 flex-col gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>

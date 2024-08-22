@@ -7,18 +7,33 @@ import { Footer } from "@/src/components/layout/Footer"
 import { Container } from "@/src/components/layout/Container"
 import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { PostCard } from "@/src/components/feature/post/PostCard"
+import { Tables } from "../models/supabase"
+import { categoryQuery } from "../services/queries/category/categoryQuery"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.totalPost())
   const { mutate: deletePost } = useDeletePost()
+  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
       <Container as="article">
-        {postList?.map((card) => (
-          <PostCard key={card.id} card={card} icon="" onDelete={(id) => deletePost(id)} />
-        ))}
+        {postList?.map((card) => {
+          const [postCategory] =
+            categoryList?.filter(
+              (category: Tables<"category">) => category.id === Number(card?.parent_category_id),
+            ) || []
+
+          return (
+            <PostCard
+              key={card.id}
+              card={card}
+              icon={postCategory.icon!}
+              onDelete={(id) => deletePost(id)}
+            />
+          )
+        })}
       </Container>
     </AppLayout>
   )

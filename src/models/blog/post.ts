@@ -7,8 +7,8 @@ export interface IPost {
   name: string
   content: string
   selectedSubCategory: {
-    id: number
-    name: string
+    id: number | null
+    name: string | null
   }
   selectedCategory: {
     id: number

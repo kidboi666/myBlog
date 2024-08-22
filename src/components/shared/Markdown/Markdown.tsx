@@ -84,6 +84,10 @@ const tr = ({ children }: PropsWithChildren) => (
 const td = ({ children }: PropsWithChildren) => (
   <td className="border border-slate-300 p-[0.4em]">{children}</td>
 )
+const ol = ({ children }: PropsWithChildren) => (
+  <ol className="list-decimal pt-[0.2em]">{children}</ol>
+)
+const li = ({ children }: PropsWithChildren) => <li className="mt-[1em]">{children}</li>
 
 interface Props {
   text: string
@@ -106,6 +110,8 @@ const Markdown = ({ text, showLine = false }: Props) => {
         th,
         tr,
         td,
+        ol,
+        li,
         a: ({ children, node, href, ...rest }) => {
           return (
             <a

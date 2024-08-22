@@ -119,10 +119,12 @@ const WritePost = () => {
       if (prevPost.tags) {
         setTags(prevPost.tags)
       }
+      if (prevPost.sub_category_id) {
+        handleSubCategoryChange({ id: prevPost.sub_category_id, name: prevPost.sub_category_name })
+      }
       setName(prevPost.name)
       setContent(prevPost.content)
       handleCategoryChange({ id: prevPost.parent_category_id, name: prevPost.parent_category_name })
-      handleSubCategoryChange({ id: prevPost.sub_category_id, name: prevPost.sub_category_name })
     }
   }, [previousPost])
 

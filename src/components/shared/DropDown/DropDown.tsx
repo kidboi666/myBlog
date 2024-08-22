@@ -8,7 +8,7 @@ import { DropDownList } from "./DropDowList"
 interface Props {
   itemList?: Record<string, any>[]
   listName?: string
-  selectedItem?: string
+  selectedItem?: string | null
   onClick: (arg: any) => void
 }
 

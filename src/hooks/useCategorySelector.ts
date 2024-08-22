@@ -7,9 +7,12 @@ interface Props {
 
 export const useCategorySelector = ({ subCategories }: Props) => {
   const [selectedCategory, setSelectedCategory] = useState({ id: 0, name: "" })
-  const [selectedSubCategory, setSelectedSubCategory] = useState({
-    id: 0,
-    name: "",
+  const [selectedSubCategory, setSelectedSubCategory] = useState<{
+    id: number | null
+    name: string | null
+  }>({
+    id: null,
+    name: null,
   })
 
   const subCategoryList = subCategories?.filter(
@@ -19,7 +22,7 @@ export const useCategorySelector = ({ subCategories }: Props) => {
   const handleCategoryChange = (selectCategory: { id: number; name: string }) => {
     setSelectedCategory({ id: selectCategory.id, name: selectCategory.name })
   }
-  const handleSubCategoryChange = (selectCategory: { id: number; name: string }) => {
+  const handleSubCategoryChange = (selectCategory: { id: number | null; name: string | null }) => {
     setSelectedSubCategory({ id: selectCategory.id, name: selectCategory.name })
   }
 

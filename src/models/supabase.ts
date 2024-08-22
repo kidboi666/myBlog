@@ -94,8 +94,8 @@ export type Database = {
           name: string
           parent_category_id: number
           parent_category_name: string
-          sub_category_id: number
-          sub_category_name: string
+          sub_category_id: number | null
+          sub_category_name: string | null
           tags: string[] | null
         }
         Insert: {
@@ -106,8 +106,8 @@ export type Database = {
           name: string
           parent_category_id: number
           parent_category_name: string
-          sub_category_id: number
-          sub_category_name: string
+          sub_category_id?: number | null
+          sub_category_name?: string | null
           tags?: string[] | null
         }
         Update: {
@@ -118,8 +118,8 @@ export type Database = {
           name?: string
           parent_category_id?: number
           parent_category_name?: string
-          sub_category_id?: number
-          sub_category_name?: string
+          sub_category_id?: number | null
+          sub_category_name?: string | null
           tags?: string[] | null
         }
         Relationships: [

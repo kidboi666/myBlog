@@ -18,13 +18,13 @@ export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
         variant="dropdown"
         ref={ref}
         dataStatus="closed"
-        className={cn("max-h-60 flex-col overflow-y-auto px-0 py-1", className)}
+        className={cn("block max-h-40 flex-col overflow-y-auto px-0 py-1", className)}
       >
         {itemList?.map((menu) => (
           <li
             key={menu.id}
             onClick={() => onClick(menu)}
-            className="relative w-full cursor-pointer px-2 py-2 text-start text-base font-normal text-slate-600 transition hover:bg-slate-200"
+            className="w-full cursor-pointer px-2 py-2 text-start text-sm font-normal text-slate-600 transition hover:bg-slate-200"
           >
             {menu.name}
           </li>

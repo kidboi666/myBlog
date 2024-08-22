@@ -55,7 +55,7 @@ export const SideBarItem = ({
       <Button
         ref={titleStatus}
         data-status="closed"
-        className="absolute -top-7 left-12 text-nowrap rounded-t-lg p-2 text-sm shadow-lg transition hover:-translate-y-1 data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
+        className="absolute -top-8 left-0 origin-bottom text-nowrap rounded-t-lg p-2 text-sm shadow-lg transition hover:-translate-y-1 data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
       >
         {category.name}
       </Button>
@@ -63,7 +63,7 @@ export const SideBarItem = ({
         itemList={subCategories}
         ref={subCategoriesStatus}
         onClick={onSubCategoryButtonClick}
-        className="left-12 origin-left"
+        className="left-0 top-14 origin-top"
       />
     </List.Row>
   )

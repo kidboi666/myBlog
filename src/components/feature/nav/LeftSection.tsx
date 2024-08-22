@@ -6,6 +6,7 @@ import { MenuIcon } from "../../icon/MenuIcon"
 import { Button } from "../../shared/Button"
 import { SideBar } from "./SideBar"
 import { SlideBar } from "./SlideBar"
+import { useRef } from "react"
 
 export const LeftSection = () => {
   const [buttonRef, slideBarRef, handleSlideBarChange] = useStatusChange<

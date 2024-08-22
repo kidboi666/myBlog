@@ -17,6 +17,7 @@ interface Props {
 export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   const router = useRouter()
   const addPostButtonRef = useRef<HTMLButtonElement>(null)
+  const showRef = useRef(null)
 
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
@@ -48,35 +49,13 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   }
 
   return (
-    <Container
-      as="nav"
-      ref={statusRef && statusRef}
-      data-status="closed"
-      variant="other"
-      className={cn(
-        "fixed left-6 top-28 origin-top-left flex-col px-2 py-4 transition md:left-0 md:rounded-l-none md:px-2",
-        statusRef ? "status-popup" : "",
-      )}
-    >
-      <List>
-        <List.Row>
-          <Button
-            onMouseEnter={() => openStatusChange()}
-            onMouseLeave={() => closeStatusChange()}
-            variant="secondary"
-            onClick={() => router.push("/write")}
-            className="flex w-full px-4 py-4 text-base text-slate-500 ring-0"
-          >
-            <PencilIcon />
-          </Button>
-          <Button
-            ref={addPostButtonRef}
-            data-status="closed"
-            className="absolute -top-2 left-12 origin-left text-nowrap rounded-t-lg p-2 text-sm shadow-lg transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
-          >
-            새 포스팅 하기
-          </Button>
-        </List.Row>
+    <div onMouseLeave={() => showRef?.current.setAttribute("data-status", "closed")}>
+      <Container
+        ref={showRef}
+        data-status="closed"
+        variant="other"
+        className="fixed left-16 top-28 origin-left px-2 py-4 transition data-[status=closed]:scale-0"
+      >
         {categories?.map((category) => {
           let validateSubCategories: Tables<"sub_category">[] = []
           if (subCategories) {
@@ -95,7 +74,39 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
             />
           )
         })}
-      </List>
-    </Container>
+      </Container>
+      <Container
+        as="nav"
+        ref={statusRef && statusRef}
+        data-status="closed"
+        onMouseEnter={() => showRef?.current.setAttribute("data-status", "opened")}
+        variant="other"
+        className={cn(
+          "fixed left-0 top-28 origin-top-left flex-col rounded-l-none px-2 py-4 transition md:px-2",
+          statusRef ? "status-popup" : "",
+        )}
+      >
+        <List className="grid">
+          <List.Row className="relative">
+            <Button
+              onMouseEnter={() => openStatusChange()}
+              onMouseLeave={() => closeStatusChange()}
+              variant="secondary"
+              onClick={() => router.push("/write")}
+              className="flex w-full px-4 py-4 text-base text-slate-500 ring-0"
+            >
+              <PencilIcon />
+            </Button>
+            <Button
+              ref={addPostButtonRef}
+              data-status="closed"
+              className="absolute -top-8 left-0 origin-bottom text-nowrap rounded-t-lg p-2 text-sm shadow-lg transition data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
+            >
+              새 포스팅 하기
+            </Button>
+          </List.Row>
+        </List>
+      </Container>
+    </div>
   )
 }

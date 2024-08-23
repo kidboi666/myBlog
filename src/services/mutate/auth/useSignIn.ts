@@ -19,7 +19,7 @@ export const useSignIn = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["me"] })
-      router.push("/")
+      router.replace("/")
     },
   })
 }

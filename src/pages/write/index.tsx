@@ -152,14 +152,14 @@ const WritePost = () => {
     <Container variant="write" className="flex-col">
       <div className="flex w-full gap-4 overflow-y-auto">
         <div className="flex size-full flex-1 flex-col gap-2 p-1">
-          <Back className="self-start" />
+          <Back />
           <TextInput
             placeholder="제목을 입력하세요."
             name="name"
             variant="primary"
             value={name}
             onChange={onChangeName}
-            className="mt-4 text-5xl font-semibold"
+            className="text-5xl font-semibold"
           />
           <Line />
           <TextAreaInput

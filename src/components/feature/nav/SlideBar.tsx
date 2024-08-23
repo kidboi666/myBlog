@@ -28,7 +28,7 @@ export const SlideBar = ({ categories, subCategories, slideBarRef }: Props) => {
       ref={slideBarRef}
       data-status="closed"
       variant="other"
-      className="status-slide fixed left-0 top-0 z-50 h-screen w-full flex-col justify-between overflow-y-auto rounded-l-none px-4 py-4 shadow-2xl transition"
+      className="status-slide fixed left-0 top-0 z-50 h-dvh w-full flex-col justify-between overflow-y-auto rounded-l-none px-4 py-4 shadow-2xl transition"
     >
       <div className="w-full">
         <div className="flex justify-between gap-4">

@@ -50,8 +50,7 @@ export const DropDown = ({
               {listName}
             </Text>
           )}
-
-          <ArrowHeadIcon />
+          <ArrowHeadIcon className="text-slate-400" />
         </button>
       </div>
       {/** 메뉴 아이템들 */}

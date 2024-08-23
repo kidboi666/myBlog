@@ -1,6 +1,7 @@
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
+
 import { useModal } from "@/src/store/useModal"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { IOption } from "@/src/models/blog/post"
@@ -8,6 +9,8 @@ import { Tables } from "@/src/models/supabase"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { formatDateToYMD } from "@/src/utils/formatDate"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
+import { validateCategoryBeforeRender } from "@/src/utils/validateCategoryDepth"
+
 import { Container } from "../../layout/Container"
 import { Title } from "../../shared/Title"
 import { Button } from "../../shared/Button"
@@ -15,7 +18,7 @@ import { KebabIcon } from "../../icon/KebabIcon"
 import { DropDownList } from "../../shared/DropDown/DropDownList"
 import { Text } from "../../shared/Text"
 import { Line } from "../../shared/Line"
-import { Tag } from "../../shared/Tag"
+import { Tags } from "../../shared/Tags"
 
 const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
@@ -57,7 +60,7 @@ export const Post = ({ post, icon }: Props) => {
       )}
 
       <div className="relative mt-4 size-20">
-        <Image src={icon} alt="포스트이미지" fill className="rounded-3xl object-contain" />
+        <Image src={icon} alt="카테고리 아이콘" fill className="object-contain" />
       </div>
       <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
@@ -72,21 +75,14 @@ export const Post = ({ post, icon }: Props) => {
         />
       </div>
       <div className="mt-4 flex flex-col gap-4">
-        <Text variant="description">
-          {post?.parent_category_name}&nbsp;
-          <Text as="span" variant="description">
-            {" > "}
-          </Text>
-          &nbsp;
-          {post?.sub_category_name} 카테고리
-        </Text>
+        <Text variant="description">{validateCategoryBeforeRender(post)}</Text>
       </div>
       <div className="flex gap-12">
         <Text variant="description">{formatDateToYMD(post.created_at)}</Text>
       </div>
       {post?.tags?.length !== 0 && (
         <div className="flex gap-2">
-          {post.tags?.map((tag, idx) => <Tag key={`${tag + idx}`} tag={tag} />)}
+          <Tags tags={post.tags || []} />
         </div>
       )}
       <Line className="my-4" />

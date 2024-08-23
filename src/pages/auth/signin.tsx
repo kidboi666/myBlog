@@ -15,8 +15,12 @@ import { Button } from "@/src/components/shared/Button"
 import { Back } from "@/src/components/shared/Back"
 
 const SignIn = () => {
-  const { mutate: signIn, isPending: isPendingSignIn } = useSignIn()
-  const { mutate: signInOAuth, isPending: isPendingSignInOAuth } = useSignInOAuth()
+  const { mutate: signIn, isPending: isPendingSignIn, isSuccess: isSuccessSignIn } = useSignIn()
+  const {
+    mutate: signInOAuth,
+    isPending: isPendingSignInOAuth,
+    isSuccess: isSuccessSignInOAuth,
+  } = useSignInOAuth()
   const {
     register,
     handleSubmit,
@@ -79,7 +83,11 @@ const SignIn = () => {
             error={errors.password}
           />
         </div>
-        <Button isSubmit isLoading={isPendingSignIn || isPendingSignInOAuth}>
+        <Button
+          isSubmit
+          isLoading={isPendingSignIn || isPendingSignInOAuth}
+          disabled={isSuccessSignIn || isSuccessSignInOAuth}
+        >
           로그인
         </Button>
         <div className="relative">

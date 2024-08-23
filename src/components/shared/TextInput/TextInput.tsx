@@ -2,12 +2,13 @@ import cn from "@/src/lib/cn"
 import { cva } from "class-variance-authority"
 import { ComponentProps } from "react"
 import { FieldError, UseFormRegisterReturn } from "react-hook-form"
+import { Text } from "../Text/Text"
 
 interface Props extends ComponentProps<"input"> {
   className?: string
   register?: UseFormRegisterReturn
   error?: FieldError
-  variant?: "primary" | "secondary" | "auth"
+  variant?: "primary" | "secondary" | "auth" | "tags"
 }
 
 const InputVaraints = cva(
@@ -18,6 +19,7 @@ const InputVaraints = cva(
         primary: "border-0 px-0",
         secondary: "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100",
         auth: "border-slate-300",
+        tags: "",
       },
     },
   },
@@ -31,7 +33,11 @@ export const TextInput = ({ className, register, error, variant = "primary", ...
         {...register}
         {...props}
       />
-      {error && <span className="mt-2 block text-xs text-red-600">{error.message}</span>}
+      {error && (
+        <Text as="span" variant="error">
+          {error.message}
+        </Text>
+      )}
     </>
   )
 }

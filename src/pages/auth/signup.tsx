@@ -15,8 +15,12 @@ import { Title } from "@/src/components/shared/Title"
 import { Back } from "@/src/components/shared/Back"
 
 const SignUp = () => {
-  const { mutate: signInOAuth } = useSignInOAuth()
-  const { mutate: signUp } = useSignUp()
+  const {
+    mutate: signInOAuth,
+    isPending: isPendingSignInOAuth,
+    isSuccess: isSuccessSignInOAuth,
+  } = useSignInOAuth()
+  const { mutate: signUp, isPending: isPendingSignUp, isSuccess: isSuccessSignUp } = useSignUp()
   const {
     register,
     handleSubmit,
@@ -90,7 +94,13 @@ const SignUp = () => {
           dirtyField={dirtyFields.passwordConfirmation}
           error={errors.passwordConfirmation}
         />
-        <Button isSubmit>회원가입</Button>
+        <Button
+          isSubmit
+          isLoading={isPendingSignInOAuth || isPendingSignUp}
+          disabled={isSuccessSignInOAuth || isSuccessSignUp}
+        >
+          회원가입
+        </Button>
         <div className="relative">
           <Line className="border-[0.1px]" />
           <Text

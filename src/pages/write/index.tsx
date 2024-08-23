@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
 import dynamic from "next/dynamic"
-import Image from "next/image"
 import { useRouter } from "next/router"
 import { ChangeEvent, useEffect, useState } from "react"
 
@@ -13,15 +12,12 @@ import { useCategorySelector } from "@/src/hooks/useCategorySelector"
 import { useInput } from "@/src/hooks/useInput"
 import { stringOrFirstString } from "@/src/utils/stringOrFirstString"
 
-import { UploadImageButton } from "@/src/components/icon/UploadImageIcon"
 import { Container } from "@/src/components/layout/Container"
 import { Button } from "@/src/components/shared/Button"
 import { DropDown } from "@/src/components/shared/DropDown"
-import { Text } from "@/src/components/shared/Text"
 import { TextAreaInput } from "@/src/components/shared/TextAreaInput"
 import { TextInput } from "@/src/components/shared/TextInput"
 import { TagsInput } from "@/src/components/feature/post/TagsInput"
-import { Xicon } from "@/src/components/icon/XIcon"
 import { Line } from "@/src/components/shared/Line"
 import { Back } from "@/src/components/shared/Back"
 import { FileInput } from "@/src/components/feature/write/FileInput"
@@ -36,7 +32,7 @@ const WritePost = () => {
   const [tags, setTags] = useState<string[]>([])
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
-  const [showCancelButton, setShowCancelButton] = useState(false)
+
   const {
     mutate: postImage,
     isPending: isPendingPostImage,
@@ -154,9 +150,9 @@ const WritePost = () => {
 
   return (
     <Container variant="write" className="flex-col">
-      <Back className="self-start" />
       <div className="flex w-full gap-4 overflow-y-auto">
         <div className="flex size-full flex-1 flex-col gap-2 p-1">
+          <Back className="self-start" />
           <TextInput
             placeholder="제목을 입력하세요."
             name="name"
@@ -222,7 +218,7 @@ const WritePost = () => {
             value={name}
             readOnly
             onChange={onChangeName}
-            className="mt-4 text-5xl font-semibold placeholder:text-slate-300"
+            className="text-5xl font-semibold text-slate-400 placeholder:text-slate-300"
           />
           <Line />
           <Markdown text={content} />

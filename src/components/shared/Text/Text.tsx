@@ -4,7 +4,7 @@ import { ElementType, forwardRef, PropsWithChildren } from "react"
 
 interface Props {
   as?: ElementType
-  variant?: "body" | "description" | "caption"
+  variant?: "body" | "description" | "caption" | "error"
   className?: string
   dataStatus?: string
 }
@@ -15,6 +15,7 @@ const textVariants = cva("text-slate-600 transition", {
       body: "text-sm",
       description: "text-xs text-slate-500",
       caption: "text-xs text-slate-400",
+      error: "mt-2 block text-xs text-red-600",
     },
   },
 })

@@ -10,8 +10,8 @@ interface Props {
 export const Back = ({ className }: Props) => {
   const router = useRouter()
   return (
-    <Button variant="icon" onClick={() => router.push("/")} className={cn("rotate-90", className)}>
-      <ArrowHeadIcon className="" />
+    <Button variant="icon" onClick={() => router.push("/")} className={cn(className)}>
+      <ArrowHeadIcon className="left-0 rotate-90" />
     </Button>
   )
 }

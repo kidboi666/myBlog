@@ -1,16 +1,18 @@
-import { Dispatch, KeyboardEvent, SetStateAction } from "react"
+/* eslint-disable react/no-array-index-key */
+import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react"
+import cn from "@/src/lib/cn"
 import { useInput } from "@/src/hooks/useInput"
-import { TextInput } from "../../shared/TextInput"
-import { Tag } from "../../shared/Tag"
+import { Tags } from "../../shared/Tags"
+import { Text } from "../../shared/Text"
 
 interface Props {
   tags: string[]
   setTags: Dispatch<SetStateAction<string[]>>
-  // onChange: (e: ChangeEvent) => void
 }
 
 export const TagsInput = ({ tags, setTags }: Props) => {
   const [text, onChangeText, setText] = useInput("")
+  const [error, setError] = useState("")
 
   const handleDelete = (idx: number) => {
     const filterTag = tags?.filter((tag) => tag !== tags[idx])
@@ -37,24 +39,37 @@ export const TagsInput = ({ tags, setTags }: Props) => {
         handleDelete(tags.length - 1)
       }
     }
+    if (tags.length >= 10 && e.key !== "Backspace") {
+      setText("")
+      setError("태그는 10개 까지만 등록 가능합니다.")
+    } else {
+      setError("")
+    }
   }
 
   return (
-    <>
-      {tags && tags?.length > 0 && (
-        <div className="flex max-h-16 flex-wrap gap-2 overflow-y-auto py-1">
-          {/* eslint-disable-next-line react/no-array-index-key */}
-          {tags?.map((tag, idx) => <Tag key={tag + idx} tag={tag} />)}
-        </div>
+    <div>
+      <div
+        className={cn(
+          "flex w-full flex-wrap gap-2 rounded-lg border border-slate-300 px-2 py-2 text-sm",
+          error && "border-red-500",
+        )}
+      >
+        <Tags tags={tags} />
+        <input
+          name="tags"
+          placeholder="태그를 추가하세요. 입력후 Enter. 삭제는 BackSpace"
+          value={text}
+          onChange={onChangeText}
+          onKeyDown={handleKeyDown}
+          className="flex-1 outline-none"
+        />
+      </div>
+      {error && (
+        <Text as="span" variant="error">
+          {error}
+        </Text>
       )}
-      <TextInput
-        name="tags"
-        variant="secondary"
-        placeholder="태그를 추가하세요. 입력후 Enter"
-        value={text}
-        onChange={onChangeText}
-        onKeyDown={handleKeyDown}
-      />
-    </>
+    </div>
   )
 }

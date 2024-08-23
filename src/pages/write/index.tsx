@@ -142,35 +142,7 @@ const WritePost = () => {
   return (
     <Container variant="write" className="flex-col">
       <Back className="self-start" />
-      <Button
-        variant="teritory"
-        onMouseEnter={() => setShowCancelButton(true)}
-        onMouseLeave={() => setShowCancelButton(false)}
-        className="relative h-40 w-full flex-col p-12 ring-1 ring-slate-200"
-      >
-        {preview && showCancelButton && (
-          <Button
-            variant="secondary"
-            onClick={() => setPreview("")}
-            className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
-          >
-            <Xicon className="h-10 w-10" />
-          </Button>
-        )}
-        {preview ? (
-          <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
-        ) : (
-          <UploadImageButton />
-        )}
-        <input
-          name="image"
-          onChange={handleChangeFile}
-          type="file"
-          accept="image/*"
-          className="absolute inset-0 opacity-0"
-        />
-        <Text variant="caption">{preview ? image?.name : "커버 이미지 파일 선택"}</Text>
-      </Button>
+
       <div className="flex w-full gap-4 overflow-y-auto">
         <div className="flex size-full flex-1 flex-col gap-2">
           <TextInput
@@ -190,6 +162,35 @@ const WritePost = () => {
             onChange={onChangeContent}
             className="h-screen overflow-y-auto"
           />
+          <Button
+            variant="teritory"
+            onMouseEnter={() => setShowCancelButton(true)}
+            onMouseLeave={() => setShowCancelButton(false)}
+            className="relative h-40 w-full flex-col p-12 ring-1 ring-slate-200"
+          >
+            {preview && showCancelButton && (
+              <Button
+                variant="secondary"
+                onClick={() => setPreview("")}
+                className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
+              >
+                <Xicon className="h-10 w-10" />
+              </Button>
+            )}
+            {preview ? (
+              <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
+            ) : (
+              <UploadImageButton />
+            )}
+            <input
+              name="image"
+              onChange={handleChangeFile}
+              type="file"
+              accept="image/*"
+              className="absolute inset-0 opacity-0"
+            />
+            <Text variant="caption">{preview ? image?.name : "커버 이미지 파일 선택"}</Text>
+          </Button>
           <div className="flex w-full flex-col gap-2">
             <TagsInput tags={tags} setTags={setTags} />
             <DropDown
@@ -225,7 +226,7 @@ const WritePost = () => {
             value={name}
             readOnly
             onChange={onChangeName}
-            className="mt-4 text-5xl font-semibold"
+            className="mt-4 text-5xl font-semibold placeholder:text-slate-300"
           />
           <Line />
           <Markdown text={content} />

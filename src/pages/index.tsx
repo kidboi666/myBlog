@@ -24,7 +24,6 @@ const Home = () => {
             categoryList?.filter(
               (category: Tables<"category">) => category.id === Number(card?.parent_category_id),
             ) || []
-
           return (
             <PostCard
               key={card.id}

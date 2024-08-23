@@ -10,7 +10,7 @@ export const ArrowHeadIcon = forwardRef<SVGSVGElement, SVGProps<Props>>(({ class
     <svg
       ref={ref}
       data-status="closed"
-      className={cn("-mr-1 h-5 w-5 text-gray-400", className)}
+      className={cn("-mr-1 h-5 w-5", className)}
       viewBox="0 0 20 20"
       fill="currentColor"
       aria-hidden="true"

@@ -13,7 +13,7 @@ export const Back = ({ className }: Props) => {
     <Button
       variant="teritory"
       onClick={() => router.push("/")}
-      className={cn("rotate-90 p-0 text-slate-600", className)}
+      className={cn("rotate-90 p-0", className)}
     >
       <ArrowHeadIcon className="size-8" />
     </Button>

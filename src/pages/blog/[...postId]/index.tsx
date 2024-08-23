@@ -16,7 +16,7 @@ const PostPage = () => {
   const [postCategory] =
     categoryList?.filter((category) => category.id === Number(post?.parent_category_id)) || []
 
-  if (!post) return null
+  if (!post || !postCategory) return null
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>

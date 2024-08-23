@@ -7,7 +7,7 @@ interface Props extends ComponentProps<"input"> {
   className?: string
   register?: UseFormRegisterReturn
   error?: FieldError
-  variant?: "primary" | "secondary"
+  variant?: "primary" | "secondary" | "auth"
 }
 
 const InputVaraints = cva(
@@ -17,6 +17,7 @@ const InputVaraints = cva(
       variant: {
         primary: "border-0 px-0",
         secondary: "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100",
+        auth: "border-slate-300",
       },
     },
   },

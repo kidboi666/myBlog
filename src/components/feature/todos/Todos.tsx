@@ -9,6 +9,7 @@ import { Xicon } from "../../icon/XIcon"
 import { Button } from "../../shared/Button"
 import { PencilIcon } from "../../icon/PencilIcon"
 import { Title } from "../../shared/Title"
+import { Line } from "../../shared/Line"
 
 interface TodoProps {
   todo: string
@@ -107,11 +108,16 @@ export const Todos = ({ className, statusRef }: Props) => {
       variant="dropdown"
       ref={statusRef}
       dataStatus="closed"
-      className={cn("right-0 top-full w-80", className)}
+      className={cn("right-0 top-full w-80 cursor-default", className)}
     >
-      <form onSubmit={handleTodoChange}>
-        <TextInput value={todoText} onChange={onChangeTodoText} />
-        <div className="mb-4 flex flex-col text-left">
+      <form onSubmit={handleTodoChange} className="w-full">
+        <TextInput
+          variant="secondary"
+          value={todoText}
+          onChange={onChangeTodoText}
+          className="w-full"
+        />
+        <div className="mt-4 flex flex-col text-left">
           <Title variant="sub">Task</Title>
           <List>
             {todos.map((todo) => (
@@ -123,7 +129,7 @@ export const Todos = ({ className, statusRef }: Props) => {
               />
             ))}
           </List>
-          <hr className="mt-4" />
+          <Line className="my-4" />
           <Title variant="sub">Success</Title>
           <List>
             {successTodos.map((todo) => (

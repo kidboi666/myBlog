@@ -33,7 +33,7 @@ export const AuthForm = ({ name, type, dirtyField, register, error }: Props) => 
         {name}
       </Text>
       <TextInput
-        variant="secondary"
+        variant="auth"
         type={type === "passwordConfirmation" ? "password" : type}
         error={error}
         register={register}

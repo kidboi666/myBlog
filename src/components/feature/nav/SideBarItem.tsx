@@ -46,8 +46,8 @@ export const SideBarItem = ({
           <Image
             src={category.icon}
             alt="카테고리 아이콘"
-            width={30}
-            height={30}
+            width={24}
+            height={24}
             className="rounded-md"
           />
         )}
@@ -59,12 +59,14 @@ export const SideBarItem = ({
       >
         {category.name}
       </Button>
-      <DropDownList
-        itemList={subCategories}
-        ref={subCategoriesStatus}
-        onClick={onSubCategoryButtonClick}
-        className="left-0 top-14 origin-top"
-      />
+      {subCategories.length !== 0 && (
+        <DropDownList
+          itemList={subCategories}
+          ref={subCategoriesStatus}
+          onClick={onSubCategoryButtonClick}
+          className="left-0 top-14 origin-top"
+        />
+      )}
     </List.Row>
   )
 }

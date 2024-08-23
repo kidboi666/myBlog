@@ -52,7 +52,7 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
     <div onMouseLeave={() => showRef.current?.setAttribute("data-status", "closed")}>
       <Container
         ref={showRef}
-        data-status="closed"
+        dataStatus="closed"
         variant="other"
         className="fixed left-16 top-28 origin-left px-2 py-4 transition data-[status=closed]:scale-0"
       >

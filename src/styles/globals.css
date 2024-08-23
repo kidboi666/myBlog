@@ -11,7 +11,7 @@ p {
   word-break: break-all;
 }
 
-code {
+/* code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
 }
@@ -19,10 +19,10 @@ code {
 :lang(en) {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-}
+} */
 
-:lang(ko) {
-  font-family: "Pretendard";
+* {
+  font-family: goorm-sans, "Pretendard";
 }
 
 /* 크롬 및 엣지에서 자동완성된 필드의 배경색을 변경하는 CSS */

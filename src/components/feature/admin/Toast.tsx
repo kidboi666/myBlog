@@ -7,7 +7,7 @@ export const Toast = () => {
     <div className="flex flex-1 justify-center gap-4">
       <Button
         variant="warn"
-        onClick={() => setOpen("failure", { title: "그냥 토스트", text: "앞길 조심하세요." })}
+        onClick={() => setOpen("failure", { title: "그냥 토스트", text: "앞길 ." })}
         className="flex-1"
       >
         실패 토스트띄우기

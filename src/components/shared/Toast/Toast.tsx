@@ -47,21 +47,21 @@ export const Toast = () => {
     <Container
       variant="other"
       className={cn(
-        "fixed right-4 top-4 z-50 h-fit w-fit animate-slideDown items-start gap-4 py-4 md:px-6",
+        "fixed right-4 top-4 z-50 h-fit w-fit animate-slideDown flex-col items-start gap-4 px-4 py-4 md:px-6",
         toastVariants({ container: type }),
       )}
     >
-      <div>
+      <div className="flex items-start gap-2">
         <Title className={cn(toastVariants({ title: type }))}>{data?.title}</Title>
-        <Text className={cn(toastVariants({ text: type }))}>{data?.text}</Text>
+        <Button
+          variant="icon"
+          onClick={() => setClose()}
+          className={cn("p-0 hover:rotate-90", toastVariants({ text: type }))}
+        >
+          <Xicon />
+        </Button>
       </div>
-      <Button
-        variant="icon"
-        onClick={() => setClose()}
-        className={cn("p-0 hover:rotate-90", toastVariants({ text: type }))}
-      >
-        <Xicon />
-      </Button>
+      <Text className={cn(toastVariants({ text: type }))}>{data?.text}</Text>
     </Container>
   )
 }

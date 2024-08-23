@@ -27,7 +27,7 @@ export const useUpdatePost = () => {
       return data
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["post", data] })
+      queryClient.invalidateQueries({ queryKey: ["post", data?.[0].id] })
       queryClient.invalidateQueries({ queryKey: ["post"] })
       setOpen("success", { title: "포스팅 성공", text: "포스팅에 성공하였습니다!" })
       router.push({

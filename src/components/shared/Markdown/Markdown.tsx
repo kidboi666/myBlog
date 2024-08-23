@@ -88,6 +88,7 @@ const ol = ({ children }: PropsWithChildren) => (
   <ol className="list-decimal pt-[0.2em]">{children}</ol>
 )
 const li = ({ children }: PropsWithChildren) => <li className="mt-[1em]">{children}</li>
+const hr = () => <hr className="mb-[2em] mt-[4em]" />
 
 interface Props {
   text: string
@@ -114,6 +115,7 @@ const Markdown = ({ text, className, showLine = false }: Props) => {
         td,
         ol,
         li,
+        hr,
         a: ({ children, node, href, ...rest }) => {
           return (
             <a

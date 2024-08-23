@@ -2,6 +2,7 @@ import { Dispatch, KeyboardEvent, SetStateAction } from "react"
 import { useInput } from "@/src/hooks/useInput"
 import { TextInput } from "../../shared/TextInput"
 import { Text } from "../../shared/Text"
+import { Tag } from "../../shared/Tag"
 
 interface Props {
   tags: string[]
@@ -42,17 +43,9 @@ export const TagsInput = ({ tags, setTags }: Props) => {
   return (
     <>
       {tags && tags?.length > 0 && (
-        <div className="flex gap-2">
-          {tags?.map((tag, idx) => (
-            <Text
-              as="span"
-              key={`${tag + idx}`}
-              variant="caption"
-              className="inline-flex w-fit rounded-full p-2 ring-1 ring-slate-300"
-            >
-              {tag}
-            </Text>
-          ))}
+        <div className="flex max-h-16 flex-wrap gap-2 overflow-y-auto py-1">
+          {/* eslint-disable-next-line react/no-array-index-key */}
+          {tags?.map((tag, idx) => <Tag key={tag + idx} tag={tag} />)}
         </div>
       )}
       <TextInput

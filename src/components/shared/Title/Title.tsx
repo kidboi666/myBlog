@@ -9,7 +9,7 @@ interface Props {
   lang?: string
 }
 
-const titleVariants = cva("text-slate-500", {
+const titleVariants = cva("text-slate-600", {
   variants: {
     variant: {
       title: "text-xl font-bold",

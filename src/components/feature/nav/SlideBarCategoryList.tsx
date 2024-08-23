@@ -76,7 +76,10 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
           </Title>
         </div>
         {subCategories.length >= 1 && (
-          <ArrowHeadIcon ref={arrowRef} className="transition data-[status=closed]:-rotate-180" />
+          <ArrowHeadIcon
+            ref={arrowRef}
+            className="rotate-180 transition data-[status=closed]:-rotate-0"
+          />
         )}
       </Button>
       <List

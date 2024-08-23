@@ -108,14 +108,17 @@ export const Todos = ({ className, statusRef }: Props) => {
       variant="dropdown"
       ref={statusRef}
       dataStatus="closed"
-      className={cn("right-0 top-full w-80 cursor-default", className)}
+      className={cn(
+        "right-0 top-full w-96 cursor-default max-md:fixed max-md:left-1/2 max-md:w-[calc(100dvw-40px)] max-md:-translate-x-1/2",
+        className,
+      )}
     >
       <form onSubmit={handleTodoChange} className="w-full">
         <TextInput
           variant="secondary"
           value={todoText}
           onChange={onChangeTodoText}
-          className="w-full"
+          className="w-full font-light"
         />
         <div className="mt-4 flex flex-col text-left">
           <Title variant="sub">Task</Title>

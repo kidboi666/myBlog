@@ -53,7 +53,7 @@ const SignUp = () => {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <div className="flex h-screen items-center justify-center dark:bg-slate-800">
       <Back className="fixed left-4 top-4" />
       <form
         onSubmit={handleSubmit(handleSubmitSignUp)}
@@ -105,7 +105,7 @@ const SignUp = () => {
           <Line className="border-[0.1px]" />
           <Text
             variant="caption"
-            className="absolute -top-2 left-1/2 -translate-x-1/2 bg-white px-2"
+            className="absolute -top-2 left-1/2 -translate-x-1/2 bg-white px-2 dark:bg-slate-800"
           >
             소셜 회원가입
           </Text>

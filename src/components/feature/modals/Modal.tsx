@@ -7,7 +7,7 @@ export const Modal = () => {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 animate-fadeIn bg-black/50" onClick={() => setClose()}>
+    <div className="fixed inset-0 z-50 animate-fadeIn bg-black/50" onClick={() => setClose()}>
       <div onClick={(e) => e.stopPropagation()}>
         <AlertModal />
       </div>

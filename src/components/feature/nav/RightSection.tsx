@@ -1,4 +1,4 @@
-import { MouseEvent } from "react"
+import { MouseEvent, useRef } from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "@tanstack/react-query"
 import { meQuery } from "@/src/services/queries/auth/meQuery"
@@ -12,7 +12,6 @@ import { Button } from "../../shared/Button"
 import { DropDownList } from "../../shared/DropDown/DropDownList"
 import { SearchBar } from "./SearchBar"
 import { Todos } from "../todos/Todos"
-import { PencilIcon } from "../../icon/PencilIcon"
 import { TodoIcon } from "../../icon/TodoIcon"
 
 export const RightSection = () => {
@@ -27,11 +26,10 @@ export const RightSection = () => {
     HTMLButtonElement,
     HTMLDivElement
   >()
-  const [meBtnRef, meBtnStatusRef, handleMeBtnStatusChange] = useStatusChange<
+  const [meRef, meStatusRef, handleMeBtnStatusChange] = useStatusChange<
     HTMLButtonElement,
     HTMLUListElement
   >()
-
   const handleAuthButton = (e: MouseEvent<HTMLButtonElement>) => {
     if (me?.user) {
       handleMeBtnStatusChange(e)
@@ -60,15 +58,15 @@ export const RightSection = () => {
         <List.Row>
           <Button variant="icon" ref={searchRef} onClick={handleSearchStatusChange}>
             <SearchIcon />
-            <SearchBar statusRef={searchStatusRef} />
           </Button>
+          <SearchBar statusRef={searchStatusRef} />
         </List.Row>
         <List.Row>
           {me ? (
-            <Button variant="icon" ref={meBtnRef} onClick={handleAuthButton}>
+            <Button variant="icon" ref={meRef} onClick={handleAuthButton}>
               <MeIcon />
               <DropDownList
-                ref={meBtnStatusRef}
+                ref={meStatusRef}
                 itemList={ME_OPTION}
                 onClick={handleMeBtnClick}
                 className="right-0 top-full w-40"

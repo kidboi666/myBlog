@@ -17,6 +17,7 @@ interface Props extends ComponentProps<"div"> {
     | "write"
     | "search"
     | "dropdown"
+    | "modal"
 }
 
 const containerVariants = cva("flex items-center justify-center", {
@@ -32,6 +33,8 @@ const containerVariants = cva("flex items-center justify-center", {
       background: "relative flex min-h-dvh flex-col overflow-hidden gradient-move",
       write: "h-screen w-screen animate-fadeIn gap-4 bg-white p-4",
       search: "size-full rounded-lg bg-white p-4 shadow-md",
+      modal:
+        "fixed left-1/2 top-1/2 flex h-fit w-full max-w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white px-0 py-0 md:px-0",
       dropdown:
         "status-popup absolute z-10 w-fit min-w-40 origin-top rounded-md bg-white px-4 py-4 shadow-md ring-1 ring-black ring-opacity-10 transition focus:outline-none",
     },

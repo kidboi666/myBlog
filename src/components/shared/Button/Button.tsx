@@ -19,7 +19,7 @@ const buttonVariants = cva(
         secondary:
           "text-slate-500 ring-1 ring-slate-300 hover:bg-slate-300 hover:text-white active:bg-slate-400",
         teritory: "text-slate-500 hover:text-slate-600 hover:underline active:text-slate-400",
-        icon: "p-4 text-slate-500 hover:bg-slate-300 hover:text-white",
+        icon: "p-4 text-slate-500 hover:bg-slate-300 hover:text-white active:bg-slate-400",
         warn: "bg-red-500 text-white hover:bg-red-600",
       },
       disabled: {

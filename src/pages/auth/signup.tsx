@@ -53,7 +53,7 @@ const SignUp = () => {
       <Back className="fixed left-4 top-4" />
       <form
         onSubmit={handleSubmit(handleSubmitSignUp)}
-        className="flex w-96 flex-col gap-6 text-sm"
+        className="flex w-full flex-col gap-6 px-2 text-sm md:w-96"
       >
         <Title className="self-center">회원가입</Title>
         <div className="flex gap-2 self-end">

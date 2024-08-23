@@ -6,7 +6,7 @@ interface Props {
 
 export const Tag = ({ tag }: Props) => {
   return (
-    <Button variant="secondary" className="rounded-2xl px-3 py-1">
+    <Button variant="secondary" className="rounded-2xl px-3 py-1 text-xs">
       {tag}
     </Button>
   )

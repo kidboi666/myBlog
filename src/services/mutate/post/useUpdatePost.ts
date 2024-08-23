@@ -32,7 +32,7 @@ export const useUpdatePost = () => {
       setOpen("success", { title: "포스팅 성공", text: "포스팅에 성공하였습니다!" })
       router.push({
         pathname: "/blog",
-        query: { categoryId: data?.[0]?.parent_category_id, name: data?.[0].name },
+        query: { categoryId: data?.[0]?.parent_category_id, name: data?.[0].parent_category_name },
       })
     },
   })

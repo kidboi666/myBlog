@@ -16,6 +16,7 @@ import { Card } from "../../shared/Card"
 import { Text } from "../../shared/Text"
 import { Title } from "../../shared/Title"
 import { DropDownList } from "../../shared/DropDown/DropDownList"
+import { Tag } from "../../shared/Tag"
 
 interface Props {
   card: Tables<"post">
@@ -62,25 +63,25 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
   return (
     <Card
       key={card?.id}
-      className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row"
+      className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:h-52 md:flex-row"
       onClick={() => router.push(`/blog/${card.id}`)}
     >
       {card?.image ? (
         <Card.Image
           src={card?.image ?? icon}
           alt="카드 이미지"
-          className={cn("h-40 flex-shrink-0 md:w-40")}
+          className={cn("h-20 flex-shrink-0 md:h-40 md:w-40")}
           innerClassName="object-cover"
         />
       ) : (
         <Card.Image
           src={icon}
           alt="카드 이미지"
-          className={cn("h-40 md:w-40")}
+          className={cn("h-20 md:h-40 md:w-40")}
           innerClassName="object-contain"
         />
       )}
-      <Card.Content className="flex flex-1 flex-col gap-2">
+      <Card.Content className="flex flex-1 flex-col justify-between gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>
           <Button
@@ -98,7 +99,10 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
             />
           </Button>
         </div>
-        <Text className="line-clamp-6 flex-1">{card.content}</Text>
+        <div className="h-18">
+          <Text className="line-clamp-3 flex-1">{card.content}</Text>
+        </div>
+        <div className="flex gap-2">{card.tags?.map((tag) => <Tag key={tag} tag={tag} />)}</div>
         <div className="flex justify-between">
           <Text variant="description">{validateCategoryBeforeRender(card)}</Text>
           <div className="flex gap-4 self-end">

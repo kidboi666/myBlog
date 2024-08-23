@@ -39,7 +39,7 @@ export const SlideBar = ({ categories, subCategories, slideBarRef }: Props) => {
             <Xicon />
           </Button>
         </div>
-        <Line className="my-4" />
+        <Line className="my-4 dark:border-slate-700" />
         <List className="flex w-full flex-col">
           {categories?.map((category) => {
             const pickSubCategories =

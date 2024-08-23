@@ -31,13 +31,13 @@ const containerVariants = cva("flex items-center justify-center", {
       other: "h-fit w-fit rounded-3xl bg-white shadow-md dark:bg-slate-800",
       wrapper: "flex w-full flex-1 flex-col items-center justify-center px-0 lg:px-28 xl:px-40",
       background:
-        "dark:gradient-move-dark relative flex min-h-dvh flex-col overflow-hidden gradient-move",
+        "relative flex min-h-dvh flex-col overflow-hidden gradient-move dark:gradient-move-dark",
       write: "h-screen w-screen animate-fadeIn bg-white p-4 dark:bg-slate-800",
       search: "size-full rounded-lg bg-white p-4 shadow-md",
       modal:
         "fixed left-1/2 top-1/2 flex h-fit w-full max-w-[480px] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white px-0 py-0 md:px-0",
       dropdown:
-        "status-popup absolute z-10 w-fit min-w-40 origin-top rounded-md bg-white px-4 py-4 shadow-md ring-1 ring-black ring-opacity-10 transition focus:outline-none dark:bg-slate-800",
+        "status-popup absolute z-10 w-fit min-w-40 origin-top rounded-md bg-white px-4 py-4 shadow-md ring-1 ring-black ring-opacity-10 transition focus:outline-none dark:bg-slate-800 dark:ring-slate-700",
     },
   },
 })

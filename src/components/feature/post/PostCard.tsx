@@ -56,7 +56,7 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
   return (
     <Card
       key={card?.id}
-      className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row dark:bg-slate-700"
+      className="flex-col gap-6 rounded-2xl bg-blue-50 p-6 opacity-0 transition-fast hover:-translate-y-2 hover:shadow-lg md:flex-row dark:border dark:border-slate-700 dark:bg-slate-800 dark:shadow-md"
       onClick={() => router.push(`/blog/${card.id}`)}
     >
       {card?.image ? (

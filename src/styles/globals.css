@@ -11,16 +11,6 @@ p {
   word-break: break-all;
 }
 
-/* code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-}
-
-:lang(en) {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
-} */
-
 * {
   font-family: goorm-sans, "Pretendard";
 }
@@ -34,6 +24,13 @@ input:-webkit-autofill {
 /* 모질라 파이어폭스에서 자동완성된 필드의 배경색을 변경하는 CSS */
 input:-moz-autofill {
   box-shadow: 0 0 0px 1000px white inset;
+  /* linear-gradient:
+    to right,
+    #26436f 0%,
+    #2a4167 25%,
+    #06b6d4 50%,
+    #06b6d4 75%,
+    #3b82f6 100%; */
 }
 
 @layer components {

@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss"
 
 const config: Config = {
   content: ["./pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/**/*.{ts,tsx}"],
+  darkMode: "selector",
   theme: {
     extend: {
       backgroundImage: {
@@ -66,6 +67,11 @@ const config: Config = {
         ".gradient-move": {
           background:
             "linear-gradient(to right, #06b6d4 0%, #3b82f6 25%, #06b6d4 50%, #06b6d4 75%, #3b82f6 100%)",
+          backgroundSize: "400%",
+        },
+        ".gradient-move-dark": {
+          background:
+            "linear-gradient(to right, #1d3c42 0%, #2a4167 25%, #1d3c42 50%, #1d3c42 75%, #2a4167 100%)",
           backgroundSize: "400%",
         },
         ".transition-slow": {

@@ -5,5 +5,6 @@ export const KEBAB_CARD_OPTION = [
 
 export const ME_OPTION = [
   { name: "어드민 페이지", id: 0 },
+  { name: "다크모드", id: 2 },
   { name: "로그아웃", id: 1 },
 ]

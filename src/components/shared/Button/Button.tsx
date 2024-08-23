@@ -15,11 +15,12 @@ const buttonVariants = cva(
   {
     variants: {
       active: {
-        primary: "bg-blue-400 hover:bg-blue-500 active:bg-blue-600",
+        primary:
+          "bg-blue-400 hover:bg-blue-500 active:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 dark:active:bg-blue-400",
         secondary:
           "text-slate-500 ring-1 ring-slate-300 hover:bg-slate-300 hover:text-white active:bg-slate-400",
         teritory: "text-slate-500 hover:text-slate-600 hover:underline active:text-slate-400",
-        icon: "p-4 text-slate-500 hover:bg-slate-300 hover:text-white active:bg-slate-400",
+        icon: "p-4 text-slate-500 hover:bg-slate-300 hover:text-white active:bg-slate-400 dark:hover:bg-slate-600 dark:hover:text-slate-400",
         warn: "bg-red-500 text-white hover:bg-red-600",
       },
       disabled: {

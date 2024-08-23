@@ -35,6 +35,8 @@ export async function updateSession(req: NextRequest) {
   const {
     data: { user },
   } = await supabase.auth.getUser()
+
+  console.log(user)
   if (!user && PROTECTED_ROUTES.includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL("/auth/signin", req.url))
   }

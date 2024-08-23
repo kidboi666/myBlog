@@ -38,7 +38,7 @@ export const SideBarItem = ({
       className="relative flex"
     >
       <Button
-        variant="secondary"
+        variant="icon"
         onClick={() => onCategoryButtonClick(category)}
         className="flex px-4 py-4 text-base text-slate-500 ring-0"
       >

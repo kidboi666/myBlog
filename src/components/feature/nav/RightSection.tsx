@@ -1,4 +1,4 @@
-import { MouseEvent, useRef } from "react"
+import { MouseEvent, useLayoutEffect } from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "@tanstack/react-query"
 import { meQuery } from "@/src/services/queries/auth/meQuery"
@@ -43,8 +43,22 @@ export const RightSection = () => {
       router.push("/admin")
     } else if (menu.name === "로그아웃") {
       signOut()
+    } else if (menu.name === "다크모드") {
+      const theme = localStorage.getItem("theme")
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      theme === "dark"
+        ? localStorage.setItem("theme", "light")
+        : localStorage.setItem("theme", "dark")
     }
   }
+
+  useLayoutEffect(() => {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [])
 
   return (
     <div className="relative justify-self-end">

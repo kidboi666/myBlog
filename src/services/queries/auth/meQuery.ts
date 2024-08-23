@@ -13,5 +13,6 @@ export const meQuery = {
 
         return session
       },
+      staleTime: 0,
     }),
 }

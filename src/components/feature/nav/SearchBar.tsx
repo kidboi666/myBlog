@@ -16,7 +16,7 @@ export const SearchBar = ({ statusRef }: Props) => {
       className="fixed left-1/2 top-full w-[calc(100%-60px)] origin-top -translate-x-1/2 transition md:w-[600px]"
     >
       <div className="relative w-full">
-        <div className="absolute left-1.5 top-1.5">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">
           <SearchIcon />
         </div>
         <TextInput name="search" variant="secondary" className="pl-9" />

@@ -36,7 +36,7 @@ export const DropDown = ({
           type="button"
           onClick={handleClickOutside}
           className={cn(
-            "inline-flex w-full items-center justify-between gap-x-1.5 rounded-lg bg-white px-3 py-2 shadow-sm ring-1 ring-inset ring-slate-300 transition hover:bg-slate-50",
+            "inline-flex w-full items-center justify-between gap-x-1.5 rounded-lg bg-white px-2 py-2 shadow-sm ring-1 ring-inset ring-slate-300 transition hover:bg-slate-50",
             !itemList?.[0] ? "bg-slate-200 hover:bg-slate-200" : "",
             className,
           )}

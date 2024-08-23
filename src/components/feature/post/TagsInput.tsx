@@ -51,7 +51,7 @@ export const TagsInput = ({ tags, setTags }: Props) => {
     <div>
       <div
         className={cn(
-          "flex w-full flex-wrap gap-2 rounded-lg border border-slate-300 px-2 py-2 text-sm",
+          "flex w-full flex-wrap gap-2 rounded-lg border border-slate-300 py-2 pr-2 text-sm",
           error && "border-red-500",
         )}
       >

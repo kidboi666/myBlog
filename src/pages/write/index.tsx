@@ -21,6 +21,7 @@ import { TagsInput } from "@/src/components/feature/post/TagsInput"
 import { Line } from "@/src/components/shared/Line"
 import { Back } from "@/src/components/shared/Back"
 import { FileInput } from "@/src/components/feature/write/FileInput"
+import { Text } from "@/src/components/shared/Text"
 
 const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
@@ -178,6 +179,7 @@ const WritePost = () => {
           />
           <div className="flex w-full flex-col gap-2">
             <TagsInput tags={tags} setTags={setTags} />
+            <TextInput variant="secondary" />
             <DropDown
               itemList={categoryList}
               selectedItem={selectedCategory.name}
@@ -221,7 +223,9 @@ const WritePost = () => {
             className="text-5xl font-semibold text-slate-400 placeholder:text-slate-300"
           />
           <Line />
-          <Markdown text={content} />
+          <Text>
+            <Markdown text={content} />
+          </Text>
         </div>
       </div>
     </Container>

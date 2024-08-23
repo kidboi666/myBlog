@@ -9,7 +9,7 @@ interface Props {
   dataStatus?: string
 }
 
-const textVariants = cva("text-slate-600", {
+const textVariants = cva("text-slate-600 transition", {
   variants: {
     variant: {
       body: "text-sm",

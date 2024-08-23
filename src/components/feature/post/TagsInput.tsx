@@ -1,7 +1,6 @@
 import { Dispatch, KeyboardEvent, SetStateAction } from "react"
 import { useInput } from "@/src/hooks/useInput"
 import { TextInput } from "../../shared/TextInput"
-import { Text } from "../../shared/Text"
 import { Tag } from "../../shared/Tag"
 
 interface Props {

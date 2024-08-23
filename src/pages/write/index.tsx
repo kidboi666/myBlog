@@ -24,6 +24,7 @@ import { TagsInput } from "@/src/components/feature/post/TagsInput"
 import { Xicon } from "@/src/components/icon/XIcon"
 import { Line } from "@/src/components/shared/Line"
 import { Back } from "@/src/components/shared/Back"
+import { FileInput } from "@/src/components/feature/write/FileInput"
 
 const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
 
@@ -36,9 +37,21 @@ const WritePost = () => {
   const [image, setImage] = useState<File | null>(null)
   const [preview, setPreview] = useState("")
   const [showCancelButton, setShowCancelButton] = useState(false)
-  const { mutate: postImage, isPending: isPendingPostImage } = usePostImage()
-  const { mutate: postBlog, isPending: isPendingPostBlog } = usePostBlog()
-  const { mutate: updatePost, isPending: isPendingUpdatePost } = useUpdatePost()
+  const {
+    mutate: postImage,
+    isPending: isPendingPostImage,
+    isSuccess: isSuccessPostImage,
+  } = usePostImage()
+  const {
+    mutate: postBlog,
+    isPending: isPendingPostBlog,
+    isSuccess: isSuccessPostBlog,
+  } = usePostBlog()
+  const {
+    mutate: updatePost,
+    isPending: isPendingUpdatePost,
+    isSuccess: isSuccessUpdatePost,
+  } = useUpdatePost()
   const { data: categoryList } = useQuery(categoryQuery.parentCategory())
   const { data: subCategories } = useQuery(categoryQuery.subCategory())
   const { data: previousPost } = useQuery(postQuery.postDetail(stringOrFirstString(Number(postId))))
@@ -142,9 +155,8 @@ const WritePost = () => {
   return (
     <Container variant="write" className="flex-col">
       <Back className="self-start" />
-
       <div className="flex w-full gap-4 overflow-y-auto">
-        <div className="flex size-full flex-1 flex-col gap-2">
+        <div className="flex size-full flex-1 flex-col gap-2 p-1">
           <TextInput
             placeholder="제목을 입력하세요."
             name="name"
@@ -162,35 +174,12 @@ const WritePost = () => {
             onChange={onChangeContent}
             className="h-screen overflow-y-auto"
           />
-          <Button
-            variant="teritory"
-            onMouseEnter={() => setShowCancelButton(true)}
-            onMouseLeave={() => setShowCancelButton(false)}
-            className="relative h-40 w-full flex-col p-12 ring-1 ring-slate-200"
-          >
-            {preview && showCancelButton && (
-              <Button
-                variant="secondary"
-                onClick={() => setPreview("")}
-                className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
-              >
-                <Xicon className="h-10 w-10" />
-              </Button>
-            )}
-            {preview ? (
-              <Image src={preview} alt="sdf" fill className="rounded-lg object-cover" />
-            ) : (
-              <UploadImageButton />
-            )}
-            <input
-              name="image"
-              onChange={handleChangeFile}
-              type="file"
-              accept="image/*"
-              className="absolute inset-0 opacity-0"
-            />
-            <Text variant="caption">{preview ? image?.name : "커버 이미지 파일 선택"}</Text>
-          </Button>
+          <FileInput
+            preview={preview}
+            setPreview={setPreview}
+            image={image}
+            onChangeFile={handleChangeFile}
+          />
           <div className="flex w-full flex-col gap-2">
             <TagsInput tags={tags} setTags={setTags} />
             <DropDown
@@ -211,7 +200,14 @@ const WritePost = () => {
             )}
             <Button
               isLoading={isPendingPostBlog || isPendingPostImage || isPendingUpdatePost}
-              disabled={!name || !content || !selectedCategory.id}
+              disabled={
+                !name ||
+                !content ||
+                !selectedCategory.id ||
+                isSuccessPostImage ||
+                isSuccessPostBlog ||
+                isSuccessUpdatePost
+              }
               onClick={handleSubmit}
             >
               포스팅하기

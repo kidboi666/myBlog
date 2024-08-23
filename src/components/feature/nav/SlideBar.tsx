@@ -32,10 +32,10 @@ export const SlideBar = ({ categories, subCategories, slideBarRef }: Props) => {
     >
       <div className="w-full">
         <div className="flex justify-between gap-4">
-          <Button lang="en" variant="icon" onClick={() => router.push("/")} className="">
+          <Button variant="icon" onClick={() => router.push("/")} className="">
             ORIGINAL .
           </Button>
-          <Button variant="secondary" onClick={closeSlideBar} className="size-fit p-2">
+          <Button variant="icon" onClick={closeSlideBar}>
             <Xicon />
           </Button>
         </div>

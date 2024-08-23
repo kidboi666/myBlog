@@ -55,7 +55,7 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
   }
 
   return (
-    <List.Row className="flex w-full flex-col items-start">
+    <List.Row className="flex w-full flex-col items-start transition">
       <Button
         variant="secondary"
         onClick={(e) => handleCategoryButtonClick(e)}
@@ -78,7 +78,7 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
         {subCategories.length >= 1 && (
           <ArrowHeadIcon
             ref={arrowRef}
-            className="rotate-180 transition data-[status=closed]:-rotate-0"
+            className="rotate-180 transition group-hover:text-slate-500 data-[status=closed]:-rotate-0"
           />
         )}
       </Button>

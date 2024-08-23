@@ -7,6 +7,7 @@ import { List } from "../../layout/List"
 import { SideBarItem } from "./SideBarItem"
 import { Button } from "../../shared/Button"
 import { PencilIcon } from "../../icon/PencilIcon"
+import { WriteIcon } from "../../icon/WriteIcon"
 
 interface Props {
   categories?: Tables<"category">[]
@@ -91,11 +92,10 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
             <Button
               onMouseEnter={() => openStatusChange()}
               onMouseLeave={() => closeStatusChange()}
-              variant="secondary"
+              variant="icon"
               onClick={() => router.push("/write")}
-              className="flex w-full px-4 py-4 text-base text-slate-500 ring-0"
             >
-              <PencilIcon />
+              <WriteIcon />
             </Button>
             <Button
               ref={addPostButtonRef}

@@ -13,6 +13,7 @@ import { DropDownList } from "../../shared/DropDown/DropDownList"
 import { SearchBar } from "./SearchBar"
 import { Todos } from "../todos/Todos"
 import { PencilIcon } from "../../icon/PencilIcon"
+import { TodoIcon } from "../../icon/TodoIcon"
 
 export const RightSection = () => {
   const router = useRouter()
@@ -52,7 +53,7 @@ export const RightSection = () => {
       <List className="flex items-center gap-4">
         <List.Row>
           <Button variant="icon" ref={todoRef} onClick={handleTodosStatusChange}>
-            <PencilIcon />
+            <TodoIcon />
             <Todos statusRef={todoStatusRef} />
           </Button>
         </List.Row>

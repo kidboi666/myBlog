@@ -6,7 +6,7 @@ import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { IOption } from "@/src/models/blog/post"
 import { Tables } from "@/src/models/supabase"
 import { useStatusChange } from "@/src/hooks/useStatusChange"
-import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
+import { formatDateToYMD } from "@/src/utils/formatDate"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { Container } from "../../layout/Container"
 import { Title } from "../../shared/Title"
@@ -50,16 +50,16 @@ export const Post = ({ post, icon }: Props) => {
 
   return (
     <Container variant="post">
-      {post.image ? (
+      {post.image && (
         <div className="relative h-80">
           <Image src={post.image} alt="포스트이미지" fill className="rounded-3xl object-cover" />
         </div>
-      ) : (
-        <div className="relative size-20">
-          <Image src={icon} alt="포스트이미지" fill className="rounded-3xl object-contain" />
-        </div>
       )}
-      <div className="relative mt-12 flex w-full justify-between">
+
+      <div className="relative mt-4 size-20">
+        <Image src={icon} alt="포스트이미지" fill className="rounded-3xl object-contain" />
+      </div>
+      <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
         <Button ref={targetRef} onClick={handleStatusChange} variant="icon">
           <KebabIcon size={20} className="rotate-90" />
@@ -71,10 +71,7 @@ export const Post = ({ post, icon }: Props) => {
           className="right-2 top-10"
         />
       </div>
-      <div className="flex gap-2">
-        {post.tags?.map((tag, idx) => <Tag key={`${tag + idx}`} tag={tag} />)}
-      </div>
-      <div className="mt-4">
+      <div className="mt-4 flex flex-col gap-4">
         <Text variant="description">
           {post?.parent_category_name}&nbsp;
           <Text as="span" variant="description">
@@ -86,14 +83,16 @@ export const Post = ({ post, icon }: Props) => {
       </div>
       <div className="flex gap-12">
         <Text variant="description">{formatDateToYMD(post.created_at)}</Text>
-        <Text variant="description">{formatDate(post.created_at)}</Text>
       </div>
-      <Line />
-      <div className="mt-4">
-        <Text>
-          <Markdown text={post?.content} />
-        </Text>
-      </div>
+      {post?.tags?.length !== 0 && (
+        <div className="flex gap-2">
+          {post.tags?.map((tag, idx) => <Tag key={`${tag + idx}`} tag={tag} />)}
+        </div>
+      )}
+      <Line className="my-4" />
+      <Text>
+        <Markdown text={post?.content} />
+      </Text>
     </Container>
   )
 }

@@ -34,11 +34,11 @@ export const Post = ({ post, icon }: Props) => {
   >()
   const router = useRouter()
   const { mutate: deletePost } = useDeletePost()
-  const { setOpen } = useModal()
+  const { openModal } = useModal()
 
   const handleOptionClick = (menu: IOption) => {
     if (menu.name === "삭제하기") {
-      setOpen("alert", {
+      openModal("alert", {
         title: "포스팅 삭제",
         text: "정말 해당 포스팅을 삭제하시겠습니까?",
         yes: "삭제하기",
@@ -49,6 +49,11 @@ export const Post = ({ post, icon }: Props) => {
     if (menu.name === "수정하기") {
       router.push({ pathname: "/write", query: { postId: post?.id } })
     }
+  }
+
+  const handleTagClick = () => {
+    // 태그 클릭시 해당 태그가 등록된 게시물 자동 검색
+    console.log("asdf")
   }
 
   return (
@@ -64,7 +69,7 @@ export const Post = ({ post, icon }: Props) => {
       </div>
       <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
-        <Button ref={targetRef} onClick={handleStatusChange} variant="icon">
+        <Button ref={targetRef} onClick={handleStatusChange} variant="icon" className="h-fit">
           <KebabIcon size={20} className="rotate-90" />
         </Button>
         <DropDownList
@@ -82,7 +87,7 @@ export const Post = ({ post, icon }: Props) => {
       </div>
       {post?.tags?.length !== 0 && (
         <div className="flex gap-2">
-          <Tags tags={post.tags || []} />
+          <Tags tags={post.tags || []} onClick={handleTagClick} />
         </div>
       )}
       <Line className="my-4" />

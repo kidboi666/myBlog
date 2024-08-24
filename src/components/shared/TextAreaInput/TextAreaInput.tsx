@@ -8,7 +8,7 @@ interface Props extends ComponentProps<"textarea"> {
 }
 
 const textAreaInputVariants = cva(
-  "w-full resize-none rounded-lg border px-2 py-2 text-base text-slate-600 outline-none transition dark:bg-slate-800 dark:text-slate-500",
+  "w-full resize-none rounded-lg border px-2 py-2 text-base text-slate-600 outline-none transition dark:bg-slate-800 dark:text-slate-400",
   {
     variants: {
       variant: {

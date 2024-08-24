@@ -9,12 +9,12 @@ interface Props {
   dataStatus?: string
 }
 
-const textVariants = cva("text-slate-600 transition dark:text-slate-300", {
+const textVariants = cva("text-slate-600 transition dark:text-slate-400", {
   variants: {
     variant: {
       body: "text-sm",
       description: "text-xs text-slate-500",
-      caption: "text-xs text-slate-400",
+      caption: "text-xs text-slate-400 dark:text-slate-500",
       error: "mt-2 block text-xs text-red-600",
     },
   },

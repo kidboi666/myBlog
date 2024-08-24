@@ -57,7 +57,6 @@ const config: Config = {
     },
   },
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ({
       addUtilities,
     }: {
@@ -71,7 +70,7 @@ const config: Config = {
         },
         ".gradient-move-dark": {
           background:
-            "linear-gradient(to right, #1d3c42 0%, #2a4167 25%, #1d3c42 50%, #1d3c42 75%, #2a4167 100%)",
+            "linear-gradient(to right, #283e51 0%, #0a1526 25%, #283e51 50%, #283e51 75%, #0a1526 100%)",
           backgroundSize: "400%",
         },
         ".transition-slow": {

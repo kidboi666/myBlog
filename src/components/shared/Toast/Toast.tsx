@@ -29,17 +29,17 @@ const toastVariants = cva("text-sm", {
 })
 
 export const Toast = () => {
-  const { time, isOpen, data, setClose, type } = useToast()
+  const { time, isOpen, data, closeToast, type } = useToast()
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setClose()
+      closeToast()
     }, 1000 * time)
 
     return () => {
       clearTimeout(timer)
     }
-  }, [setClose, isOpen, type, time])
+  }, [closeToast, isOpen, type, time])
 
   if (!isOpen) return null
 
@@ -55,7 +55,7 @@ export const Toast = () => {
         <Title className={cn(toastVariants({ title: type }))}>{data?.title}</Title>
         <Button
           variant="icon"
-          onClick={() => setClose()}
+          onClick={() => closeToast()}
           className={cn("p-0 hover:rotate-90", toastVariants({ text: type }))}
         >
           <Xicon />

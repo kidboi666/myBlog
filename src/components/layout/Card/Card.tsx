@@ -19,11 +19,7 @@ export const Card = ({
   return (
     <Component
       ref={target}
-      className={cn(
-        "flex h-full w-full cursor-pointer",
-        isIntersecting && "animate-cardSlideDown",
-        className,
-      )}
+      className={cn(isIntersecting && "animate-cardSlideDown", className)}
       {...props}
     >
       {children}

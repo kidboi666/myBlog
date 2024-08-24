@@ -8,8 +8,8 @@ interface ToastState {
   time: number
   type: ToastType | null
   data: any
-  setOpen: (type: ToastType, data?: any, time?: number) => void
-  setClose: () => void
+  openToast: (type: ToastType, data?: any, time?: number) => void
+  closeToast: () => void
 }
 
 export const useToast = create<ToastState>((set) => ({
@@ -17,6 +17,6 @@ export const useToast = create<ToastState>((set) => ({
   time: 3,
   type: null,
   data: null,
-  setOpen: (type, data, time) => set({ isOpen: true, type, data, time: time ?? 3 }),
-  setClose: () => set({ isOpen: false, type: null, data: null }),
+  openToast: (type, data, time) => set({ isOpen: true, type, data, time: time ?? 3 }),
+  closeToast: () => set({ isOpen: false, type: null, data: null }),
 }))

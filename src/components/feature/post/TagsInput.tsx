@@ -51,18 +51,18 @@ export const TagsInput = ({ tags, setTags }: Props) => {
     <div>
       <div
         className={cn(
-          "flex w-full flex-wrap gap-2 rounded-lg border border-slate-300 py-2 pr-2 text-sm",
+          "group flex w-full flex-wrap gap-2 rounded-lg border border-slate-300 px-2 py-2 pr-2 text-sm transition dark:border-slate-600 dark:hover:bg-slate-700",
           error && "border-red-500",
         )}
       >
-        <Tags tags={tags} />
+        {tags.length !== 0 && <Tags tags={tags} onClick={() => console.log("asdf")} className="" />}
         <input
           name="tags"
           placeholder="태그를 추가하세요. 입력후 Enter. 삭제는 BackSpace"
           value={text}
           onChange={onChangeText}
           onKeyDown={handleKeyDown}
-          className="flex-1 outline-none"
+          className="flex-1 text-slate-800 outline-none transition dark:bg-slate-800 dark:text-slate-400 dark:placeholder:text-slate-500 dark:group-hover:bg-slate-700"
         />
       </div>
       {error && (

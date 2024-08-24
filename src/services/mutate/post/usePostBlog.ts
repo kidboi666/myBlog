@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/router"
 
 export const usePostBlog = () => {
-  const { setOpen } = useToast()
+  const { openToast } = useToast()
   const router = useRouter()
 
   return useMutation({
@@ -27,7 +27,7 @@ export const usePostBlog = () => {
     },
     onSuccess: ({ data }) => {
       queryClient.invalidateQueries({ queryKey: ["post"] })
-      setOpen("success", { title: "포스팅 성공", text: "포스팅에 성공하였습니다!" })
+      openToast("success", { title: "포스팅 성공", text: "포스팅에 성공하였습니다!" })
       router.push({
         pathname: "/blog",
         query: { categoryId: data?.[0]?.parent_category_id, name: data?.[0].parent_category_name },

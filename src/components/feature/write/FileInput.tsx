@@ -20,13 +20,13 @@ export const FileInput = ({ preview, setPreview, onChangeFile, image }: Props) =
       variant="icon"
       onMouseEnter={() => setShowCancelButton(true)}
       onMouseLeave={() => setShowCancelButton(false)}
-      className="h-40 ring-1 ring-slate-300"
+      className="h-40 ring-1 ring-slate-300 dark:ring-slate-600"
     >
       {preview && showCancelButton && (
         <Button
           variant="icon"
           onClick={() => setPreview("")}
-          className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg bg-slate-400 text-white opacity-90"
+          className="absolute inset-0 z-10 flex items-center justify-center gap-4 rounded-lg text-white opacity-90"
         >
           <Xicon className="h-10 w-10" />
         </Button>
@@ -43,7 +43,7 @@ export const FileInput = ({ preview, setPreview, onChangeFile, image }: Props) =
         accept="image/*"
         className="absolute inset-0 opacity-0 file:cursor-pointer"
       />
-      <Text variant="caption" className="group-hover:text-white">
+      <Text variant="caption" className="group-hover:text-white dark:group-hover:text-slate-500">
         {preview ? image?.name : "커버 이미지 파일 선택"}
       </Text>
     </Button>

@@ -7,14 +7,14 @@ interface ModalState {
   isOpen: boolean
   type: ModalType | null
   data: any
-  setOpen: (type: ModalType, data?: any) => void
-  setClose: () => void
+  openModal: (type: ModalType, data?: any) => void
+  closeModal: () => void
 }
 
 export const useModal = create<ModalState>((set) => ({
   isOpen: false,
   type: null,
   data: null,
-  setOpen: (type, data) => set({ isOpen: true, type, data }),
-  setClose: () => set({ isOpen: false, type: null, data: null }),
+  openModal: (type, data) => set({ isOpen: true, type, data }),
+  closeModal: () => set({ isOpen: false, type: null, data: null }),
 }))

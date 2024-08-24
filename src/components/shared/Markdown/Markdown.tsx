@@ -19,7 +19,7 @@ const h1 = ({ children }: PropsWithChildren) => {
 
         if (isValidElement(child) && child?.props?.node?.tagName === "code") {
           return (
-            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400">
+            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400 dark:bg-slate-700">
               {child.props.children}
             </code>
           )
@@ -37,7 +37,7 @@ const h2 = ({ children }: PropsWithChildren) => {
 
         if (isValidElement(child) && child.props.node.tagName === "code") {
           return (
-            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400">
+            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400 dark:bg-slate-700">
               {child.props.children}
             </code>
           )
@@ -55,7 +55,7 @@ const h3 = ({ children }: PropsWithChildren) => {
 
         if (isValidElement(child) && child.props.node.tagName === "code") {
           return (
-            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400">
+            <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400 dark:bg-slate-700">
               {child.props.children}
             </code>
           )
@@ -66,7 +66,10 @@ const h3 = ({ children }: PropsWithChildren) => {
   )
 }
 const aside = ({ children }: PropsWithChildren) => (
-  <aside className="mb-[0.5em] mt-[0.5em] rounded-[0.3em] bg-slate-200 p-[1em]">{children}</aside>
+  <aside className="relative mb-[0.5em] mt-[0.5em] h-full rounded-[0.3em] bg-slate-200 p-[1em] dark:bg-slate-700">
+    <span className="absolute left-0 top-0 h-full w-1 bg-blue-500" />
+    {children}
+  </aside>
 )
 const p = ({ children }: PropsWithChildren) => (
   <p className="mb-[0.3em] mt-[0.3em] leading-[1.5]">{children}</p>
@@ -88,7 +91,7 @@ const ol = ({ children }: PropsWithChildren) => (
   <ol className="list-decimal pt-[0.2em]">{children}</ol>
 )
 const li = ({ children }: PropsWithChildren) => <li className="mt-[1em]">{children}</li>
-const hr = () => <hr className="mb-[2em] mt-[4em]" />
+const hr = () => <hr className="mb-[2em] mt-[4em] dark:border-slate-600" />
 
 interface Props {
   text: string
@@ -135,19 +138,22 @@ const Markdown = ({ text, className, showLine = false }: Props) => {
         code: ({ children, className, node, ...rest }) => {
           const match = /language-(\w+)/.exec(className || "")
           return match ? (
-            <SyntaxHighlighter
-              PreTag="div"
-              children={String(children).replace(/\n$/, "")}
-              language={match[1]}
-              style={oneDark}
-              showLineNumbers={showLine}
-              useInlineStyles
-            />
+            <div className="py-2">
+              <SyntaxHighlighter
+                PreTag="div"
+                children={String(children).replace(/\n$/, "")}
+                language={match[1]}
+                style={oneDark}
+                showLineNumbers={showLine}
+                className="ring ring-blue-400 dark:ring-slate-700"
+                useInlineStyles
+              />
+            </div>
           ) : (
             <code
               {...rest}
               className={cn(
-                "rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.1em] text-blue-400",
+                "rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.1em] text-blue-400 dark:bg-slate-700",
                 className,
               )}
             >

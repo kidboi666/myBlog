@@ -5,8 +5,8 @@ import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
 
 export const useDeletePost = () => {
-  const { setOpen } = useToast()
-  const { setClose } = useModal()
+  const { openToast } = useToast()
+  const { closeModal } = useModal()
 
   return useMutation({
     mutationFn: async (id: number) => {
@@ -14,8 +14,8 @@ export const useDeletePost = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] })
-      setOpen("success", { title: "포스팅 삭제", text: "포스팅 삭제에 성공하였습니다!" })
-      setClose()
+      openToast("success", { title: "포스팅 삭제", text: "포스팅 삭제에 성공하였습니다!" })
+      closeModal()
     },
   })
 }

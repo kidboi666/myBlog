@@ -220,7 +220,7 @@ const WritePost = () => {
             value={name}
             readOnly
             onChange={onChangeName}
-            className="text-5xl font-semibold text-slate-400 placeholder:text-slate-300"
+            className="text-5xl font-semibold"
           />
           <Line />
           <Text>

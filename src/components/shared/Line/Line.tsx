@@ -5,5 +5,5 @@ interface Props {
 }
 
 export const Line = ({ className }: Props) => {
-  return <hr className={cn("w-full", className)} />
+  return <hr className={cn("w-full dark:border-slate-600", className)} />
 }

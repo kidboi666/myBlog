@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-blue-400 hover:bg-blue-500 active:bg-blue-600 dark:bg-blue-800 dark:text-slate-200 dark:hover:bg-blue-700 dark:active:bg-blue-600",
         secondary:
           "text-slate-500 ring-1 ring-slate-300 hover:bg-slate-300 hover:text-white active:bg-slate-400 dark:text-slate-200 dark:hover:bg-slate-700",
-        teritory: "text-slate-500 hover:text-slate-600 hover:underline active:text-slate-400",
+        teritory: "p-0 text-slate-500 hover:text-slate-600 hover:underline active:text-slate-400",
         icon: "p-4 text-slate-500 hover:bg-slate-300 hover:text-white active:bg-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-400 dark:active:bg-slate-600",
         warn: "bg-red-500 text-white hover:bg-red-600",
       },

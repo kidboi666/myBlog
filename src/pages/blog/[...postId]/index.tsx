@@ -6,8 +6,7 @@ import { Footer } from "@/src/components/layout/Footer"
 import { Header } from "@/src/components/layout/Header"
 import { Post } from "@/src/components/feature/post/Post"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
-import { CommentInput } from "@/src/components/feature/comment/CommentInput"
-import { Comment } from "@/src/components/feature/comment/Comment"
+import { CommentWrapper } from "@/src/components/feature/comment/CommentWrapper"
 
 const PostPage = () => {
   const router = useRouter()
@@ -23,8 +22,7 @@ const PostPage = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Post post={post} icon={postCategory.icon!} />
-      <CommentInput />
-      <Comment />
+      <CommentWrapper />
     </AppLayout>
   )
 }

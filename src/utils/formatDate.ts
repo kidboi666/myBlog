@@ -27,7 +27,7 @@ export const formatDate = (time: string) => {
   return `방금 전`
 }
 
-export const formatDateToYMD = (date: string) => {
+export const formatDateToYMD = (date: string | number) => {
   const newDate = new Date(date)
   const year = newDate.getFullYear()
   const month = (newDate.getMonth() + 1).toString().padStart(2, "0")

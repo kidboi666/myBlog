@@ -28,7 +28,7 @@ const Home = () => {
             <PostCard
               key={card.id}
               card={card}
-              icon={postCategory.icon || ""}
+              icon={postCategory?.icon || ""}
               onDelete={(id) => deletePost(id)}
             />
           )

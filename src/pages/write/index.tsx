@@ -153,7 +153,16 @@ const WritePost = () => {
     <Container variant="write" className="flex-col">
       <div className="flex w-full gap-4 overflow-y-auto">
         <div className="flex size-full flex-1 flex-col gap-2 p-1">
-          <Back />
+          <div className="flex h-20 gap-4">
+            <Back className="h-full" />
+            <FileInput
+              preview={preview}
+              setPreview={setPreview}
+              image={image}
+              onChangeFile={handleChangeFile}
+              className="h-20 flex-1"
+            />
+          </div>
           <TextInput
             placeholder="제목을 입력하세요."
             name="name"
@@ -171,15 +180,9 @@ const WritePost = () => {
             onChange={onChangeContent}
             className="h-screen overflow-y-auto"
           />
-          <FileInput
-            preview={preview}
-            setPreview={setPreview}
-            image={image}
-            onChangeFile={handleChangeFile}
-          />
+
           <div className="flex w-full flex-col gap-2">
             <TagsInput tags={tags} setTags={setTags} />
-            <TextInput variant="secondary" />
             <DropDown
               itemList={categoryList}
               selectedItem={selectedCategory.name}

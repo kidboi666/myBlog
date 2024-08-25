@@ -12,18 +12,18 @@ const toastVariants = cva("text-sm", {
   variants: {
     container: {
       warn: "bg-white",
-      success: "bg-green-500",
-      failure: "bg-red-600",
+      success: "bg-green-500 dark:bg-green-500",
+      failure: "bg-red-600 dark:bg-red-600",
     },
     title: {
-      warn: "text-slate-500",
-      success: "text-white",
-      failure: "text-white",
+      warn: "text-slate-500 dark:text-slate-500",
+      success: "text-white dark:text-white",
+      failure: "text-white dark:text-white",
     },
     text: {
-      warn: "text-slate-500",
-      success: "text-white",
-      failure: "text-white",
+      warn: "text-slate-500 dark:text-slate-500",
+      success: "text-white dark:text-white",
+      failure: "text-white dark:text-white",
     },
   },
 })

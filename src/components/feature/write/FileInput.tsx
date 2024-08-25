@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import Image from "next/image"
+import cn from "@/src/lib/cn"
 import { Xicon } from "../../icon/XIcon"
 import { UploadImageButton } from "../../icon/UploadImageIcon"
 import { Button } from "../../shared/Button"
@@ -10,9 +11,10 @@ interface Props {
   setPreview: Dispatch<SetStateAction<string>>
   onChangeFile: (e: ChangeEvent<HTMLInputElement>) => void
   image: File | null
+  className?: string
 }
 
-export const FileInput = ({ preview, setPreview, onChangeFile, image }: Props) => {
+export const FileInput = ({ preview, setPreview, onChangeFile, image, className }: Props) => {
   const [showCancelButton, setShowCancelButton] = useState(false)
 
   return (
@@ -20,7 +22,7 @@ export const FileInput = ({ preview, setPreview, onChangeFile, image }: Props) =
       variant="icon"
       onMouseEnter={() => setShowCancelButton(true)}
       onMouseLeave={() => setShowCancelButton(false)}
-      className="h-40 ring-1 ring-slate-300 dark:ring-slate-600"
+      className={cn("h-40 ring-1 ring-slate-300 dark:ring-slate-600", className)}
     >
       {preview && showCancelButton && (
         <Button

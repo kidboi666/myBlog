@@ -11,7 +11,7 @@ export const useArrTypingEffect = (value: string[]) => {
 
       if (textLength - 1 === idx && value.length > renderedIdx + 1) {
         setRenderedIdx(renderedIdx + 1)
-        setText((prev) => `${prev}${txt}<br>`)
+        setText((prev) => `${prev}${txt}<br><br>`)
       } else {
         setText((prev) => prev + txt)
       }

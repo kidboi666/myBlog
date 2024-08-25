@@ -30,7 +30,11 @@ export const TextInput = ({ className, register, error, variant = "primary", ...
   return (
     <>
       <input
-        className={cn(InputVaraints({ variant }), className, error && "border-red-600")}
+        className={cn(
+          InputVaraints({ variant }),
+          className,
+          error && "border-red-600 dark:border-red-600",
+        )}
         {...register}
         {...props}
       />

@@ -15,7 +15,7 @@ const textVariants = cva("text-slate-600 transition dark:text-slate-400", {
       body: "text-sm",
       description: "text-xs text-slate-500",
       caption: "text-xs text-slate-400 dark:text-slate-500",
-      error: "mt-2 block text-xs text-red-600",
+      error: "mt-2 block text-xs text-red-600 dark:text-red-600",
     },
   },
 })

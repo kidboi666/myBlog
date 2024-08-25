@@ -35,7 +35,7 @@ const h2 = ({ children }: PropsWithChildren) => {
       {Children.map(children, (child) => {
         if (typeof child === "string") return child
 
-        if (isValidElement(child) && child.props.node.tagName === "code") {
+        if (isValidElement(child) && child?.props?.node?.tagName === "code") {
           return (
             <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400 dark:bg-slate-700">
               {child.props.children}
@@ -53,7 +53,7 @@ const h3 = ({ children }: PropsWithChildren) => {
       {Children.map(children, (child) => {
         if (typeof child === "string") return child
 
-        if (isValidElement(child) && child.props.node.tagName === "code") {
+        if (isValidElement(child) && child?.props?.node?.tagName === "code") {
           return (
             <code className="rounded-[0.3em] bg-slate-200 px-[0.3em] py-[0.2em] text-blue-400 dark:bg-slate-700">
               {child.props.children}
@@ -79,13 +79,13 @@ const table = ({ children }: PropsWithChildren) => (
 )
 const thead = ({ children }: PropsWithChildren) => <thead className="">{children}</thead>
 const th = ({ children }: PropsWithChildren) => (
-  <th className="border border-slate-300 p-[0.4em]">{children}</th>
+  <th className="border border-slate-300 p-[0.6em] dark:border-slate-500">{children}</th>
 )
 const tr = ({ children }: PropsWithChildren) => (
-  <tr className="border border-slate-300 p-[0.4em]">{children}</tr>
+  <tr className="border border-slate-300 p-[0.6em] dark:border-slate-500">{children}</tr>
 )
 const td = ({ children }: PropsWithChildren) => (
-  <td className="border border-slate-300 p-[0.4em]">{children}</td>
+  <td className="border border-slate-300 p-[0.6em] dark:border-slate-500">{children}</td>
 )
 const ol = ({ children }: PropsWithChildren) => (
   <ol className="list-decimal pt-[0.2em]">{children}</ol>

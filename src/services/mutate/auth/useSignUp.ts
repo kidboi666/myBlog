@@ -14,6 +14,7 @@ export const useSignUp = () => {
         options: {
           data: {
             nickname: authData.nickname,
+            avatar_url: "",
           },
         },
       })

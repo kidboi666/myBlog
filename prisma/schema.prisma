@@ -32,6 +32,7 @@ model post {
   parent_category_id                           BigInt
   parent_category_name                         String
   tags                                         String[]
+  comment                                      comment[]
   sub_category                                 sub_category? @relation(fields: [sub_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "post_category_id_fkey")
   category_post_parent_category_idTocategory   category      @relation("post_parent_category_idTocategory", fields: [parent_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   category_post_parent_category_nameTocategory category      @relation("post_parent_category_nameTocategory", fields: [parent_category_name], references: [name], onDelete: NoAction, onUpdate: NoAction)
@@ -366,12 +367,31 @@ model users {
 }
 
 model user_info {
-  id         String   @id @db.Uuid
-  created_at DateTime @default(now()) @db.Timestamptz(6)
+  id         String    @id @db.Uuid
+  created_at DateTime  @default(now()) @db.Timestamptz(6)
   email      String?
   nickname   String?
   avatar_url String?
-  users      users    @relation(fields: [id], references: [id], onDelete: Cascade)
+  comment    comment[]
+  users      users     @relation(fields: [id], references: [id], onDelete: Cascade)
+
+  @@schema("public")
+}
+
+model comment {
+  id            BigInt    @id @default(autoincrement())
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  email         String
+  nickname      String
+  avatar_url    String?
+  content       String
+  post_id       BigInt?
+  comment_id    BigInt?
+  user_id       String    @db.Uuid
+  comment       comment?  @relation("commentTocomment", fields: [comment_id], references: [id], onDelete: Cascade)
+  other_comment comment[] @relation("commentTocomment")
+  post          post?     @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  user_info     user_info @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }

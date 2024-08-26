@@ -53,7 +53,6 @@ export const Post = ({ post, icon }: Props) => {
 
   const handleTagClick = () => {
     // 태그 클릭시 해당 태그가 등록된 게시물 자동 검색
-    console.log("asdf")
   }
 
   return (

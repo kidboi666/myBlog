@@ -15,7 +15,9 @@ export const Content = ({
   as: Component = "div",
 }: PropsWithChildren<Props>) => {
   return (
-    <Component className={cn("rounded-md p-4 ring-1 ring-slate-200", className)}>
+    <Component
+      className={cn("rounded-md p-4 ring-1 ring-slate-200 dark:ring-slate-600", className)}
+    >
       <Title variant="title" className="mb-8">
         {title}
       </Title>

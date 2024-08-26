@@ -7,6 +7,7 @@ import { Header } from "@/src/components/layout/Header"
 import { Post } from "@/src/components/feature/post/Post"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { CommentWrapper } from "@/src/components/feature/comment/CommentWrapper"
+import { CommentQuery } from "@/src/services/queries/comment/commentQuery"
 
 const PostPage = () => {
   const router = useRouter()
@@ -16,13 +17,14 @@ const PostPage = () => {
   const { data: categoryList } = useQuery(categoryQuery.parentCategory())
   const [postCategory] =
     categoryList?.filter((category) => category.id === Number(post?.parent_category_id)) || []
+  const { data: comments } = useQuery(CommentQuery.commentForPost(Number(postId)))
 
   if (!post || !postCategory) return null
 
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Post post={post} icon={postCategory.icon!} />
-      <CommentWrapper />
+      <CommentWrapper postId={post?.id} comments={comments ?? []} />
     </AppLayout>
   )
 }

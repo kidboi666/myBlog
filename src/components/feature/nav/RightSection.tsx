@@ -1,4 +1,4 @@
-import { MouseEvent, useLayoutEffect } from "react"
+import { MouseEvent, useEffect } from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "@tanstack/react-query"
 import { meQuery } from "@/src/services/queries/auth/meQuery"
@@ -52,7 +52,7 @@ export const RightSection = () => {
     }
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (localStorage.theme === "dark") {
       document.documentElement.classList.add("dark")
     } else {

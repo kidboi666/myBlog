@@ -8,3 +8,8 @@ export const ME_OPTION = [
   { name: "다크모드", id: 2 },
   { name: "로그아웃", id: 1 },
 ]
+
+export const COMMENT_OPTION = [
+  { name: "삭제하기", id: 0 },
+  { name: "신고하기", id: 1 },
+]

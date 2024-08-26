@@ -85,6 +85,64 @@ export type Database = {
         }
         Relationships: []
       }
+      comment: {
+        Row: {
+          avatar_url: string | null
+          comment_id: number | null
+          content: string
+          created_at: string
+          email: string
+          id: number
+          nickname: string
+          post_id: number | null
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          comment_id?: number | null
+          content: string
+          created_at?: string
+          email: string
+          id?: number
+          nickname: string
+          post_id?: number | null
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          comment_id?: number | null
+          content?: string
+          created_at?: string
+          email?: string
+          id?: number
+          nickname?: string
+          post_id?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comment_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "comment"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comment_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "post"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "comment_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user_info"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       post: {
         Row: {
           content: string

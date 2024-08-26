@@ -35,6 +35,7 @@ const containerVariants = cva("flex items-center justify-center", {
       wrapper: "flex w-full flex-1 flex-col items-center justify-center px-0 lg:px-28 xl:px-40",
       background:
         "relative flex min-h-dvh flex-col overflow-hidden gradient-move dark:gradient-move-dark",
+      // "relative flex min-h-dvh flex-col overflow-hidden bg-blue-200 dark:bg-slate-900/95",
       write: "h-screen w-screen animate-fadeIn bg-white p-4 dark:bg-slate-800",
       search: "size-full rounded-lg bg-white p-4 shadow-md",
       modal:

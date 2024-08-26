@@ -6,7 +6,6 @@ import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
 import { SideBarItem } from "./SideBarItem"
 import { Button } from "../../shared/Button"
-import { PencilIcon } from "../../icon/PencilIcon"
 import { WriteIcon } from "../../icon/WriteIcon"
 
 interface Props {

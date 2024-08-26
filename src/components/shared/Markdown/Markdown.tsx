@@ -66,13 +66,13 @@ const h3 = ({ children }: PropsWithChildren) => {
   )
 }
 const aside = ({ children }: PropsWithChildren) => (
-  <aside className="relative mb-[0.5em] mt-[0.5em] h-full rounded-[0.3em] bg-slate-200 p-[1em] dark:bg-slate-700">
+  <aside className="relative mb-[1em] mt-[1em] h-full rounded-[0.3em] bg-slate-200 p-[1em] dark:bg-slate-700">
     <span className="absolute left-0 top-0 h-full w-1 bg-blue-500" />
     {children}
   </aside>
 )
 const p = ({ children }: PropsWithChildren) => (
-  <p className="mb-[0.3em] mt-[0.3em] leading-[1.5]">{children}</p>
+  <p className="mb-[1em] mt-[1em] leading-[1.5]">{children}</p>
 )
 const table = ({ children }: PropsWithChildren) => (
   <table className="w-full font-light">{children}</table>

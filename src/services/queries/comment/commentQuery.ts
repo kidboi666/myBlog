@@ -13,9 +13,9 @@ export const CommentQuery = {
       },
       enabled: !!postId,
     }),
-  commentForComment: (commentId: number) =>
+  commentForComment: (postId: number | null, commentId: number) =>
     queryOptions({
-      queryKey: ["comment", commentId],
+      queryKey: ["comment", postId, commentId],
       queryFn: async () => {
         const { data } = await supabase.from("comment").select().eq("comment_id", commentId)
 

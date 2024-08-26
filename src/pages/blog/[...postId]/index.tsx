@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query"
+import { dehydrate, useQuery } from "@tanstack/react-query"
 import { useRouter } from "next/router"
 import { postQuery } from "@/src/services/queries/post/postQuery"
 import { AppLayout } from "@/src/components/layout/AppLayout"
@@ -8,6 +8,20 @@ import { Post } from "@/src/components/feature/post/Post"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 import { CommentWrapper } from "@/src/components/feature/comment/CommentWrapper"
 import { CommentQuery } from "@/src/services/queries/comment/commentQuery"
+import { queryClient } from "@/src/lib/ReactQuery"
+import { GetServerSidePropsContext } from "next"
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { postId } = context.query
+
+  await queryClient.prefetchQuery(postQuery.postDetail(Number(postId?.[0])))
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
 
 const PostPage = () => {
   const router = useRouter()

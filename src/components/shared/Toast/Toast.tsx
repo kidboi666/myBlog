@@ -11,7 +11,7 @@ import { Button } from "../Button"
 const toastVariants = cva("text-sm", {
   variants: {
     container: {
-      warn: "bg-white",
+      warn: "bg-white ring-1 ring-slate-300 dark:ring-slate-600",
       success: "bg-green-500 dark:bg-green-500",
       failure: "bg-red-600 dark:bg-red-600",
     },

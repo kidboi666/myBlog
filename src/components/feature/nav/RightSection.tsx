@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect } from "react"
+import { MouseEvent, useLayoutEffect } from "react"
 import { useRouter } from "next/router"
 import { useQuery } from "@tanstack/react-query"
 import { meQuery } from "@/src/services/queries/auth/meQuery"
@@ -38,21 +38,29 @@ export const RightSection = () => {
     }
   }
 
+  const handleTheme = () => {
+    const savedTheme = localStorage.getItem("theme")
+
+    if (savedTheme === "dark") {
+      localStorage.setItem("theme", "light")
+      document.documentElement.classList.remove("dark")
+    } else {
+      localStorage.setItem("theme", "dark")
+      document.documentElement.classList.add("dark")
+    }
+  }
+
   const handleMeBtnClick = (menu: { name: string; id: number }) => {
     if (menu.name === "어드민 페이지") {
       router.push("/admin")
     } else if (menu.name === "로그아웃") {
       signOut()
     } else if (menu.name === "다크모드") {
-      const theme = localStorage.getItem("theme")
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      theme === "dark"
-        ? localStorage.setItem("theme", "light")
-        : localStorage.setItem("theme", "dark")
+      handleTheme()
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (localStorage.theme === "dark") {
       document.documentElement.classList.add("dark")
     } else {

@@ -11,10 +11,10 @@ export const useDeleteComment = () => {
   return useMutation({
     mutationFn: async (params: { commentId: number; postId: number }) => {
       await supabase.from("comment").delete().eq("id", params.commentId)
-      return { postId: params.postId }
+      return { postId: params.postId, commentId: params.commentId }
     },
-    onSuccess: ({ postId }) => {
-      queryClient.invalidateQueries({ queryKey: ["comment", postId] })
+    onSuccess: ({ postId, commentId }) => {
+      queryClient.invalidateQueries({ queryKey: ["comment", postId ?? null, commentId ?? null] })
       openToast("success", { title: "댓글 삭제", text: "댓글 삭제에 성공하였습니다!" })
       closeModal()
     },

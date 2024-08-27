@@ -1,11 +1,11 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabase } from "@/src/lib/supabase/client"
+import { supabaseAdmin } from "@/src/lib/supabase/client"
 import { useMutation } from "@tanstack/react-query"
 
 export const useAddSubCategory = () => {
   return useMutation({
     mutationFn: async (params: { subCategoryName: string; targetCategoryId: number }) => {
-      return supabase
+      return supabaseAdmin
         .from("sub_category")
         .insert({
           name: params.subCategoryName,

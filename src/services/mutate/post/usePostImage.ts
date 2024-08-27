@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase/client"
+import { supabaseAdmin } from "@/src/lib/supabase/client"
 import { useMutation } from "@tanstack/react-query"
 import { v4 as uuidv4 } from "uuid"
 
@@ -10,7 +10,7 @@ interface IPost {
 export const usePostImage = () => {
   return useMutation({
     mutationFn: async (params: IPost) => {
-      const { data } = await supabase.storage
+      const { data } = await supabaseAdmin.storage
         .from("postImage")
         .upload(`public/${params.category}/${uuidv4()}${params.image!.name}`, params.image!)
 

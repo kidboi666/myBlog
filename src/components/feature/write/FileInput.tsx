@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
+import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react"
 import Image from "next/image"
 import cn from "@/src/lib/cn"
 import { Xicon } from "../../icon/XIcon"
@@ -16,12 +16,20 @@ interface Props {
 
 export const FileInput = ({ preview, setPreview, onChangeFile, image, className }: Props) => {
   const [showCancelButton, setShowCancelButton] = useState(false)
+  const imageInput = useRef<HTMLInputElement>(null)
+
+  const handlePickClick = () => {
+    if (imageInput.current) {
+      imageInput.current.click()
+    }
+  }
 
   return (
     <Button
       variant="icon"
       onMouseEnter={() => setShowCancelButton(true)}
       onMouseLeave={() => setShowCancelButton(false)}
+      onClick={handlePickClick}
       className={cn("h-40 ring-1 ring-slate-300 dark:ring-slate-600", className)}
     >
       {preview && showCancelButton && (
@@ -43,7 +51,8 @@ export const FileInput = ({ preview, setPreview, onChangeFile, image, className 
         onChange={onChangeFile}
         type="file"
         accept="image/*"
-        className="absolute inset-0 opacity-0 file:cursor-pointer"
+        className="hidden"
+        ref={imageInput}
       />
       <Text variant="caption" className="group-hover:text-white dark:group-hover:text-slate-500">
         {preview ? image?.name : "커버 이미지 파일 선택"}

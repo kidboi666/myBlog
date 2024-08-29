@@ -8,4 +8,3 @@ export const delay = (func: () => any) => {
     }, 100)
   }
 }
-드

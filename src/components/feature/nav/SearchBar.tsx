@@ -5,14 +5,16 @@ import { SearchIcon } from "../../icon/SearchIcon"
 
 interface Props {
   statusRef: RefObject<HTMLElement>
+  onTransitionEnd?: () => void
 }
 
-export const SearchBar = ({ statusRef }: Props) => {
+export const SearchBar = ({ statusRef, onTransitionEnd }: Props) => {
   return (
     <Container
       ref={statusRef}
       variant="dropdown"
       dataStatus="closed"
+      onTransitionEnd={onTransitionEnd}
       className="fixed left-1/2 top-full w-[calc(100%-60px)] origin-top -translate-x-1/2 transition md:w-[600px]"
     >
       <div className="relative w-full">

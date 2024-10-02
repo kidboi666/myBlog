@@ -53,9 +53,10 @@ const Todo = ({ todo, onDelete, onSuccess }: TodoProps) => {
 interface Props {
   className?: string
   statusRef: RefObject<HTMLDivElement>
+  onTransitionEnd?: () => void
 }
 
-export const Todos = ({ className, statusRef }: Props) => {
+export const Todos = ({ className, statusRef, onTransitionEnd }: Props) => {
   const [todoText, onChangeTodoText, setTodoText] = useInput("")
   const [todos, setTodos] = useState<string[]>([])
   const [successTodos, setSuccessTodos] = useState<string[]>([])
@@ -108,6 +109,7 @@ export const Todos = ({ className, statusRef }: Props) => {
       variant="dropdown"
       ref={statusRef}
       dataStatus="closed"
+      onTransitionEnd={onTransitionEnd}
       className={cn(
         "right-0 top-full w-96 cursor-default max-md:fixed max-md:left-1/2 max-md:w-[calc(100dvw-40px)] max-md:-translate-x-1/2",
         className,

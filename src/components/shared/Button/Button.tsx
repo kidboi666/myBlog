@@ -8,6 +8,7 @@ interface Props extends ComponentProps<"button"> {
   variant?: "primary" | "secondary" | "teritory" | "icon" | "warn"
   isLoading?: boolean
   isSubmit?: boolean
+  dataStatus?: string
 }
 
 const buttonVariants = cva(
@@ -36,7 +37,17 @@ const buttonVariants = cva(
 
 export const Button = forwardRef<HTMLButtonElement, PropsWithRef<Props>>(
   (
-    { children, onClick, variant = "primary", className, disabled, isLoading, isSubmit, ...props },
+    {
+      children,
+      onClick,
+      variant = "primary",
+      className,
+      dataStatus,
+      disabled,
+      isLoading,
+      isSubmit,
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -44,6 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, PropsWithRef<Props>>(
         ref={ref}
         type={isSubmit ? "submit" : "button"}
         disabled={disabled || isLoading}
+        data-status={dataStatus}
         onClick={onClick}
         className={cn(
           buttonVariants(isLoading || disabled ? { disabled: variant } : { active: variant }),

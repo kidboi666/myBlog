@@ -7,10 +7,11 @@ import cn from "@/src/lib/cn"
 import { useModal } from "@/src/store/useModal"
 import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
 import { IOption } from "@/src/models/blog/post"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { validateCategoryBeforeRender } from "@/src/utils/validateCategoryDepth"
 import { useToast } from "@/src/store/useToast"
+import { useStateChange } from "@/src/hooks/useStateChange"
+import { useClickOutside } from "@/src/hooks/useClickOutside"
 
 import { KebabIcon } from "../../icon/KebabIcon"
 import { Button } from "../../shared/Button"
@@ -30,10 +31,9 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
   const { openModal } = useModal()
   const { openToast } = useToast()
   const router = useRouter()
-  const [targetRef, statusRef, handleStatusChange] = useStatusChange<
-    HTMLButtonElement,
-    HTMLUListElement
-  >()
+
+  const { ref, onClick, open, close, onTransitionEnd } = useStateChange<HTMLUListElement>()
+  const buttonRef = useClickOutside<HTMLButtonElement>(close)
 
   const handleOptionClick = (menu: IOption) => {
     if (menu.name === "삭제하기") {
@@ -48,11 +48,6 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
     if (menu.name === "수정하기") {
       router.push({ pathname: "/write", query: { postId: card.id } })
     }
-  }
-
-  const handleKebabMenuClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
-    handleStatusChange(e)
   }
 
   const handleTagClick = (e: MouseEvent, tag: string) => {
@@ -83,15 +78,11 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
       <Card.Content className="flex flex-1 flex-col justify-between gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>
-          <Button
-            variant="icon"
-            ref={targetRef}
-            onClick={handleKebabMenuClick}
-            className="relative p-1"
-          >
+          <Button variant="icon" ref={buttonRef} onClick={onClick} className="relative p-1">
             <KebabIcon size={20} />
             <DropDownList
-              ref={statusRef}
+              ref={ref}
+              onTransitionEnd={onTransitionEnd}
               itemList={KEBAB_CARD_OPTION}
               onClick={handleOptionClick}
               className="right-0 top-5"

@@ -27,7 +27,7 @@ const containerVariants = cva("flex items-center justify-center", {
       header: "h-full w-full rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
       footer:
         "relative h-full w-full flex-col rounded-3xl rounded-b-none bg-white px-4 py-4 shadow-md md:gap-2 md:px-12 md:py-8 xl:px-40 dark:bg-slate-800",
-      main: "relative mb-12 mt-52 grid h-full w-full animate-fadeIn grid-cols-1 items-start gap-14 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 2xl:grid-cols-2 dark:bg-slate-800",
+      main: "relative mb-12 grid h-full w-full animate-fadeIn grid-cols-1 items-start gap-14 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 2xl:grid-cols-2 dark:bg-slate-800",
       post: "mb-12 mt-28 grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
       comment:
         "mb-12 grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",

@@ -1,6 +1,7 @@
-import { Tables } from "@/src/models/supabase"
-import Image from "next/image"
 import { useRef } from "react"
+import Image from "next/image"
+import { useStateChange } from "@/src/hooks/useStateChange"
+import { Tables } from "@/src/models/supabase"
 import { Button } from "../../shared/Button"
 import { List } from "../../layout/List"
 import { DropDownList } from "../../shared/DropDown/DropDownList"
@@ -20,23 +21,10 @@ export const SideBarItem = ({
 }: Props) => {
   const subCategoriesStatus = useRef<HTMLUListElement>(null)
   const titleStatus = useRef<HTMLButtonElement>(null)
-
-  const openStatusChange = () => {
-    subCategoriesStatus.current?.setAttribute("data-status", "opened")
-    titleStatus.current?.setAttribute("data-status", "opened")
-  }
-
-  const closeStatusChange = () => {
-    subCategoriesStatus.current?.setAttribute("data-status", "closed")
-    titleStatus.current?.setAttribute("data-status", "closed")
-  }
+  const { ref, open, close, onTransitionEnd } = useStateChange<HTMLButtonElement>()
 
   return (
-    <List.Row
-      onMouseEnter={() => openStatusChange()}
-      onMouseLeave={() => closeStatusChange()}
-      className="relative flex"
-    >
+    <List.Row onMouseEnter={open} onMouseLeave={close} className="relative flex">
       <Button
         variant="icon"
         onClick={() => onCategoryButtonClick(category)}
@@ -53,8 +41,8 @@ export const SideBarItem = ({
         )}
       </Button>
       <Button
-        ref={titleStatus}
-        data-status="closed"
+        ref={ref}
+        dataStatus="closed"
         className="absolute -top-8 left-0 origin-bottom text-nowrap rounded-t-lg p-2 text-sm shadow-lg transition hover:-translate-y-1 data-[status=closed]:scale-0 data-[status=closed]:opacity-0"
       >
         {category.name}

@@ -9,17 +9,15 @@ import { Introduce } from "@/src/components/feature/intro/Introduce"
 import { PostCard } from "@/src/components/feature/post/PostCard"
 import { Tables } from "../models/supabase"
 import { categoryQuery } from "../services/queries/category/categoryQuery"
-import { adminClient } from "../lib/supabase/client"
 
 const Home = () => {
   const { data: postList } = useQuery(postQuery.totalPost())
   const { mutate: deletePost } = useDeletePost()
   const { data: categoryList } = useQuery(categoryQuery.parentCategory())
-  console.log(adminClient)
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-      <Container as="article">
+      <Container>
         {postList?.map((card) => {
           const [postCategory] =
             categoryList?.filter(

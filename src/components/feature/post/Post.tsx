@@ -6,10 +6,11 @@ import { useModal } from "@/src/store/useModal"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { IOption } from "@/src/models/blog/post"
 import { Tables } from "@/src/models/supabase"
-import { useStatusChange } from "@/src/hooks/useStatusChange"
 import { formatDateToYMD } from "@/src/utils/formatDate"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { validateCategoryBeforeRender } from "@/src/utils/validateCategoryDepth"
+import { useStateChange } from "@/src/hooks/useStateChange"
+import { useClickOutside } from "@/src/hooks/useClickOutside"
 
 import { Container } from "../../layout/Container"
 import { Title } from "../../shared/Title"
@@ -28,10 +29,8 @@ interface Props {
 }
 
 export const Post = ({ post, icon }: Props) => {
-  const [targetRef, statusRef, handleStatusChange] = useStatusChange<
-    HTMLButtonElement,
-    HTMLUListElement
-  >()
+  const { ref, close, onClick, onTransitionEnd } = useStateChange<HTMLUListElement>()
+  const buttonRef = useClickOutside<HTMLButtonElement>(close)
   const router = useRouter()
   const { mutate: deletePost } = useDeletePost()
   const { openModal } = useModal()
@@ -68,14 +67,15 @@ export const Post = ({ post, icon }: Props) => {
       </div>
       <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
-        <Button ref={targetRef} onClick={handleStatusChange} variant="icon" className="h-fit">
+        <Button ref={buttonRef} onClick={onClick} variant="icon" className="h-fit">
           <KebabIcon size={20} className="rotate-90" />
         </Button>
         <DropDownList
-          ref={statusRef}
+          ref={ref}
+          onTransitionEnd={onTransitionEnd}
           itemList={KEBAB_CARD_OPTION}
           onClick={handleOptionClick}
-          className="right-2 top-10"
+          className="right-2 top-10 origin-top-right"
         />
       </div>
       <div className="mt-4 flex flex-col gap-4">

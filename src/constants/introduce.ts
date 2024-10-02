@@ -3,12 +3,7 @@ import CardImage2 from "@/src/assets/card_image2.jpg"
 import CardImage4 from "@/src/assets/card_image4.jpg"
 import CardImage5 from "@/src/assets/card_image5.jpg"
 
-export const TEXT_CONTENTS = [
-  "저는 항상 새로운걸 배웁니다.",
-  "무언가를 도전하는데 큰 두려움을 가지질 않습니다.",
-  "뛰어난 기억력보다 조잡한 기록이 더 쓸모가 있다는걸 알기에 항상 기록하려 노력합니다.",
-  "자, 이쿠죠!",
-]
+export const TEXT_CONTENTS = ["끊임없는 호기심으로 성장을 이끄는 기술 블로그 입니다."]
 
 export const CARD_VARIANTS = [
   {

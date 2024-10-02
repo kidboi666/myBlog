@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { RefObject, useRef } from "react"
 import cn from "@/src/lib/cn"
 import { Tables } from "@/src/models/supabase"
+import { useStateChange } from "@/src/hooks/useStateChange"
 import { Container } from "../../layout/Container"
 import { List } from "../../layout/List"
 import { SideBarItem } from "./SideBarItem"
@@ -11,13 +12,12 @@ import { WriteIcon } from "../../icon/WriteIcon"
 interface Props {
   categories?: Tables<"category">[]
   subCategories?: Tables<"sub_category">[]
-  statusRef?: RefObject<HTMLDivElement>
 }
 
-export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
+export const SideBar = ({ categories, subCategories }: Props) => {
   const router = useRouter()
   const addPostButtonRef = useRef<HTMLButtonElement>(null)
-  const showRef = useRef<HTMLDivElement>(null)
+  const { ref, open, close, onTransitionEnd } = useStateChange()
 
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
@@ -49,12 +49,13 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
   }
 
   return (
-    <div onMouseLeave={() => showRef.current?.setAttribute("data-status", "closed")}>
+    <div onMouseLeave={close}>
       <Container
-        ref={showRef}
+        ref={ref}
         dataStatus="closed"
         variant="other"
-        className="fixed left-16 top-28 origin-left px-2 py-4 transition data-[status=closed]:scale-0"
+        onTransitionEnd={onTransitionEnd}
+        className="fixed left-16 top-28 hidden origin-left px-2 py-4 transition data-[status=closed]:scale-90 data-[status=closed]:opacity-0"
       >
         {categories?.map((category) => {
           let validateSubCategories: Tables<"sub_category">[] = []
@@ -77,13 +78,11 @@ export const SideBar = ({ categories, subCategories, statusRef }: Props) => {
       </Container>
       <Container
         as="nav"
-        ref={statusRef && statusRef}
-        data-status="closed"
-        onMouseEnter={() => showRef.current?.setAttribute("data-status", "opened")}
+        dataStatus="closed"
+        onMouseEnter={open}
         variant="other"
         className={cn(
           "fixed left-0 top-28 origin-top-left flex-col rounded-l-none px-2 py-4 transition md:px-2",
-          statusRef ? "status-popup" : "",
         )}
       >
         <List className="grid">

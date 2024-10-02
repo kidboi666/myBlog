@@ -9,9 +9,9 @@ export const Introduce = () => {
   return (
     <div
       lang="en"
-      className="relative flex h-dvh w-full flex-col items-center justify-center gap-20"
+      className="relative mt-[80px] flex h-[400px] w-full flex-col items-center justify-center gap-20"
     >
-      <div className="flex flex-col items-center">
+      <div className="absolute flex flex-col items-center">
         <Title as="h3" variant="sub" className="animate-fadeIn text-slate-800">
           안녕하세요.
         </Title>

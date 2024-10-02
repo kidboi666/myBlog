@@ -8,17 +8,19 @@ interface DropDownListProps extends ComponentPropsWithRef<"ul"> {
   itemList?: Record<string, any>[]
   onClick: (arg: any) => void
   className?: string
+  onTransitionEnd?: () => void
 }
 
 export const DropDownList = forwardRef<HTMLUListElement, DropDownListProps>(
-  ({ itemList, onClick, className }, ref) => {
+  ({ itemList, onClick, className, onTransitionEnd }, ref) => {
     return (
       <Container
         as="ul"
         variant="dropdown"
         ref={ref}
         dataStatus="closed"
-        className={cn("block max-h-40 flex-col overflow-y-auto px-0 py-1", className)}
+        onTransitionEnd={onTransitionEnd}
+        className={cn("hidden max-h-40 flex-col overflow-y-auto px-0 py-1", className)}
       >
         {itemList?.map((menu) => (
           <li

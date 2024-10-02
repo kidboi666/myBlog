@@ -26,8 +26,8 @@ export const AuthForm = ({ name, type, dirtyField, register, error }: Props) => 
       <Text
         variant="caption"
         className={cn(
-          "pointer-events-none absolute left-2 top-2.5 px-2 transition-all duration-200",
-          isFocus || dirtyField ? "-top-2 bg-white dark:bg-slate-800" : "",
+          "pointer-events-none absolute left-2 translate-y-[11px] px-2",
+          isFocus || dirtyField ? "-translate-y-2 bg-white dark:bg-slate-800" : "",
         )}
       >
         {name}

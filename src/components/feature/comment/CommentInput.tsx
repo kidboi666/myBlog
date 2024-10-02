@@ -28,7 +28,6 @@ export const CommentInput = ({ onComment, commentId, isPending, isSuccess }: Pro
         className="min-h-28"
         placeholder="댓글을 달아주세요."
       />
-      <Button>깃허브로 로그인</Button>
       <Button isSubmit isLoading={isPending} disabled={!content} className="ml-auto w-fit self-end">
         댓글 달기
       </Button>

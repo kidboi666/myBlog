@@ -1,5 +1,4 @@
 import { supabase } from "@/src/lib/supabase/client"
-import { UserMetadata } from "@supabase/supabase-js"
 import { queryOptions } from "@tanstack/react-query"
 
 export const meQuery = {
@@ -15,8 +14,8 @@ export const meQuery = {
         } = await supabase.auth.getSession()
 
         if (session) {
-          userInfo = session.user.user_metadata as UserMetadata
-          id = session.user.id as string
+          userInfo = session.user.user_metadata
+          id = session.user.id
         }
 
         return { userInfo, id }

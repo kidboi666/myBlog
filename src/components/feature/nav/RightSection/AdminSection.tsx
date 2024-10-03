@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 
 export const AdminSection = () => {
   const { data: admin } = useQuery(meQuery.getUserInfo())
+  const isLoggedIn = admin?.id ? admin.id : null
 
   const router = useRouter()
 
@@ -24,7 +25,7 @@ export const AdminSection = () => {
     router.push("/write")
   }
 
-  if (admin) {
+  if (isLoggedIn) {
     return (
       <>
         <List.Row>

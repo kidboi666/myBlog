@@ -5,7 +5,7 @@ import { Footer } from "@/src/components/layout/Footer"
 import { Header } from "@/src/components/feature/nav/Header"
 import { Post } from "@/src/components/feature/post/Post"
 import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
-import { CommentWrapper } from "@/src/components/feature/comment/CommentWrapper"
+import { Comment } from "@/src/components/feature/comment/Comment"
 import { CommentQuery } from "@/src/services/queries/comment/commentQuery"
 import { queryClient } from "@/src/lib/ReactQuery"
 import { GetServerSidePropsContext } from "next"
@@ -36,7 +36,7 @@ const PostPage = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Post post={post} icon={postCategory.icon!} />
-      <CommentWrapper postId={post?.id} comments={comments ?? []} />
+      <Comment postId={post?.id} comments={comments ?? []} />
     </AppLayout>
   )
 }

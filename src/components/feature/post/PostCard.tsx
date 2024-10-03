@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRouter } from "next/router"
-import { Tables } from "@/src/models/supabase"
 import { MouseEvent } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { Tables } from "@/src/models/supabase"
 import cn from "@/src/lib/cn"
 
 import { useModal } from "@/src/store/useModal"
@@ -9,6 +10,7 @@ import { formatDate, formatDateToYMD } from "@/src/utils/formatDate"
 import { IOption } from "@/src/models/blog/post"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { validateCategoryBeforeRender } from "@/src/utils/validateCategoryDepth"
+import { meQuery } from "@/src/services/queries/auth/meQuery"
 import { useToast } from "@/src/store/useToast"
 import { useStateChange } from "@/src/hooks/useStateChange"
 import { useClickOutside } from "@/src/hooks/useClickOutside"
@@ -31,6 +33,8 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
   const { openModal } = useModal()
   const { openToast } = useToast()
   const router = useRouter()
+  const { data: admin } = useQuery(meQuery.getUserInfo())
+  const isLoggedIn = admin?.id ? admin.id : null
 
   const { ref, onClick, open, close, onTransitionEnd } = useStateChange<HTMLUListElement>()
   const buttonRef = useClickOutside<HTMLButtonElement>(close)
@@ -78,16 +82,18 @@ export const PostCard = ({ card, icon, onDelete }: Props) => {
       <Card.Content className="flex flex-1 flex-col justify-between gap-2">
         <div className="flex justify-between">
           <Title>{card.name}</Title>
-          <Button variant="icon" ref={buttonRef} onClick={onClick} className="relative p-1">
-            <KebabIcon size={20} />
-            <DropDownList
-              ref={ref}
-              onTransitionEnd={onTransitionEnd}
-              itemList={KEBAB_CARD_OPTION}
-              onClick={handleOptionClick}
-              className="right-0 top-5"
-            />
-          </Button>
+          {isLoggedIn && (
+            <Button variant="icon" ref={buttonRef} onClick={onClick} className="relative p-1">
+              <KebabIcon size={20} />
+              <DropDownList
+                ref={ref}
+                onTransitionEnd={onTransitionEnd}
+                itemList={KEBAB_CARD_OPTION}
+                onClick={handleOptionClick}
+                className="right-0 top-5"
+              />
+            </Button>
+          )}
         </div>
         <div className="h-18">
           <Text className="line-clamp-1 flex-1">{card.content}</Text>

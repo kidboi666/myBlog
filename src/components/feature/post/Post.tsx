@@ -1,7 +1,9 @@
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
+import { useQuery } from "@tanstack/react-query"
 
+import { meQuery } from "@/src/services/queries/auth/meQuery"
 import { useModal } from "@/src/store/useModal"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { IOption } from "@/src/models/blog/post"
@@ -32,6 +34,8 @@ export const Post = ({ post, icon }: Props) => {
   const { ref, close, onClick, onTransitionEnd } = useStateChange<HTMLUListElement>()
   const buttonRef = useClickOutside<HTMLButtonElement>(close)
   const router = useRouter()
+  const { data: admin } = useQuery(meQuery.getUserInfo())
+  const isLoggedIn = admin?.id ? admin.id : null
   const { mutate: deletePost } = useDeletePost()
   const { openModal } = useModal()
 
@@ -67,16 +71,20 @@ export const Post = ({ post, icon }: Props) => {
       </div>
       <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
-        <Button ref={buttonRef} onClick={onClick} variant="icon" className="h-fit">
-          <KebabIcon size={20} className="rotate-90" />
-        </Button>
-        <DropDownList
-          ref={ref}
-          onTransitionEnd={onTransitionEnd}
-          itemList={KEBAB_CARD_OPTION}
-          onClick={handleOptionClick}
-          className="right-2 top-10 origin-top-right"
-        />
+        {isLoggedIn && (
+          <>
+            <Button ref={buttonRef} onClick={onClick} variant="icon" className="h-fit">
+              <KebabIcon size={20} className="rotate-90" />
+            </Button>
+            <DropDownList
+              ref={ref}
+              onTransitionEnd={onTransitionEnd}
+              itemList={KEBAB_CARD_OPTION}
+              onClick={handleOptionClick}
+              className="right-2 top-10 origin-top-right"
+            />
+          </>
+        )}
       </div>
       <div className="mt-4 flex flex-col gap-4">
         <Text variant="description">{validateCategoryBeforeRender(post)}</Text>

@@ -12,12 +12,10 @@ export const useAddComment = () => {
       return supabase
         .from("comment")
         .insert({
-          email: params.email,
           nickname: params.nickname,
-          user_id: params.userId,
+          password: params.password,
           content: params.content,
           post_id: params.postId || null,
-          avatar_url: params.avatarUrl || null,
           comment_id: params.commentId || null,
         })
         .select()

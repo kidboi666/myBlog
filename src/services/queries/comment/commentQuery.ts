@@ -27,12 +27,12 @@ export const CommentQuery = {
     queryOptions({
       queryKey: ["comment_count", postId],
       queryFn: async () => {
-        const { data } = await supabase
+        const { count } = await supabase
           .from("comment")
           .select("*", { count: "exact", head: true })
           .eq("post_id", postId)
 
-        return data
+        return count
       },
     }),
 }

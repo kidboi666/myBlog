@@ -77,7 +77,12 @@ export const CommentInput = ({ onComment, commentId, isPending, isSuccess }: Pro
           {content.length} / 300
         </Text>
       </div>
-      <Button isSubmit isLoading={isPending} disabled={!content} className="ml-auto w-fit self-end">
+      <Button
+        isSubmit
+        isLoading={isPending}
+        disabled={!content || !nickname || !password}
+        className="ml-auto w-fit self-end"
+      >
         댓글 달기
       </Button>
     </form>

@@ -1,11 +1,11 @@
+import { ComponentPropsWithRef, MouseEvent, RefObject, useRef } from "react"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { ComponentPropsWithRef, MouseEvent, RefObject, useRef } from "react"
 import { Tables } from "@/src/models/supabase"
-import { List } from "../../layout/List"
-import { Button } from "../../shared/Button"
-import { ArrowHeadIcon } from "../../icon/ArrowHeadIcon"
-import { Title } from "../../shared/Title"
+import { List } from "@/src/components/layout/List"
+import { Button } from "@/src/components/shared/Button"
+import { ArrowHeadIcon } from "@/src/components/icon/ArrowHeadIcon"
+import { Title } from "@/src/components/shared/Title"
 
 interface Props extends ComponentPropsWithRef<"ul"> {
   category: Tables<"category">

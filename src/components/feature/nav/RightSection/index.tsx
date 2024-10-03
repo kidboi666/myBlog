@@ -1,11 +1,10 @@
-import { useLayoutEffect } from "react"
-import { List } from "../../layout/List"
-import { TodoSection } from "./TodoSection"
-import { SearchSection } from "./SearchSection"
-import { UserSection } from "./UserSection"
+import { useEffect } from "react"
+import { List } from "@/src/components/layout/List"
+import { ThemeSwitchSection } from "./ThemeSwitchSection"
+import { AdminSection } from "./AdminSection"
 
 export const RightSection = () => {
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (localStorage.theme === "dark") {
       document.documentElement.classList.add("dark")
     } else {
@@ -16,9 +15,8 @@ export const RightSection = () => {
   return (
     <div className="relative justify-self-end">
       <List className="flex items-center gap-4">
-        <TodoSection />
-        <SearchSection />
-        <UserSection />
+        <AdminSection />
+        <ThemeSwitchSection />
       </List>
     </div>
   )

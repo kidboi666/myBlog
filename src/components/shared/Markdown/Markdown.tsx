@@ -66,7 +66,7 @@ const h3 = ({ children }: PropsWithChildren) => {
   )
 }
 const aside = ({ children }: PropsWithChildren) => (
-  <aside className="relative mb-[1em] mt-[1em] h-full rounded-[0.3em] bg-slate-200 p-[1em] dark:bg-slate-700">
+  <aside className="relative mb-[1em] mt-[1em] rounded-[0.3em] bg-slate-200 p-[1em] dark:bg-slate-700">
     <span className="absolute left-0 top-0 h-full w-1 bg-blue-500" />
     {children}
   </aside>

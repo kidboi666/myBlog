@@ -2,12 +2,12 @@ import { MouseEvent, RefObject } from "react"
 import { useRouter } from "next/router"
 import { Tables } from "@/src/models/supabase"
 
-import { Container } from "../../layout/Container"
-import { List } from "../../layout/List"
+import { Container } from "@/src/components/layout/Container"
+import { List } from "@/src/components/layout/List"
+import { Button } from "@/src/components/shared/Button"
+import { Xicon } from "@/src/components/icon/XIcon"
+import { Line } from "@/src/components/shared/Line"
 import { SlideBarCategoryList } from "./SlideBarCategoryList"
-import { Button } from "../../shared/Button"
-import { Xicon } from "../../icon/XIcon"
-import { Line } from "../../shared/Line"
 
 interface Props {
   categories?: Tables<"category">[]
@@ -57,9 +57,6 @@ export const SlideBar = ({ categories, subCategories, slideBarRef }: Props) => {
           })}
         </List>
       </div>
-      <Button variant="primary" onClick={() => router.push("/write")} className="w-full">
-        새 게시물 쓰기
-      </Button>
     </Container>
   )
 }

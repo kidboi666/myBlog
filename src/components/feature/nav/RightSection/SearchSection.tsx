@@ -1,16 +1,16 @@
 import { useClickOutside } from "@/src/hooks/useClickOutside"
 import { useStateChange } from "@/src/hooks/useStateChange"
-import { List } from "../../layout/List"
-import { Button } from "../../shared/Button"
-import { SearchIcon } from "../../icon/SearchIcon"
+import { List } from "@/src/components/layout/List"
+import { Button } from "@/src/components/shared/Button"
+import { SearchIcon } from "@/src/components/icon/SearchIcon"
 import { SearchBar } from "./SearchBar"
 
 export const SearchSection = () => {
   const { ref, onClick, close, onTransitionEnd } = useStateChange<HTMLDivElement>()
-  const buttonRef = useClickOutside<HTMLButtonElement>(close)
+  const buttonRef = useClickOutside<HTMLLIElement>(close)
   return (
-    <List.Row>
-      <Button variant="icon" ref={buttonRef} onClick={onClick}>
+    <List.Row targetRef={buttonRef} onClick={onClick}>
+      <Button variant="icon">
         <SearchIcon />
       </Button>
       <SearchBar statusRef={ref} onTransitionEnd={onTransitionEnd} />

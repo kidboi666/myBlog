@@ -31,8 +31,8 @@ export const postQuery = {
     queryOptions({
       queryKey: ["post", postId],
       queryFn: async () => {
-        const { data } = await supabase.from("post").select().eq("id", postId)
-        return data as Tables<"post">[]
+        const { data } = await supabase.from("post").select().eq("id", postId).single()
+        return data as Tables<"post">
       },
       enabled: !!postId,
     }),

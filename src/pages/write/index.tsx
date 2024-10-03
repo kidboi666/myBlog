@@ -132,8 +132,8 @@ const WritePost = () => {
   }
 
   useEffect(() => {
-    if (previousPost?.[0]?.id) {
-      const prevPost = previousPost[0]
+    if (previousPost?.id) {
+      const prevPost = previousPost
       if (prevPost.image) {
         setPreview(prevPost.image)
       }

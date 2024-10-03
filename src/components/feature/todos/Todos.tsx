@@ -51,12 +51,11 @@ const Todo = ({ todo, onDelete, onSuccess }: TodoProps) => {
 }
 
 interface Props {
-  className?: string
   statusRef: RefObject<HTMLDivElement>
-  onTransitionEnd?: () => void
+  onTransitionEnd: () => void
 }
 
-export const Todos = ({ className, statusRef, onTransitionEnd }: Props) => {
+export const Todos = ({ statusRef, onTransitionEnd }: Props) => {
   const [todoText, onChangeTodoText, setTodoText] = useInput("")
   const [todos, setTodos] = useState<string[]>([])
   const [successTodos, setSuccessTodos] = useState<string[]>([])
@@ -110,10 +109,8 @@ export const Todos = ({ className, statusRef, onTransitionEnd }: Props) => {
       ref={statusRef}
       dataStatus="closed"
       onTransitionEnd={onTransitionEnd}
-      className={cn(
-        "right-0 top-full w-96 cursor-default max-md:fixed max-md:left-1/2 max-md:w-[calc(100dvw-40px)] max-md:-translate-x-1/2",
-        className,
-      )}
+      className="right-0 top-full hidden w-96 cursor-default max-md:fixed max-md:left-1/2 max-md:w-[calc(100dvw-40px)] max-md:-translate-x-1/2"
+      onClick={(e) => e.stopPropagation()}
     >
       <form onSubmit={handleTodoChange} className="w-full">
         <TextInput

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { postQuery } from "@/src/services/queries/post/postQuery"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { AppLayout } from "@/src/components/layout/AppLayout"
-import { Header } from "@/src/components/layout/Header"
+import { Header } from "@/src/components/feature//nav/Header"
 import { Footer } from "@/src/components/layout/Footer"
 import { Container } from "@/src/components/layout/Container"
 import { Introduce } from "@/src/components/feature/intro/Introduce"
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-      <Container>
+      <Container className="mt-0">
         {postList?.map((card) => {
           const [postCategory] =
             categoryList?.filter(

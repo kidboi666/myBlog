@@ -1,13 +1,13 @@
 export const MenuIcon = () => {
   return (
-    <svg width="24" height="24">
-      <path
-        d="M5 6h14M5 12h14M5 18h14"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="20"
+      viewBox="0 -960 960 960"
+      width="20"
+      fill="currentColor"
+    >
+      <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
     </svg>
   )
 }

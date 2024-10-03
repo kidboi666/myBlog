@@ -11,7 +11,7 @@ import { PostCard } from "@/src/components/feature/post/PostCard"
 import { AppLayout } from "@/src/components/layout/AppLayout"
 import { Container } from "@/src/components/layout/Container"
 import { Footer } from "@/src/components/layout/Footer"
-import { Header } from "@/src/components/layout/Header"
+import { Header } from "@/src/components/feature/nav/Header"
 import { Underbar } from "@/src/components/feature/intro/Underbar"
 import { Title } from "@/src/components/shared/Title"
 import { EmptyCategory } from "@/src/components/feature/fallback/EmptyCategory"
@@ -32,9 +32,7 @@ const BlogPage = () => {
   const { mutate: deletePost } = useDeletePost()
   const categoryList = queryClient.getQueryData<Tables<"category">[]>(["category"])
   const categoryIcon = categoryList?.filter((category) => category.id === Number(categoryId))
-  // const { data } = useQuery(postQuery.countPostsByCategory(stringOrFirstString(Number(categoryId))))
 
-  // console.log(data)
   useEffect(() => {
     setText(stringOrFirstString(name))
   }, [name])

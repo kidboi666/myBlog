@@ -2,9 +2,9 @@ import { useRef } from "react"
 import Image from "next/image"
 import { useStateChange } from "@/src/hooks/useStateChange"
 import { Tables } from "@/src/models/supabase"
-import { Button } from "../../shared/Button"
-import { List } from "../../layout/List"
-import { DropDownList } from "../../shared/DropDown/DropDownList"
+import { Button } from "@/src/components/shared/Button"
+import { List } from "@/src/components/layout/List"
+import { DropDownList } from "@/src/components/shared/DropDown/DropDownList"
 
 interface Props {
   category: Tables<"category">

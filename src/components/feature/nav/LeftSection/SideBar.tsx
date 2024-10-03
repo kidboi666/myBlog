@@ -1,9 +1,7 @@
 import { useRouter } from "next/router"
-import { useRef } from "react"
 import { Tables } from "@/src/models/supabase"
 import { useStateChange } from "@/src/hooks/useStateChange"
 import { Container } from "@/src/components/layout/Container"
-import { Button } from "@/src/components/shared/Button"
 import { CategoryIcon } from "@/src/components/icon/CategoryIcon"
 import { List } from "@/src/components/layout/List"
 import { SideBarItem } from "./SideBarItem"
@@ -15,8 +13,8 @@ interface Props {
 
 export const SideBar = ({ categories, subCategories }: Props) => {
   const router = useRouter()
-  const addPostButtonRef = useRef<HTMLButtonElement>(null)
   const { ref, open, close, onTransitionEnd } = useStateChange()
+  const { ref: barRef, open: barOpen, close: barClose } = useStateChange()
 
   const handleSubCategoryButtonClick = (menu: Tables<"sub_category">) => {
     router.push({
@@ -38,17 +36,27 @@ export const SideBar = ({ categories, subCategories }: Props) => {
       },
     })
   }
-
-  const openStatusChange = () => {
-    addPostButtonRef.current?.setAttribute("data-status", "opened")
+  const handleMouseEnter = () => {
+    open()
+    barOpen()
   }
 
-  const closeStatusChange = () => {
-    addPostButtonRef.current?.setAttribute("data-status", "closed")
+  const handleMouseLeave = () => {
+    close()
+    barClose()
   }
 
   return (
-    <div onMouseLeave={close}>
+    <div onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter}>
+      <Container
+        ref={barRef}
+        as="nav"
+        dataStatus="closed"
+        variant="other"
+        className="fixed left-0 top-28 flex-col rounded-l-none bg-slate-200/80 p-6 text-slate-500 transition data-[status=closed]:-translate-x-6 dark:bg-slate-700/80 dark:text-slate-400"
+      >
+        <CategoryIcon />
+      </Container>
       <Container
         ref={ref}
         dataStatus="closed"
@@ -76,22 +84,6 @@ export const SideBar = ({ categories, subCategories }: Props) => {
             )
           })}
         </List>
-      </Container>
-      <Container
-        as="nav"
-        dataStatus="closed"
-        onMouseEnter={open}
-        variant="other"
-        className="fixed left-0 top-28 flex-col rounded-l-none px-2 py-4 transition md:px-2"
-      >
-        <Button
-          onMouseEnter={() => openStatusChange()}
-          onMouseLeave={() => closeStatusChange()}
-          variant="icon"
-          className="cursor-default"
-        >
-          <CategoryIcon />
-        </Button>
       </Container>
     </div>
   )

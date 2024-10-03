@@ -21,10 +21,6 @@ interface Props {
 
 export const Comment = ({ postId, comments }: Props) => {
   const { openModal } = useModal()
-  const { data: post } = useQuery(postQuery.postDetail(Number(postId)))
-  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
-  const [postCategory] =
-    categoryList?.filter((category) => category.id === Number(post?.parent_category_id)) || []
   const { data: count } = useQuery(CommentQuery.countForComment(postId))
   const {
     mutate: addComment,

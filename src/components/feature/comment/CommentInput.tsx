@@ -43,7 +43,7 @@ export const CommentInput = ({ onComment, commentId, isPending, isSuccess }: Pro
             value={nickname}
             onChange={onChangeNickname}
             maxLength={10}
-            placeholder="닉네임을 입력해주세요."
+            placeholder="닉네임 *"
             className="flex-1"
           />
           <Text variant="caption" className="absolute right-2 top-1/2 -translate-y-1/2">
@@ -57,7 +57,7 @@ export const CommentInput = ({ onComment, commentId, isPending, isSuccess }: Pro
             onChange={onChangePassword}
             type="password"
             maxLength={8}
-            placeholder="비밀번호를 입력해주세요"
+            placeholder="비밀번호 *"
           />
           <Text variant="caption" className="absolute right-2 top-1/2 -translate-y-1/2">
             {password.length} / 8

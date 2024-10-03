@@ -1,5 +1,5 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabaseAdmin } from "@/src/lib/supabase/client"
+import { supabase } from "@/src/lib/supabase/client"
 import { IPost } from "@/src/models/blog/post"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
@@ -11,7 +11,7 @@ export const usePostBlog = () => {
 
   return useMutation({
     mutationFn: async (params: IPost) => {
-      return supabaseAdmin
+      return supabase
         .from("post")
         .insert({
           name: params.name,

@@ -1,5 +1,5 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabaseAdmin } from "@/src/lib/supabase/client"
+import { supabase } from "@/src/lib/supabase/client"
 import { IPost } from "@/src/models/blog/post"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
@@ -10,7 +10,7 @@ export const useUpdatePost = () => {
   const router = useRouter()
   return useMutation({
     mutationFn: async (params: { id: number; body: IPost }) => {
-      const { data } = await supabaseAdmin
+      const { data } = await supabase
         .from("post")
         .update({
           name: params.body.name,

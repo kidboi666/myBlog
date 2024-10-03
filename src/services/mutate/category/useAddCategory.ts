@@ -1,11 +1,11 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabaseAdmin } from "@/src/lib/supabase/client"
+import { supabase } from "@/src/lib/supabase/client"
 import { useMutation } from "@tanstack/react-query"
 
 export const useAddCategory = () => {
   return useMutation({
     mutationFn: async (params: { name: string; icon: string }) => {
-      return supabaseAdmin
+      return supabase
         .from("category")
         .insert({ ...params })
         .select()

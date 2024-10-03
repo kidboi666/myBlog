@@ -1,5 +1,5 @@
 import { queryClient } from "@/src/lib/ReactQuery"
-import { supabaseAdmin } from "@/src/lib/supabase/client"
+import { supabase } from "@/src/lib/supabase/client"
 import { useModal } from "@/src/store/useModal"
 import { useToast } from "@/src/store/useToast"
 import { useMutation } from "@tanstack/react-query"
@@ -12,7 +12,7 @@ export const useDeletePost = () => {
 
   return useMutation({
     mutationFn: async (id: number) => {
-      await supabaseAdmin.from("post").delete().eq("id", id)
+      await supabase.from("post").delete().eq("id", id)
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["post"] })

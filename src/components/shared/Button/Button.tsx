@@ -1,7 +1,7 @@
 import { ComponentProps, ElementType, forwardRef, PropsWithRef } from "react"
 import cn from "@/src/lib/cn"
 import { cva } from "class-variance-authority"
-import { Size, Spinner } from "../Spinner/Spinner"
+import { Spinner } from "../Spinner/Spinner"
 
 interface Props extends ComponentProps<"button"> {
   as?: ElementType
@@ -64,7 +64,7 @@ export const Button = forwardRef<HTMLButtonElement, PropsWithRef<Props>>(
         {...props}
       >
         {children}
-        {isLoading && <Spinner size={Size.s} />}
+        {isLoading && <Spinner size={20} />}
       </button>
     )
   },

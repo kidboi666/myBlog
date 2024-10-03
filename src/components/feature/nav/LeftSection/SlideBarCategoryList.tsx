@@ -85,11 +85,11 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
       <List
         data-status="closed"
         targetRef={listRef}
-        className="ml-4 w-full origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
+        className="ml-12 w-full origin-top transition data-[status=closed]:h-0 data-[status=closed]:scale-y-0 data-[status=closed]:opacity-0"
       >
         {subCategories.length !== 0 && (
           <>
-            <List.Row>
+            <List.Row className="h-8">
               <Button
                 variant="teritory"
                 onClick={(e) => handleParentCategoryButtonClick(e, category)}
@@ -101,7 +101,7 @@ export const SlideBarCategoryList = ({ category, subCategories, slideBarRef }: P
               </Button>
             </List.Row>
             {subCategories.map((subCategory) => (
-              <List.Row key={subCategory.id}>
+              <List.Row key={subCategory.id} className="h-8">
                 <Button
                   variant="teritory"
                   onClick={(e) => handleSubCategoryButtonClick(e, subCategory)}

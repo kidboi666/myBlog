@@ -4,11 +4,18 @@ import cn from "@/src/lib/cn"
 interface Props extends ComponentProps<"ul"> {
   className?: string
   targetRef?: RefObject<HTMLUListElement>
+  dataStatus?: string
 }
 
-export const List = ({ children, className, targetRef, ...props }: PropsWithChildren<Props>) => {
+export const List = ({
+  children,
+  className,
+  dataStatus,
+  targetRef,
+  ...props
+}: PropsWithChildren<Props>) => {
   return (
-    <ul ref={targetRef} className={cn("list-none", className)} {...props}>
+    <ul ref={targetRef} data-status={dataStatus} className={cn("list-none", className)} {...props}>
       {children}
     </ul>
   )

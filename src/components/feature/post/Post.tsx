@@ -1,18 +1,19 @@
 import Image from "next/image"
 import dynamic from "next/dynamic"
 import { useRouter } from "next/router"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 
 import { meQuery } from "@/src/services/queries/auth/meQuery"
 import { useModal } from "@/src/store/useModal"
 import { useDeletePost } from "@/src/services/mutate/post/useDeletePost"
 import { IOption } from "@/src/models/blog/post"
-import { Tables } from "@/src/models/supabase"
+import { postQuery } from "@/src/services/queries/post/postQuery"
 import { formatDateToYMD } from "@/src/utils/formatDate"
 import { KEBAB_CARD_OPTION } from "@/src/constants/options"
 import { validateCategoryBeforeRender } from "@/src/utils/validateCategoryDepth"
 import { useStateChange } from "@/src/hooks/useStateChange"
 import { useClickOutside } from "@/src/hooks/useClickOutside"
+import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
 
 import { Container } from "../../layout/Container"
 import { Title } from "../../shared/Title"
@@ -22,18 +23,25 @@ import { DropDownList } from "../../shared/DropDown/DropDownList"
 import { Text } from "../../shared/Text"
 import { Line } from "../../shared/Line"
 import { Tags } from "../../shared/Tags"
+import { Spinner } from "../../shared/Spinner"
 
-const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), { ssr: false })
+const Markdown = dynamic(() => import("@/src/components/shared/Markdown/Markdown"), {
+  ssr: false,
+  loading: () => <Spinner size={60} />,
+})
 
 interface Props {
-  post: Tables<"post">
-  icon: string
+  postId: number
 }
 
-export const Post = ({ post, icon }: Props) => {
+export const Post = ({ postId }: Props) => {
   const { ref, close, onClick, onTransitionEnd } = useStateChange<HTMLUListElement>()
   const buttonRef = useClickOutside<HTMLButtonElement>(close)
   const router = useRouter()
+  const { data: post } = useQuery(postQuery.postDetail(Number(postId)))
+  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
+  const [postCategory] =
+    categoryList?.filter((category) => category.id === Number(post?.parent_category_id)) || []
   const { data: admin } = useQuery(meQuery.getUserInfo())
   const isLoggedIn = admin?.id ? admin.id : null
   const { mutate: deletePost } = useDeletePost()
@@ -60,15 +68,17 @@ export const Post = ({ post, icon }: Props) => {
 
   return (
     <Container variant="post">
-      {post.image && (
+      {post?.image && (
         <div className="relative h-80">
           <Image src={post.image} alt="포스트이미지" fill className="rounded-3xl object-cover" />
         </div>
       )}
 
-      <div className="relative mt-4 size-20">
-        <Image src={icon} alt="카테고리 아이콘" fill className="object-contain" />
-      </div>
+      {postCategory?.icon && (
+        <div className="relative mt-4 size-20">
+          <Image src={postCategory!.icon!} alt="카테고리 아이콘" fill className="object-contain" />
+        </div>
+      )}
       <div className="relative mt-4 flex w-full justify-between">
         <Title variant="post">{post?.name}</Title>
         {isLoggedIn && (
@@ -87,20 +97,18 @@ export const Post = ({ post, icon }: Props) => {
         )}
       </div>
       <div className="mt-4 flex flex-col gap-4">
-        <Text variant="description">{validateCategoryBeforeRender(post)}</Text>
+        <Text variant="description">{validateCategoryBeforeRender(post!)}</Text>
       </div>
       <div className="flex gap-12">
-        <Text variant="description">{formatDateToYMD(post.created_at)}</Text>
+        <Text variant="description">{formatDateToYMD(post?.created_at)}</Text>
       </div>
       {post?.tags?.length !== 0 && (
         <div className="flex gap-2">
-          <Tags tags={post.tags || []} onClick={handleTagClick} />
+          <Tags tags={post?.tags || []} onClick={handleTagClick} />
         </div>
       )}
       <Line className="my-4" />
-      <Text>
-        <Markdown text={post?.content} />
-      </Text>
+      <Text>{post && <Markdown text={post.content} />}</Text>
     </Container>
   )
 }

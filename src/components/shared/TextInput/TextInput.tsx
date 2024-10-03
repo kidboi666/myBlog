@@ -18,7 +18,7 @@ const InputVaraints = cva(
       variant: {
         primary: "border-0 px-0 dark:bg-slate-800 dark:focus:bg-slate-800",
         secondary:
-          "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:focus:bg-slate-800",
+          "border-slate-300 bg-slate-50 hover:bg-slate-100 focus:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:placeholder:text-slate-500 dark:hover:bg-slate-700 dark:focus:bg-slate-800",
         auth: "border-slate-300 dark:bg-slate-800",
         tags: "",
       },

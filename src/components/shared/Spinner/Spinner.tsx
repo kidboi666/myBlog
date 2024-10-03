@@ -1,16 +1,10 @@
 import { useEffect } from "react"
 
 interface Props {
-  size: Size
+  size: number
 }
 
-export enum Size {
-  s = 20,
-  m = 40,
-  l = 60,
-}
-
-export const Spinner = ({ size = Size.m }: Props) => {
+export const Spinner = ({ size = 20 }: Props) => {
   useEffect(() => {
     const getLoader = async () => {
       const { ring2 } = await import("ldrs")

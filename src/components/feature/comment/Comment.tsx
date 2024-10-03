@@ -6,6 +6,8 @@ import { useModal } from "@/src/store/useModal"
 import { useDeleteComment } from "@/src/services/mutate/comment/useDeleteComment"
 import { CommentQuery } from "@/src/services/queries/comment/commentQuery"
 import { useAddComment } from "@/src/services/mutate/comment/useAddComment"
+import { categoryQuery } from "@/src/services/queries/category/categoryQuery"
+import { postQuery } from "@/src/services/queries/post/postQuery"
 import { Container } from "../../layout/Container"
 import { Line } from "../../shared/Line"
 import { Title } from "../../shared/Title"
@@ -19,13 +21,17 @@ interface Props {
 
 export const Comment = ({ postId, comments }: Props) => {
   const { openModal } = useModal()
+  const { data: post } = useQuery(postQuery.postDetail(Number(postId)))
+  const { data: categoryList } = useQuery(categoryQuery.parentCategory())
+  const [postCategory] =
+    categoryList?.filter((category) => category.id === Number(post?.parent_category_id)) || []
+  const { data: count } = useQuery(CommentQuery.countForComment(postId))
   const {
     mutate: addComment,
     isPending: isPendingAddComment,
     isSuccess: isSuccessAddComment,
   } = useAddComment()
   const { mutate: deleteComment } = useDeleteComment()
-  const { data: count } = useQuery(CommentQuery.countForComment(postId))
 
   const submitComment = (
     e: FormEvent<HTMLFormElement>,

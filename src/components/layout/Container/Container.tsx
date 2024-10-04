@@ -12,8 +12,6 @@ interface Props extends ComponentProps<"div"> {
     | "main"
     | "other"
     | "post"
-    | "wrapper"
-    | "background"
     | "write"
     | "search"
     | "dropdown"
@@ -25,17 +23,14 @@ const containerVariants = cva("flex items-center justify-center", {
   variants: {
     variant: {
       header:
-        "fixed top-0 z-50 h-fit w-full justify-between rounded-3xl rounded-t-none bg-slate-50 bg-white px-4 py-12 py-2 shadow-md backdrop-blur-lg sm:py-4 md:px-12 xl:px-40 dark:bg-[#243247]",
+        "sticky top-0 z-50 h-fit w-full justify-between rounded-3xl rounded-t-none bg-slate-50 bg-white px-4 py-12 py-2 shadow-md backdrop-blur-lg sm:py-4 md:px-12 xl:px-40 dark:bg-[#243247]",
       footer:
         "relative h-full w-full flex-col rounded-3xl rounded-b-none bg-white px-4 py-4 shadow-md md:gap-2 md:px-12 md:py-8 xl:px-40 dark:bg-slate-800",
-      main: "relative mb-12 mt-52 grid h-full w-full animate-fadeIn grid-cols-1 items-start gap-14 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 2xl:grid-cols-2 dark:bg-slate-800",
-      post: "mb-12 mt-36 grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
+      main: "relative grid h-full w-full animate-fadeIn grid-cols-1 items-start gap-12 gap-14 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 2xl:grid-cols-2 dark:bg-slate-800",
+      post: "grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
       comment:
-        "mb-12 grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
+        "grid h-full w-full max-w-[864px] animate-fadeIn grid-cols-1 items-start gap-4 rounded-3xl bg-white px-4 py-12 shadow-md md:px-12 dark:bg-slate-800",
       other: "h-fit w-fit rounded-3xl bg-white shadow-xl dark:bg-slate-800",
-      wrapper: "flex w-full flex-1 flex-col items-center justify-center px-0 lg:px-28 xl:px-40",
-      background:
-        "relative flex min-h-dvh flex-col overflow-hidden gradient-move dark:gradient-move-dark",
       write: "h-screen w-screen animate-fadeIn bg-white p-4 dark:bg-slate-800",
       search: "size-full rounded-lg bg-white p-4 shadow-md",
       modal:

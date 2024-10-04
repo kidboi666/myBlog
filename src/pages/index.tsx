@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Introduce />
-      <Container className="mt-0">
+      <Container>
         {postList?.map((card) => {
           const [postCategory] =
             categoryList?.filter(

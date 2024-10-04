@@ -3,8 +3,6 @@ import CardImage2 from "@/src/assets/card_image2.jpg"
 import CardImage4 from "@/src/assets/card_image4.jpg"
 import CardImage5 from "@/src/assets/card_image5.jpg"
 
-export const TEXT_CONTENTS = ["끊임없는 호기심으로 성장을 이끄는 기술 블로그 입니다."]
-
 export const CARD_VARIANTS = [
   {
     category: "학습",

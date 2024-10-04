@@ -15,7 +15,8 @@ const titleVariants = cva("text-slate-600 dark:text-slate-400", {
       title: "text-xl font-bold",
       sub: "text-lg font-medium",
       post: "text-4xl font-bold md:text-5xl xl:text-6xl",
-      resume: "text-5xl font-medium",
+      resume:
+        "sticky top-[82px] w-full bg-white/80 py-2 text-5xl font-medium backdrop-blur-sm dark:bg-slate-800/60",
     },
   },
 })

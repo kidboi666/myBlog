@@ -1,5 +1,4 @@
 import { PropsWithChildren, ReactNode } from "react"
-import { Container } from "../Container"
 
 interface Props {
   Header?: ReactNode
@@ -8,12 +7,12 @@ interface Props {
 
 export const AppLayout = ({ children, Header, Footer }: PropsWithChildren<Props>) => {
   return (
-    <Container variant="background">
+    <div className="relative flex min-h-dvh flex-col gap-12 gradient-move dark:gradient-move-dark">
       {Header}
-      <Container as="main" variant="wrapper">
+      <main className="flex w-full flex-1 flex-col items-center justify-center gap-12 px-0 lg:px-28 xl:px-40">
         {children}
-      </Container>
+      </main>
       {Footer}
-    </Container>
+    </div>
   )
 }

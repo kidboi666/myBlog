@@ -1,7 +1,8 @@
-import { TEXT_CONTENTS } from "@/src/constants/introduce"
 import { Title } from "@/src/components/shared/Title"
 import { useArrTypingEffect } from "@/src/hooks/useArrTypingEffect"
 import { Underbar } from "./Underbar"
+
+const TEXT_CONTENTS = ["끊임없는 호기심으로 성장을 이끄는 기술 블로그 입니다."]
 
 export const Introduce = () => {
   const text = useArrTypingEffect(TEXT_CONTENTS)
@@ -9,7 +10,7 @@ export const Introduce = () => {
   return (
     <div
       lang="en"
-      className="relative mt-[80px] flex h-[400px] w-full flex-col items-center justify-center gap-20"
+      className="relative flex h-[400px] w-full flex-col items-center justify-center gap-20"
     >
       <div className="absolute flex flex-col items-center">
         <Title as="h3" variant="sub" className="animate-fadeIn text-slate-800">

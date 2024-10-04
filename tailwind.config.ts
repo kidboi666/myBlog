@@ -42,6 +42,11 @@ const config: Config = {
           "0%": { opacity: "1" },
           "100%": { opacity: "0" },
         },
+        pulseSlowly: {
+          "50%": {
+            opacity: "0.5",
+          },
+        },
       },
       animation: {
         moveGradient: "move 10s linear infinite",
@@ -53,6 +58,7 @@ const config: Config = {
         fadeOut: "fadeIn 0.4s ease-in-out forwards",
         cardSlideDown: "slideDown 0.5s ease-in-out forwards",
         growUp: "growUpWidth 0.15s ease-in-out forwards",
+        pulseSlowly: "pulseSlowly 5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       },
     },
   },

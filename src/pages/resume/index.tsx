@@ -177,7 +177,7 @@ const ResumePage = () => {
 
         <Title variant="resume">자기 소개.</Title>
         <article className="flex flex-col gap-4">
-          <Title as="h3">"작은 문제에서 시작된 성장"</Title>
+          <Title as="h3">&ldquo;작은 문제에서 시작된 성장&rdquo;</Title>
           <Text>
             팀 프로젝트 중 백엔드에 있어야할 엔드포인트가 하나 빠져있다는 걸 알게됬을 때 대부분은
             그것을 우선순위에서 밀어냈습니다. db의 지식이 필요하기에 프론트 지식만 있던 우리 팀에겐
@@ -193,7 +193,7 @@ const ResumePage = () => {
             있었습니다.
           </Text>
 
-          <Title as="h3">"문제 해결을 위한 도구"</Title>
+          <Title as="h3">&ldquo;문제 해결을 위한 도구&rdquo;</Title>
           <Text>
             저는 스스로를 문제 해결을 위한 도구라고 생각합니다. 어떤 집단이 특정 문제의 해결을
             원한다면, 그에 필요한 지식을 신속히 습득하고 활용하여 해결책을 제시할 수 있습니다.

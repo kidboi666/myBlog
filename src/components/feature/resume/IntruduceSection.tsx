@@ -1,3 +1,4 @@
+import { PropsWithChildren } from "react"
 import { useArrTypingEffect } from "@/src/hooks/useArrTypingEffect"
 import { Title } from "../../shared/Title"
 import { Text } from "../../shared/Text"
@@ -6,11 +7,11 @@ import { Underbar } from "../intro/Underbar"
 
 const TEXT_CONTENT = ["안녕하세요!", "저는 이진욱 입니다."]
 
-export const IntroduceSection = () => {
+export const IntroduceSection = ({ children }: PropsWithChildren) => {
   const text = useArrTypingEffect(TEXT_CONTENT)
   return (
     <header className="flex flex-1 flex-col gap-12">
-      <Title variant="resume" className="" as="h2">
+      <Title variant="resume" className="top-[82px] z-30 p-0" as="h2">
         <Underbar>
           <span dangerouslySetInnerHTML={{ __html: text }} />
         </Underbar>
@@ -20,6 +21,7 @@ export const IntroduceSection = () => {
         배워나가는 것을 좋아하며 그만큼 성장하는 것에 희열을 느낍니다. 작고 아기자기한, 그러나 사용
         경험에 자연스러움이 묻어나는 UI를 추구합니다.
       </Text>
+      {children}
       <Line />
     </header>
   )

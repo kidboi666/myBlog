@@ -13,12 +13,13 @@ const ResumePage = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Container variant="post" className="gap-16">
-        <IntroduceSection />
-        <ProjectSection />
-        <EducationSection />
-        <AboutMeSection />
-        <SkillsSection />
-        <ContactSection />
+        <IntroduceSection>
+          <ProjectSection />
+          <EducationSection />
+          <AboutMeSection />
+          <SkillsSection />
+          <ContactSection />
+        </IntroduceSection>
       </Container>
     </AppLayout>
   )

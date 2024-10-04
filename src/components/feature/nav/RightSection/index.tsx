@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { List } from "@/src/components/layout/List"
 import { ThemeSwitchSection } from "./ThemeSwitchSection"
 import { AdminSection } from "./AdminSection"
+import { ResumeSection } from "./ResumeSection"
 
 export const RightSection = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ export const RightSection = () => {
   return (
     <div className="relative justify-self-end">
       <List className="flex items-center gap-4">
+        <ResumeSection />
         <AdminSection />
         <ThemeSwitchSection />
       </List>

@@ -53,7 +53,7 @@ export const SideBar = ({ categories, subCategories }: Props) => {
         as="nav"
         dataStatus="closed"
         variant="other"
-        className="fixed left-0 top-28 flex-col rounded-l-none bg-slate-200/80 p-6 text-slate-500 transition data-[status=closed]:-translate-x-6 dark:bg-slate-700/80 dark:text-slate-400"
+        className="fixed left-0 top-28 flex-col rounded-l-none bg-slate-50 p-6 text-slate-500 transition data-[status=closed]:-translate-x-6 dark:bg-[#243247] dark:text-slate-400"
       >
         <CategoryIcon />
       </Container>
@@ -62,7 +62,7 @@ export const SideBar = ({ categories, subCategories }: Props) => {
         dataStatus="closed"
         variant="other"
         onTransitionEnd={onTransitionEnd}
-        className="fixed left-16 top-28 hidden origin-left p-2 transition ease-in-out data-[status=closed]:scale-95 data-[status=closed]:opacity-0"
+        className="fixed left-16 top-28 hidden origin-top-left bg-slate-50 p-2 transition ease-in-out data-[status=closed]:scale-95 data-[status=closed]:opacity-0 dark:bg-[#243247]"
       >
         <List className="flex w-56 flex-wrap">
           {categories?.map((category) => {

@@ -5,7 +5,7 @@ import { ElementType, forwardRef, PropsWithChildren } from "react"
 interface Props {
   as?: ElementType
   className?: string
-  variant?: "title" | "sub" | "post"
+  variant?: "title" | "sub" | "post" | "resume"
   lang?: string
 }
 
@@ -15,6 +15,7 @@ const titleVariants = cva("text-slate-600 dark:text-slate-400", {
       title: "text-xl font-bold",
       sub: "text-lg font-medium",
       post: "text-4xl font-bold md:text-5xl xl:text-6xl",
+      resume: "text-5xl font-medium",
     },
   },
 })

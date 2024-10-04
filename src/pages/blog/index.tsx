@@ -40,10 +40,7 @@ const BlogPage = () => {
   return (
     <AppLayout Header={<Header />} Footer={<Footer />}>
       <Container variant="main" as="article">
-        <Title
-          as="h2"
-          className="absolute -top-20 ml-4 text-4xl text-slate-800 md:ml-12 xl:text-5xl"
-        >
+        <Title as="h2" className="text-4xl xl:text-5xl">
           <Underbar>{renderText}</Underbar>
         </Title>
         {isSuccess && postList?.length === 0 && <EmptyCategory />}

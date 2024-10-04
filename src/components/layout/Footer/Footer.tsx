@@ -14,10 +14,7 @@ export const Footer = () => {
     <Container
       as="footer"
       variant="footer"
-      className={cn(
-        "translate-y-40 transition-slow",
-        isIntersecting ? "translate-y-0" : "translate-y-40",
-      )}
+      className={cn(isIntersecting ? "translate-y-0" : "translate-y-40")}
     >
       <div ref={target} />
       <Text>새로운 기능이 계속해서 추가됩니다.</Text>

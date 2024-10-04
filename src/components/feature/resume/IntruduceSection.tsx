@@ -11,7 +11,7 @@ export const IntroduceSection = ({ children }: PropsWithChildren) => {
   const text = useArrTypingEffect(TEXT_CONTENT)
   return (
     <header className="flex flex-1 flex-col gap-12">
-      <Title variant="resume" className="top-[82px] z-30 p-0" as="h2">
+      <Title variant="resume" className="top-[68px] z-30 p-0 md:top-[82px]" as="h2">
         <Underbar>
           <span dangerouslySetInnerHTML={{ __html: text }} />
         </Underbar>
@@ -21,8 +21,8 @@ export const IntroduceSection = ({ children }: PropsWithChildren) => {
         배워나가는 것을 좋아하며 그만큼 성장하는 것에 희열을 느낍니다. 작고 아기자기한, 그러나 사용
         경험에 자연스러움이 묻어나는 UI를 추구합니다.
       </Text>
-      {children}
       <Line />
+      {children}
     </header>
   )
 }

@@ -5,10 +5,10 @@ import { Title } from "../../shared/Title"
 
 export const ProjectSection = () => {
   return (
-    <article className="flex h-full flex-col gap-12">
+    <article className="flex h-full flex-col gap-16">
       <Title variant="resume">프로젝트 경험.</Title>
 
-      <section className="flex">
+      <section className="flex flex-col gap-12 md:flex-row">
         <div className="w-[300px]">
           <Title>하루한줄</Title>
           <Text>개인 프로젝트</Text>
@@ -43,7 +43,9 @@ export const ProjectSection = () => {
         </div>
       </section>
 
-      <section className="flex">
+      <Line dot />
+
+      <section className="flex flex-col gap-12 md:flex-row">
         <div className="w-[300px]">
           <Title>기술 블로그</Title>
           <Text>개인 프로젝트</Text>
@@ -76,7 +78,9 @@ export const ProjectSection = () => {
         </div>
       </section>
 
-      <section className="flex">
+      <Line dot />
+
+      <section className="flex flex-col gap-12 md:flex-row">
         <div className="w-[300px]">
           <Title>Mogazoa</Title>
           <Text>코드잇 팀 프로젝트</Text>
@@ -106,7 +110,9 @@ export const ProjectSection = () => {
         </div>
       </section>
 
-      <section className="flex">
+      <Line dot />
+
+      <section className="flex flex-col gap-12 md:flex-row">
         <div className="w-[300px]">
           <Title>Taskuit</Title>
           <Text>코드잇 팀 프로젝트</Text>

@@ -31,7 +31,6 @@ export const SkillsSection = () => {
               Promise를 사용하여 데이터 요청, 코드 실행을 정해진 시간동안 잠시 미루는 등의 간단한
               비동기 작업들을 구현할 수 있습니다.
             </List.Row>
-            <List.Row>IntersectionObserver를 통해 무한 스크롤을 구현할 수 있습니다.</List.Row>
           </Text>
         </List>
       </section>
@@ -42,9 +41,7 @@ export const SkillsSection = () => {
             <List.Row>
               기본적인 훅 사용법과 함수형 컴포넌트 의 생명 주기에 대한 지식이 있습니다.
             </List.Row>
-            <List.Row>
-              간단한 기능은 커스텀 훅 으로 분리하고 필요하다면 함수를 메모이제이션 합니다.
-            </List.Row>
+            <List.Row>간단한 기능은 커스텀 훅 으로 분리할 수 있습니다.</List.Row>
             <List.Row>
               Suspense와 ErrorBoundary를 이용해 예외 처리와 간단한 로딩 처리를 할 수 있습니다.
             </List.Row>
@@ -55,10 +52,6 @@ export const SkillsSection = () => {
         <Title as="h3">Next.js</Title>
         <List className="list-inside list-disc">
           <Text as="div" className="flex flex-col gap-2">
-            <List.Row>
-              로그인후 새로고침시 마치 로그인 상태가 풀렸다 다시 되는듯한 모습을 SSR을 이용하여
-              일관되게 유지되도록 구현해본 경험이 있습니다.
-            </List.Row>
             <List.Row>
               middleware를 사용하여 로그인 상태에 따른 접근이 가능한, 불가능한 페이지의 대한
               리다이렉션 동작을 구현해본 경험이 있습니다.
@@ -108,17 +101,6 @@ export const SkillsSection = () => {
         </List>
       </section>
       <section className="flex flex-col gap-4">
-        <Title as="h3">Axios</Title>
-        <List className="list-inside list-disc">
-          <Text as="div">
-            <List.Row>
-              Interceptor 기능을 이용해 AccessToken과 RefreshToken으로 사용자의 로그인 상태를
-              유지해본 경험이 있습니다.
-            </List.Row>
-          </Text>
-        </List>
-      </section>
-      <section className="flex flex-col gap-4">
         <Title as="h3">Web</Title>
         <List className="list-inside list-disc">
           <Text as="div" className="flex flex-col gap-2">
@@ -130,35 +112,6 @@ export const SkillsSection = () => {
               Cookie를 사용하여 서버에서 전달해주는 AccessToken을 이용해 로그인을 기능을 구현
               해보았습니다. Cookie에 존재하는 간단한 보안 옵션들을 사용한 경험이 있습니다.
             </List.Row>
-          </Text>
-        </List>
-      </section>
-      <section className="flex flex-col gap-4">
-        <Title as="h3">TypeScript</Title>
-        <List className="list-inside list-disc">
-          <Text as="div" className="flex flex-col gap-2">
-            <List.Row>
-              유니온 타입과 인터섹션 타입과 같은 간단한 타입 연산자로 타입핑이 가능합니다.
-            </List.Row>
-            <List.Row>
-              유틸리티 타입(Omit, Pick, Record, Partial 등)을 이용하여 보다 유동성있게 타입핑이
-              가능합니다.
-            </List.Row>
-          </Text>
-        </List>
-      </section>
-      <section className="flex flex-col gap-4">
-        <Title as="h3">ETC</Title>
-        <List className="list-inside list-disc">
-          <Text as="div" className="flex flex-col gap-2">
-            <List.Row>
-              ReduxToolkit을 사용할 수 있습니다. 기본 내장되 있는 ReduxThunk로 비동기 요청을 하여
-              데이터를 전역에서 관리해본 경험이 있습니다.
-            </List.Row>
-            <List.Row>
-              ReactHookForm과 zod를 사용할 수 있습니다. 회원가입,로그인 페이지 작업에 사용, 간단한
-              기본 메소드부터 setError를 이용한 커스텀 예외 처리까지 구현한 경험이 있습니다
-            </List.Row>
             <List.Row>
               구글과 카카오 로그인 연동 기능을 Next의 api 라우터로 구현한 경험이 있습니다.
               RedirectURI를 api 라우터의 oauth페이지로 설정해 해당 페이지에서 인가코드로 엑세스
@@ -168,6 +121,7 @@ export const SkillsSection = () => {
           </Text>
         </List>
       </section>
+
       <Line />
     </article>
   )
